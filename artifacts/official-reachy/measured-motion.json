@@ -1,0 +1,24 @@
+{
+  "control": {
+    "port": 8001,
+    "samples": 858,
+    "max_antenna_excursion": 0.13117007879293424,
+    "baseline": [
+      -0.1771227259845521,
+      0.18494403251028843
+    ],
+    "errors": 0,
+    "movement_observed": true
+  },
+  "humour": {
+    "port": 8002,
+    "samples": 858,
+    "max_antenna_excursion": 0.12605436526828426,
+    "baseline": [
+      -0.1808311069557727,
+      0.18086460208478902
+    ],
+    "errors": 0,
+    "movement_observed": true
+  }
+}

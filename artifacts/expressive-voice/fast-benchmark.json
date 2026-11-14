@@ -1,0 +1,14 @@
+[
+  {
+    "run": 0,
+    "generation_seconds": 9.86,
+    "audio_seconds": 4.88,
+    "sample_rate": 24000
+  },
+  {
+    "run": 1,
+    "generation_seconds": 2.83,
+    "audio_seconds": 4.88,
+    "sample_rate": 24000
+  }
+]

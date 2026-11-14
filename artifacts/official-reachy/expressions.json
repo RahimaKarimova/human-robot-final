@@ -1,0 +1,22 @@
+{
+  "sdk": "1.14.0",
+  "backend": "official_control_mockup",
+  "checks": {
+    "idle_has_measured_movement": true,
+    "head_commands_sent_through_sdk": true,
+    "head_motion_observed_in_sdk_state": true,
+    "disabled_idle_sends_no_targets": true,
+    "speech_finishes_on_real_eos": true,
+    "speech_moves_after_three_seconds": true,
+    "cheer_is_visibly_perked": true,
+    "pause_freezes_head_and_antennas": true,
+    "resume_restarts_motion": true,
+    "cancel_sends_no_late_targets": true
+  },
+  "measurements": {
+    "idle_excursion_radians": 0.09434642245572314,
+    "head_rotation_matrix_excursion": 0.014007022070097692,
+    "late_speech_excursion_radians": 0.2932259030471669,
+    "cheer_peak_radians": 0.5794897766554866
+  }
+}

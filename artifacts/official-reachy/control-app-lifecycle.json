@@ -1,0 +1,15 @@
+{
+  "sdk": "1.14.0",
+  "backend": "official_control_mockup",
+  "port": 8000,
+  "checks": {
+    "measured_simulated_motion": true,
+    "native_audio_paused": true,
+    "scheduler_paused": true,
+    "no_sdk_targets_while_paused": true,
+    "resume_to_real_eos": true,
+    "cancel_removes_audio_pipeline": true,
+    "no_sdk_targets_after_cancel": true
+  },
+  "max_measured_antenna_excursion_radians": 0.12098257587805694
+}

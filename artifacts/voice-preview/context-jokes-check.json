@@ -1,0 +1,22 @@
+[
+  {
+    "line": "h1",
+    "seconds": 10.87,
+    "context_and_punchline_recognized": true
+  },
+  {
+    "line": "h2",
+    "seconds": 8.96,
+    "context_and_punchline_recognized": true
+  },
+  {
+    "line": "h3",
+    "seconds": 11.55,
+    "context_and_punchline_recognized": true
+  },
+  {
+    "line": "h4",
+    "seconds": 8.99,
+    "context_and_punchline_recognized": true
+  }
+]

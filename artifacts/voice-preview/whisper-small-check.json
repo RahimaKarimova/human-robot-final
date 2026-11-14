@@ -1,0 +1,29 @@
+{
+  "fixtures": [
+    {
+      "fixture": "name",
+      "final_seconds": 2.77,
+      "final_words_match": true,
+      "intent": "REPLY"
+    },
+    {
+      "fixture": "dislike_books",
+      "final_seconds": 2.59,
+      "final_words_match": true,
+      "intent": "REPLY"
+    },
+    {
+      "fixture": "repeat",
+      "final_seconds": 2.62,
+      "final_words_match": true,
+      "intent": "REPEAT"
+    },
+    {
+      "fixture": "stop",
+      "final_seconds": 3.81,
+      "final_words_match": true,
+      "intent": "STOP"
+    }
+  ],
+  "live_partial_before_turn_end": true
+}

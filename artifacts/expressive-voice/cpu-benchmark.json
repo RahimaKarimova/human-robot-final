@@ -1,0 +1,8 @@
+{
+  "device": "cpu",
+  "threads": 2,
+  "first_audio_seconds": 0.625,
+  "total_seconds": 2.75,
+  "audio_seconds": 1.92,
+  "cuda_initialized": false
+}

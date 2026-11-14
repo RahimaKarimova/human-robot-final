@@ -1,0 +1,68 @@
+[
+  {
+    "question": "G1",
+    "synthetic_answer": "I love science books about black holes.",
+    "reply": "You enjoy science books about black holes; let's see what stories and clues this island has for us.",
+    "seconds": 9.84
+  },
+  {
+    "question": "G1",
+    "synthetic_answer": "I don't like reading at all.",
+    "reply": "Reading isn't your thing; we can enjoy exploring the island instead.",
+    "seconds": 4.09
+  },
+  {
+    "question": "G1",
+    "synthetic_answer": "I enjoy history, especially ancient Egypt.",
+    "reply": "You enjoy books about history; let's see what stories and clues this island has for us.",
+    "seconds": 4.44
+  },
+  {
+    "question": "G1",
+    "synthetic_answer": "I like cooking books, especially baking.",
+    "reply": "",
+    "seconds": 3.84
+  },
+  {
+    "question": "G2",
+    "synthetic_answer": "New places with friends, familiar places when I am alone.",
+    "reply": "New places with friends is part of your preference; we can explore the island at your pace.",
+    "seconds": 4.84
+  },
+  {
+    "question": "G3",
+    "synthetic_answer": "I would visit the moon in a science fiction story.",
+    "reply": "You'd like to explore science fiction; our island has some discoveries of its own.",
+    "seconds": 4.08
+  },
+  {
+    "question": "P1",
+    "synthetic_answer": "I keep putting off answering emails.",
+    "reply": "You've been putting off email; thank you for telling me.",
+    "seconds": 3.2
+  },
+  {
+    "question": "P2",
+    "synthetic_answer": "Talking in front of a big class is hard for me.",
+    "reply": "",
+    "seconds": 2.28
+  },
+  {
+    "question": "P3",
+    "synthetic_answer": "I worry my friends will move away.",
+    "reply": "Friends moving away has been on your mind; we can take our time here.",
+    "seconds": 2.69
+  },
+  {
+    "question": "G1",
+    "synthetic_answer": "purple sideways ceiling",
+    "reply": "",
+    "seconds": 1.86
+  },
+  {
+    "question": "G1",
+    "synthetic_answer": "What did you say?",
+    "reply": "",
+    "seconds": 1.76
+  }
+]

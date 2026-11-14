@@ -1,0 +1,45 @@
+{
+  "cases": [
+    {
+      "question": "G1",
+      "synthetic_answer": "I like cooking books, especially baking.",
+      "reply": "You enjoy cooking books, baking; let's see what stories and clues this island has for us.",
+      "seconds": 2.547
+    },
+    {
+      "question": "G2",
+      "synthetic_answer": "New places with friends, familiar places when I am alone.",
+      "reply": "I hear you: new places with friends, familiar places when I am alone. We can explore the island at your pace.",
+      "seconds": 3.641
+    },
+    {
+      "question": "G3",
+      "synthetic_answer": "I would visit the moon in a science fiction story.",
+      "reply": "You'd like to explore the moon; our island has some discoveries of its own.",
+      "seconds": 3.875
+    },
+    {
+      "question": "P1",
+      "synthetic_answer": "I keep putting off answering emails.",
+      "reply": "You've been putting off answering emails; thank you for telling me.",
+      "seconds": 0.734
+    },
+    {
+      "question": "P2",
+      "synthetic_answer": "Talking in front of a big class is hard for me.",
+      "reply": "Talking in front of a big class can feel difficult for you; we can take our island adventure gently.",
+      "seconds": 0.922
+    },
+    {
+      "question": "P3",
+      "synthetic_answer": "I worry that my friends will move away.",
+      "reply": "Friends moving away has been on your mind; we can take our time here.",
+      "seconds": 0.953
+    }
+  ],
+  "unclear_cases": 3,
+  "first_audio_seconds": 0.531,
+  "audio_seconds": 4.96,
+  "generation_seconds": 3.921,
+  "microphone_opened": false
+}

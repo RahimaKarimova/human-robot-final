@@ -15,8 +15,14 @@ services/rasa/.rasa/
 services/rasa/.runtime/
 
 # Local editor caches, generated exports and development-session artifacts.
-/.vscode/
-/artifacts/
+/.vscode/*
+!/.vscode/tasks.json
+# Keep audit reports and small JSON evidence; screenshots, audio and logs stay local.
+/artifacts/*
+!/artifacts/*.md
+!/artifacts/*/
+/artifacts/*/*
+!/artifacts/*/*.json
 /export_templates/
 /feature_profiles/
 /script_templates/

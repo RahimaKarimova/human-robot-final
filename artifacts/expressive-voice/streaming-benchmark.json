@@ -1,0 +1,18 @@
+[
+  {
+    "chunk_size": 4,
+    "first_audio_seconds": 0.547,
+    "total_generation_seconds": 4.687,
+    "audio_seconds": 5.44,
+    "chunks": 17,
+    "late_seconds_with_200ms_buffer": 0.0
+  },
+  {
+    "chunk_size": 8,
+    "first_audio_seconds": 0.516,
+    "total_generation_seconds": 3.125,
+    "audio_seconds": 4.64,
+    "chunks": 8,
+    "late_seconds_with_200ms_buffer": 0.0
+  }
+]
