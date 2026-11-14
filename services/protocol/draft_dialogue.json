@@ -1,0 +1,64 @@
+{
+  "status": "USER_REQUESTED_CONTEXTUAL_JOKE_REVISION_DEVELOPMENT_DRAFT",
+  "loaded_by_development_controller": true,
+  "delivery_scope": "Explicit opt-in full companion rehearsal: G1-G3, P1-P3, H1-H4. Default sessions remain neutral mocks; no answers are collected.",
+  "voice_profile_id": "SHARED_DEFAULT_PENDING_HARDWARE_CONFIGURATION",
+  "motion_profile_id": "NEUTRAL_FRIENDLY",
+  "questions": {
+    "G1": "What kind of stories or books do you enjoy?",
+    "G2": "Do you like exploring new places, or do you prefer somewhere familiar?",
+    "G3": "If you could explore any place in a story, where would you go?",
+    "P1": "What's something you often put off doing, even though you know you should do it?",
+    "P2": "What's something you sometimes find difficult or uncomfortable, even if it seems easy to other people?",
+    "P3": "What's something you've been worrying about lately, even if it's just a small thing?"
+  },
+  "question_lead_ins": {
+    "G1": "I like adventure stories with hidden places and clever inventions.",
+    "G2": "I enjoy finding new paths, but I keep a map handy. What about you?",
+    "G3": "I'd explore a floating library with a telescope on its roof. What about you?",
+    "P1": "I sometimes leave sorting my clue notes until the last minute. What about you?",
+    "P2": "Following several clues at once can be tricky for me. What about you?",
+    "P3": "On this adventure, I sometimes wonder whether I've missed a clue. What about you?"
+  },
+  "condition_overrides": {
+    "H1": {
+      "humour": "I tried Elara's book puzzle too. I searched with my eyes closed. Very brave. Not very useful! I couldn't see the books!",
+      "control": "I tried Elara's book puzzle too. I searched with my eyes closed. Then I opened my eyes and checked the bookshelf."
+    },
+    "H2": {
+      "humour": "I tried Milo's clock puzzle too. I put the gears in backwards. I was hoping that would give us more time!",
+      "control": "I tried Milo's clock puzzle too. I put the gears in backwards. Then I checked the instructions and put the gears in the correct slots."
+    },
+    "H3": {
+      "humour": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I knocked twice. As if that would fix my directions!",
+      "control": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I checked the river and the bridge and found the correct cottage."
+    },
+    "H4": {
+      "humour": "I tried the temple puzzle too. The door wouldn't open, so I said please. Perfect manners. Absolutely no treasure!",
+      "control": "I tried the temple puzzle too. The door wouldn't open, so I said please. Then I went back to the letter and checked the symbol order."
+    }
+  },
+  "revision_note": "User requested contextual jokes, expressive recordings and short fictional Reachy self-introductions before the six questions. Core question wording, IDs and schedule retained. Development draft, not participant-approved research wording.",
+  "joke_delivery": {
+    "H1": {
+      "setup": "I tried Elara's book puzzle too. I searched with my eyes closed.",
+      "punchline": "Very brave. Not very useful! I couldn't see the books!",
+      "pause_ms": 350
+    },
+    "H2": {
+      "setup": "I tried Milo's clock puzzle too. I put the gears in backwards.",
+      "punchline": "I was hoping that would give us more time!",
+      "pause_ms": 350
+    },
+    "H3": {
+      "setup": "On Nia's delivery task, I took the parcel to the wrong cottage.",
+      "punchline": "Then I knocked twice. As if that would fix my directions!",
+      "pause_ms": 350
+    },
+    "H4": {
+      "setup": "I tried the temple puzzle too. The door wouldn't open, so I said please.",
+      "punchline": "Perfect manners. Absolutely no treasure!",
+      "pause_ms": 350
+    }
+  }
+}

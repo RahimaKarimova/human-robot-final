@@ -1,0 +1,56 @@
+{
+  "version": "0.1.0-demo",
+  "ending": "We found it! That was great teamwork. Thanks for exploring Echo Island with me!",
+  "acknowledgement": "Thanks for telling me! Let's keep exploring.",
+  "skip_acknowledgement": "Of course! No worries at all. Let's carry on.",
+  "stages": [
+    {
+      "id": "library", "name": "Forest Library", "npc": "Elara", "role": "The librarian", "letter_id": "L1",
+      "accent": "87bfa1", "position": [-15, 0, 8],
+      "objective": "Visit Elara at the Forest Library",
+      "letter": "Welcome, traveller. Books have always taken me to places I could never visit. My favourite tales are journeys across strange islands. Our cartographer left an emerald inside the book marked with a golden feather. Look for it on the upper shelf beside the globe. — Elara",
+      "hints": ["There are two details about the book's location in the letter.", "Check the shelf nearest the globe.", "It's the golden-feather book on the upper shelf, beside the globe."],
+      "puzzle": {"kind": "books", "solution": "golden_feather", "options": [
+        {"id": "star", "label": "Star atlas", "detail": "Lower shelf · west", "color": "596d9b", "mark": "★"},
+        {"id": "leaf", "label": "Leaves of the island", "detail": "Lower shelf · west", "color": "598e6a", "mark": "♣"},
+        {"id": "silver_feather", "label": "Silver feather", "detail": "Lower shelf · east", "color": "859baf", "mark": "❧"},
+        {"id": "waves", "label": "Tides & travels", "detail": "Lower shelf · east", "color": "38888d", "mark": "≈"},
+        {"id": "moon", "label": "Moonlit journeys", "detail": "Upper shelf · far from globe", "color": "78678e", "mark": "☾"},
+        {"id": "golden_feather", "label": "Golden feather", "detail": "Upper shelf · beside the globe", "color": "b4873f", "mark": "❧"}
+      ]},
+      "entry": [], "before": ["H1", "G1"], "after": []
+    },
+    {
+      "id": "workshop", "name": "Inventor's Workshop", "npc": "Milo", "role": "The inventor", "letter_id": "L2",
+      "accent": "e6ab69", "position": [15, 0, 8],
+      "objective": "Meet Milo at the Inventor's Workshop",
+      "letter": "I've been putting off repairing my little clock for days. Every time I pass the workbench I tell myself I'll do it tomorrow. Today I finally made a start! The clock works when the small blue gear goes between the red gear and the yellow gear, from left to right. Fix it, and a precious ruby is yours. — Milo",
+      "hints": ["Think about which colour belongs in the middle.", "The inventor said the blue gear goes between the other two.", "From left to right, place red, blue, then yellow."],
+      "puzzle": {"kind": "gears", "solution": ["RED", "BLUE", "YELLOW"]},
+      "entry": [], "before": ["P1"], "after": ["H2"]
+    },
+    {
+      "id": "market", "name": "Village Market", "npc": "Nia", "role": "The merchant", "letter_id": "L3",
+      "accent": "dba5a3", "position": [15, 0, -19],
+      "objective": "Find Nia at the Village Market",
+      "letter": "People think deliveries are easy, but I still struggle with directions on this island. Yesterday I sent a parcel the wrong way. The package was meant for the cottage beside the river, after the wooden bridge, not the cottage on the hill. Find the correct route and I'll show you where a royal-blue sapphire is hidden. — Nia",
+      "hints": ["The letter mentioned two landmarks in a specific order.", "Cross the wooden bridge, then look toward the river.", "Choose the cottage next to the river immediately after the wooden bridge."],
+      "puzzle": {"kind": "routes", "solution": "bridge_river", "options": [
+        {"id": "hill", "label": "Market → hill path → hilltop cottage", "detail": "A steep trail above the river", "mark": "△"},
+        {"id": "bridge_river", "label": "Market → wooden bridge → riverside cottage", "detail": "Cross the bridge, then deliver beside the river", "mark": "≈"},
+        {"id": "forest", "label": "Market → forest path → tree cottage", "detail": "A quiet lane through the trees", "mark": "♣"}
+      ]},
+      "entry": ["G2"], "before": ["P2"], "after": ["H3"]
+    },
+    {
+      "id": "temple", "name": "Ancient Temple", "npc": "Ori", "role": "The explorer", "letter_id": "L4",
+      "accent": "b8b2d9", "position": [-15, 0, -19],
+      "objective": "Discover Ori's letter at the Ancient Temple",
+      "letter": "When I first reached this temple, I worried about taking the wrong path. I waited outside for ages. In the end, I noticed the symbols carved above the entrance: sun, wave, star. Press those symbols in that order to reveal a violet amethyst, the final jewel of the cave seal. — Ori",
+      "hints": ["The entrance has an ordered sequence.", "The sequence starts with the sun and ends with the star.", "Press sun, then wave, then star."],
+      "puzzle": {"kind": "symbols", "solution": ["SUN", "WAVE", "STAR"]},
+      "entry": ["G3"], "before": ["P3", "H4"], "after": []
+    },
+    {"id": "cave", "name": "Treasure Cave", "npc": "Treasure", "role": "The final discovery", "accent": "e9c56e", "position": [0, 0, -34], "objective": "Place the four precious gems into the sealed cave door"}
+  ]
+}

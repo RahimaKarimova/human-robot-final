@@ -1,0 +1,317 @@
+version: "3.1"
+nlu:
+- intent: stop
+  examples: |
+    - stop
+    - stop now
+    - stop the game
+    - stop the session
+    - end the session
+    - end the game
+    - i want to stop
+    - i want to end the session
+    - please stop
+    - stop please
+    - quit the session
+    - exit the game
+- intent: pause
+  examples: |
+    - pause
+    - pause the game
+    - please pause
+    - pause please
+    - pause for a moment
+    - can you pause
+    - could you pause the game
+    - i need a break
+    - let us take a break
+- intent: resume
+  examples: |
+    - resume
+    - resume the game
+    - please resume
+    - continue the game
+    - unpause
+    - unpause the game
+    - let us continue
+    - i am ready to continue
+- intent: skip
+  examples: |
+    - skip
+    - skip this
+    - skip that
+    - skip the question
+    - skip this question
+    - please skip
+    - i would rather skip
+    - i do not want to answer
+    - i would prefer not to answer
+- intent: repeat
+  examples: |
+    - repeat
+    - repeat that
+    - repeat the question
+    - please repeat
+    - say that again
+    - could you repeat that
+    - can you say that again
+    - i did not hear the question
+    - repeat that please
+    - what did you say
+    - what did you just say
+    - sorry what did you say
+    - sorry can you repeat
+    - can you repeat the question
+    - please say that again
+    - i missed that
+    - i did not catch that
+    - i didn't catch that
+    - could you say that one more time
+    - what was the question again
+    - repeat please
+- intent: hint
+  examples: |
+    - hint
+    - give me a hint
+    - i need a hint
+    - can i have a hint
+    - please give me a hint
+    - help with the puzzle
+    - help me with this puzzle
+    - another hint please
+    - what is the next clue
+- intent: wait
+  examples: |
+    - wait
+    - please wait
+    - wait a moment
+    - give me a moment
+    - give me a second
+    - i need a moment
+    - let me think
+    - hold on
+- intent: no_recall
+  examples: |
+    - i cannot think of anything
+    - i can not think of anything
+    - i can't think of anything
+    - nothing comes to mind
+    - i cannot recall anything
+    - i do not remember anything
+- intent: clarify
+  examples: |
+    - i do not understand
+    - explain that
+    - clarify
+    - please clarify
+    - what do you mean
+    - can you explain the question
+    - i do not understand the question
+    - could you clarify the question
+    - i did not get that
+    - i didn't get that
+    - i do not get it
+    - i don't understand
+    - i did not understand
+    - i didn't understand the question
+    - can you explain that
+    - could you explain what you mean
+    - i am confused
+    - what does that mean
+    - i do not understand what you are asking
+- intent: privacy
+  examples: |
+    - privacy
+    - is this recorded
+    - are you recording
+    - who can see my answer
+    - why are you asking
+    - why is this personal
+    - what happens to my answer
+- intent: reply_given
+  examples: |
+    - reply supplied
+- intent: name_given
+  examples: |
+    - my name is Alex
+    - you can call me Sam
+    - I am Alice
+    - call me Robin
+- intent: answer_books_dislike
+  examples: |
+    - I don't like books
+    - I do not like reading
+    - I hate books
+    - Reading is not my thing
+    - I'm not a fan of books
+    - I never enjoy reading
+    - I prefer not to read books
+    - Books are boring to me
+- intent: answer_books_like
+  examples: |
+    - I love books
+    - I really enjoy reading
+    - I like lots of different books
+    - Reading is my favourite hobby
+    - I read every day
+    - I enjoy a good story
+    - I'm a big fan of books
+    - Books make me happy
+- intent: answer_books_fantasy
+  examples: |
+    - I like fantasy books
+    - I love magical stories
+    - I read stories about wizards
+    - My favourite books have dragons
+    - I enjoy Harry Potter
+    - I love fantasy novels
+    - Magic and imaginary worlds are my favourites
+    - I read fairy tales
+- intent: answer_books_mystery
+  examples: |
+    - I like mystery books
+    - I love detective stories
+    - I enjoy solving fictional crimes
+    - My favourite books are mysteries
+    - I read Sherlock Holmes
+    - I enjoy crime novels
+    - I like suspense stories
+    - I love a good whodunit
+- intent: answer_books_adventure
+  examples: |
+    - I enjoy adventure books
+    - I like stories about exploring islands
+    - I love treasure hunting stories
+    - I read adventures about pirates
+    - I enjoy books about explorers
+    - I like exciting journeys
+    - Adventure novels are my favourites
+    - I read stories about discovering new places
+- intent: answer_explore_new
+  examples: |
+    - I love exploring new places
+    - I prefer somewhere new
+    - I enjoy travelling to unfamiliar places
+    - I like discovering new locations
+    - New places excite me
+    - I would choose exploring
+    - I enjoy an adventure somewhere different
+    - I like visiting places I've never seen
+- intent: answer_prefer_familiar
+  examples: |
+    - I prefer familiar places
+    - I like somewhere I already know
+    - I would rather stay close to home
+    - I feel more comfortable in familiar places
+    - I don't like unfamiliar places
+    - I like my usual places
+    - I prefer familiar surroundings
+    - I don't enjoy exploring new places
+- intent: answer_place_fantasy
+  examples: |
+    - I would go to Hogwarts
+    - I would explore a magical kingdom
+    - I would visit Middle Earth
+    - I want to explore Narnia
+    - I would go somewhere with dragons
+    - I'd choose a fantasy world
+    - I would visit an enchanted forest
+    - A magical castle would be my choice
+- intent: answer_place_adventure
+  examples: |
+    - I would explore a treasure island
+    - I would visit a pirate island
+    - I want to explore a jungle
+    - I would go on a space adventure
+    - I'd explore the ocean
+    - I would visit a lost city
+    - I want to discover an ancient temple
+    - I would explore a mysterious cave
+- intent: answer_put_off_study
+  examples: |
+    - I put off studying
+    - I procrastinate doing homework
+    - I delay revising for exams
+    - I avoid starting my assignments
+    - I leave school work until the last minute
+    - I keep postponing my essays
+    - I don't start studying when I should
+    - I delay doing university work
+- intent: answer_put_off_chores
+  examples: |
+    - I put off cleaning
+    - I postpone doing chores
+    - I delay washing dishes
+    - I avoid tidying my room
+    - I put off doing laundry
+    - I leave housework until later
+    - I procrastinate cleaning my house
+    - I delay sorting out my things
+- intent: answer_social_difficulty
+  examples: |
+    - I find talking to people difficult
+    - I struggle with social situations
+    - Meeting new people makes me nervous
+    - I find public speaking uncomfortable
+    - I struggle to make friends
+    - I find speaking in groups hard
+    - I feel awkward around strangers
+    - Conversations with new people are difficult
+- intent: answer_learning_difficulty
+  examples: |
+    - I find maths difficult
+    - I struggle with learning new things
+    - I find studying hard
+    - I struggle to understand lessons
+    - I find concentrating on school work difficult
+    - I struggle with remembering information
+    - Learning a new language is difficult
+    - I find solving problems hard
+- intent: answer_worry_study
+  examples: |
+    - I am worried about exams
+    - I'm worrying about school
+    - I worry about my grades
+    - My university work worries me
+    - I feel worried about failing a test
+    - I am anxious about my assignments
+    - I worry about finishing my homework
+    - I have been worrying about studying
+- intent: answer_worry_future
+  examples: |
+    - I worry about the future
+    - I am worried about getting a job
+    - I worry about my career
+    - I don't know what I will do next year
+    - I worry about what comes next
+    - I am worried about my future plans
+    - I worry about finding work
+    - The future makes me worried
+- intent: answer_books_science
+  examples: |
+    - I like science books
+    - I love reading science books
+    - I enjoy books about science
+    - My favourite books explain how things work
+    - I read books about physics
+    - I enjoy astronomy books
+    - I like biology books
+    - Science and space books are my favourites
+    - I love popular science
+    - I read books about experiments
+    - I enjoy factual books about the universe
+    - I like science books more than fantasy
+- intent: answer_books_history
+  examples: |
+    - I like history books
+    - I enjoy books about history
+    - I love reading about ancient civilizations
+    - My favourite books are about the past
+    - I read historical books
+    - I enjoy world history
+    - I like learning about ancient Egypt
+    - I enjoy historical nonfiction
+    - Books about historical events are my favourites
+    - I read about kings and queens
+    - I love ancient history
+    - I like history more than science

@@ -1,0 +1,52 @@
+ECHO ISLAND - FULL SOURCE PROJECT FOR MAC / VS CODE
+
+ONE-TIME SETUP
+1. Download Godot 4.5.2 STANDARD for macOS (Universal, Intel + Apple Silicon):
+   https://godotengine.org/download/archive/4.5.2-stable/
+   Choose macOS Standard, not .NET and not export templates.
+2. Extract that download, move Godot.app into Applications, and open it once.
+3. Extract EchoIsland-Full-Project.zip. Keep its folders together.
+
+RUN FROM VS CODE
+1. File > Open Folder: select the extracted EchoIsland-Project folder.
+   It must be the folder containing project.godot and Launch-Mac.sh.
+2. Press Command + Shift + B.
+   This runs the included default task, Echo Island: Play on Mac.
+3. The first launch imports the assets, then opens the game window.
+
+You can also choose Terminal > Run Task > Echo Island: Play on Mac.
+If VS Code asks about workspace trust, enable tasks only for the project
+you knowingly received from your friend.
+
+TERMINAL ALTERNATIVE
+In VS Code, open Terminal > New Terminal, then run:
+    bash Launch-Mac.sh
+No chmod command or VS Code extension is needed.
+
+GODOT EDITOR ALTERNATIVE
+Open Godot, choose Import, select project.godot in this folder, open the
+project and press F5 (or the Play button). This runs the same game.
+
+IF GODOT IS NOT FOUND
+The launcher looks in Applications, your personal Applications/Downloads,
+and for a godot command on PATH. Keep the installed app named Godot.app.
+For a renamed or custom location, run for example:
+    GODOT_BIN="/Applications/MyGodot.app/Contents/MacOS/Godot" bash Launch-Mac.sh
+
+WHAT IS INCLUDED
+All game scripts, scenes, quests, gemstone definitions, voice recordings,
+music, shaders, artwork, tests, export presets and VS Code tasks.
+Godot is the required game engine; VS Code alone cannot run GDScript.
+No Python, backend, robot or microphone setup is needed.
+After installing Godot and extracting this project, the game plays offline.
+This source route runs inside the official Godot app instead of opening
+the separate non-notarized Echo Island app export.
+
+CONTROLS
+WASD move (also exits close-up views); Shift sprint; E/click interact;
+Q/T select objects; F inspect; R letter; H hint; Tab journal; Esc pause.
+Right mouse/secondary click and drag looks around. Wheel or +/- zooms.
+If lost: Esc > Return to quest path. Progress lasts for the current run.
+
+The source launcher is syntax-checked and the extracted project is tested
+on Windows. Launch, graphics and audio still need verification on her Mac.

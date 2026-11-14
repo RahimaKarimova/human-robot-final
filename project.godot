@@ -1,0 +1,33 @@
+; Echo Island — offline Godot 4 adventure
+config_version=5
+
+[application]
+config/name="The Lost Treasure of Echo Island"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://assets/icon.svg"
+
+[autoload]
+Content="*res://scripts/content.gd"
+EventBus="*res://scripts/event_bus.gd"
+GameState="*res://scripts/game_state.gd"
+ApiClient="*res://scripts/api_client.gd"
+QuestManager="*res://scripts/quest_manager.gd"
+
+[display]
+window/size/viewport_width=1366
+window/size/viewport_height=768
+window/size/window_width_override=1366
+window/size/window_height_override=768
+window/stretch/mode="canvas_items"
+accessibility/enable=false
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.39, 0.70, 0.77, 1)
+
+[audio]
+general/text_to_speech=true

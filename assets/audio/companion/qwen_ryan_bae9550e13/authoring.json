@@ -1,0 +1,86 @@
+{
+  "companion_welcome": {
+    "text": "Hello! I'm Reachy, your exploring companion. Welcome to Echo Island!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_name": {
+    "text": "What would you like me to call you? You can skip this if you prefer.",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_name_ack": {
+    "text": "It's lovely to meet you. Let's head to the Forest Library and meet Elara!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_library_success": {
+    "text": "You found the emerald! Great teamwork. That's our first precious gem for the cave door!",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_workshop_success": {
+    "text": "You fixed Milo's clock and found the ruby! Two precious gems collected. Let's take them to the cave when we have all four.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_market_success": {
+    "text": "The parcel reached the riverside cottage! You earned the sapphire. That's three gems. The ancient temple holds the last one.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_temple_success": {
+    "text": "You opened the altar and found the amethyst! All four gems are ours. Let's put them into the sealed cave door.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_g1": {
+    "text": "I like adventure stories with hidden places and clever inventions. What kind of stories or books do you enjoy?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 9.52
+  },
+  "companion_g2": {
+    "text": "I enjoy finding new paths, but I keep a map handy. What about you? Do you like exploring new places, or do you prefer somewhere familiar?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 12.24
+  },
+  "companion_g3": {
+    "text": "I'd explore a floating library with a telescope on its roof. What about you? If you could explore any place in a story, where would you go?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 11.2
+  },
+  "companion_p1": {
+    "text": "I sometimes leave sorting my clue notes until the last minute. What about you? What's something you often put off doing, even though you know you should do it?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 14.72
+  },
+  "companion_p2": {
+    "text": "Following several clues at once can be tricky for me. What about you? What's something you sometimes find difficult or uncomfortable, even if it seems easy to other people?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 14.48
+  },
+  "companion_p3": {
+    "text": "On this adventure, I sometimes wonder whether I've missed a clue. What about you? What's something you've been worrying about lately, even if it's just a small thing?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "seconds": 17.12
+  }
+}

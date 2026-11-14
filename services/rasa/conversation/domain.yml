@@ -1,0 +1,96 @@
+version: "3.1"
+intents:
+  - stop
+  - pause
+  - resume
+  - skip
+  - repeat
+  - hint
+  - wait
+  - no_recall
+  - clarify
+  - privacy
+  - reply_given
+  - nlu_fallback
+  - name_given
+  - answer_books_dislike
+  - answer_books_like
+  - answer_books_fantasy
+  - answer_books_mystery
+  - answer_books_adventure
+  - answer_explore_new
+  - answer_prefer_familiar
+  - answer_place_fantasy
+  - answer_place_adventure
+  - answer_put_off_study
+  - answer_put_off_chores
+  - answer_social_difficulty
+  - answer_learning_difficulty
+  - answer_worry_study
+  - answer_worry_future
+  - answer_books_science
+  - answer_books_history
+responses:
+  utter_stop:
+    - text: "STOP"
+  utter_pause:
+    - text: "PAUSE"
+  utter_resume:
+    - text: "RESUME"
+  utter_skip:
+    - text: "SKIP"
+  utter_repeat:
+    - text: "REPEAT"
+  utter_hint:
+    - text: "HINT"
+  utter_wait:
+    - text: "WAIT"
+  utter_no_recall:
+    - text: "NO_RECALL"
+  utter_clarify:
+    - text: "CLARIFY"
+  utter_privacy:
+    - text: "PRIVACY"
+  utter_reply_given:
+    - text: "REPLY"
+  utter_nlu_fallback:
+    - text: "UNKNOWN"
+  utter_name_given:
+    - text: "NAME_GIVEN"
+  utter_answer_books_dislike:
+    - text: "BOOKS_DISLIKE"
+  utter_answer_books_like:
+    - text: "BOOKS_LIKE"
+  utter_answer_books_fantasy:
+    - text: "BOOKS_FANTASY"
+  utter_answer_books_mystery:
+    - text: "BOOKS_MYSTERY"
+  utter_answer_books_adventure:
+    - text: "BOOKS_ADVENTURE"
+  utter_answer_explore_new:
+    - text: "EXPLORE_NEW"
+  utter_answer_prefer_familiar:
+    - text: "PREFER_FAMILIAR"
+  utter_answer_place_fantasy:
+    - text: "PLACE_FANTASY"
+  utter_answer_place_adventure:
+    - text: "PLACE_ADVENTURE"
+  utter_answer_put_off_study:
+    - text: "PUT_OFF_STUDY"
+  utter_answer_put_off_chores:
+    - text: "PUT_OFF_CHORES"
+  utter_answer_social_difficulty:
+    - text: "SOCIAL_DIFFICULTY"
+  utter_answer_learning_difficulty:
+    - text: "LEARNING_DIFFICULTY"
+  utter_answer_worry_study:
+    - text: "WORRY_STUDY"
+  utter_answer_worry_future:
+    - text: "WORRY_FUTURE"
+  utter_answer_books_science:
+    - text: "BOOKS_SCIENCE"
+  utter_answer_books_history:
+    - text: "BOOKS_HISTORY"
+session_config:
+  session_expiration_time: 30
+  carry_over_slots_to_new_session: false

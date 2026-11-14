@@ -1,0 +1,560 @@
+{
+  "L1": {
+    "path": "res://assets/audio/narration/L1.wav",
+    "text": "Welcome, traveller. Books have always taken me to places I could never visit. My favourite tales are journeys across strange islands. Our cartographer left an emerald inside the book marked with a golden feather. Look for it on the upper shelf beside the globe. — Elara",
+    "voice": "en_GB-alba-medium"
+  },
+  "greeting_market": {
+    "path": "res://assets/audio/characters/market/greeting.wav",
+    "text": "Welcome to the market! I'm Nia. Come and take a look at my delivery map.",
+    "voice": "en_GB-vctk-medium speaker 90"
+  },
+  "task_library": {
+    "path": "res://assets/audio/characters/library/task.wav",
+    "text": "Take a look at my bookshelves. The markings and shelf positions will help you find the book from my letter.",
+    "voice": "en_GB-vctk-medium speaker 107"
+  },
+  "task_temple": {
+    "path": "res://assets/audio/characters/temple/task.wav",
+    "text": "Press the carved symbols on the three stone pillars. Each correct symbol lights up, and the altar opens when the sequence is complete. The markings above the entrance show the order. There is no need to hurry.",
+    "voice": "en_GB-vctk-medium speaker 82"
+  },
+  "intro": {
+    "path": "res://assets/audio/narration/intro.wav",
+    "text": "Welcome to Echo Island. Four precious gems are waiting to be found. They open an ancient door hiding the treasure. Follow the lanterns, meet the islanders, and discover the treasure together.",
+    "voice": "en_GB-alba-medium"
+  },
+  "wrong_library": {
+    "path": "res://assets/audio/characters/library/wrong.wav",
+    "text": "Not quite. Take your time, and check the clues in my letter again.",
+    "voice": "en_GB-vctk-medium speaker 107"
+  },
+  "wrong_workshop": {
+    "path": "res://assets/audio/characters/workshop/wrong.wav",
+    "text": "Not quite. We can give it another try. Check the order in my letter.",
+    "voice": "en_GB-vctk-medium speaker 95"
+  },
+  "success_workshop": {
+    "path": "res://assets/audio/characters/workshop/success.wav",
+    "text": "There we go! The clock is ticking again. This precious ruby is yours. Nia is waiting at the market.",
+    "voice": "en_GB-vctk-medium speaker 95"
+  },
+  "success_library": {
+    "path": "res://assets/audio/characters/library/success.wav",
+    "text": "Lovely work! Here is a precious emerald for the cave door. The trail continues at Milo's workshop.",
+    "voice": "en_GB-vctk-medium speaker 107"
+  },
+  "success_market": {
+    "path": "res://assets/audio/characters/market/success.wav",
+    "text": "A delivery well done! Here is a royal-blue sapphire. Follow the path to Ori at the ancient temple.",
+    "voice": "en_GB-vctk-medium speaker 90"
+  },
+  "wrong_temple": {
+    "path": "res://assets/audio/characters/temple/wrong.wav",
+    "text": "The altar is ready for another try. Follow the order from my letter.",
+    "voice": "en_GB-vctk-medium speaker 82"
+  },
+  "task_workshop": {
+    "path": "res://assets/audio/characters/workshop/task.wav",
+    "text": "Pick up a coloured gear from the tray on the left, then choose a numbered socket to place it. You can pick up placed gears or swap them. The clock starts as soon as the order is right.",
+    "voice": "en_GB-vctk-medium speaker 95"
+  },
+  "greeting_library": {
+    "path": "res://assets/audio/characters/library/greeting.wav",
+    "text": "Hello, traveller! Welcome to my library. I have a letter for you.",
+    "voice": "en_GB-vctk-medium speaker 107"
+  },
+  "task_market": {
+    "path": "res://assets/audio/characters/market/task.wav",
+    "text": "Press E to pick up my parcel. Use W A S D to walk across the wooden bridge. Then approach the delivery box outside the riverside cottage and press E again.",
+    "voice": "en_GB-vctk-medium speaker 90"
+  },
+  "L3": {
+    "path": "res://assets/audio/narration/L3.wav",
+    "text": "People think deliveries are easy, but I still struggle with directions on this island. Yesterday I sent a parcel the wrong way. The package was meant for the cottage beside the river, after the wooden bridge, not the cottage on the hill. Find the correct route and I'll show you where a royal-blue sapphire is hidden. — Nia",
+    "voice": "en_GB-alba-medium"
+  },
+  "success_temple": {
+    "path": "res://assets/audio/characters/temple/success.wav",
+    "text": "The symbols have answered. Take this amethyst, the final jewel. Place all four gems into the matching sockets on the treasure cave door.",
+    "voice": "en_GB-vctk-medium speaker 82"
+  },
+  "greeting_temple": {
+    "path": "res://assets/audio/characters/temple/greeting.wav",
+    "text": "Hello, fellow explorer. I'm Ori. These old symbols have a story to tell.",
+    "voice": "en_GB-vctk-medium speaker 82"
+  },
+  "L2": {
+    "path": "res://assets/audio/narration/L2.wav",
+    "text": "I've been putting off repairing my little clock for days. Every time I pass the workbench I tell myself I'll do it tomorrow. Today I finally made a start! The clock works when the small blue gear goes between the red gear and the yellow gear, from left to right. Fix it, and a precious ruby is yours. — Milo",
+    "voice": "en_GB-alba-medium"
+  },
+  "L4": {
+    "path": "res://assets/audio/narration/L4.wav",
+    "text": "When I first reached this temple, I worried about taking the wrong path. I waited outside for ages. In the end, I noticed the symbols carved above the entrance: sun, wave, star. Press those symbols in that order to reveal a violet amethyst, the final jewel of the cave seal. — Ori",
+    "voice": "en_GB-alba-medium"
+  },
+  "greeting_workshop": {
+    "path": "res://assets/audio/characters/workshop/greeting.wav",
+    "text": "Hi there! I'm Milo. My little clock could use an explorer's help.",
+    "voice": "en_GB-vctk-medium speaker 95"
+  },
+  "ending": {
+    "path": "res://assets/audio/narration/ending.wav",
+    "text": "We found it! That was great teamwork. Thanks for exploring Echo Island with me!",
+    "voice": "en_GB-alba-medium"
+  },
+  "wrong_market": {
+    "path": "res://assets/audio/characters/market/wrong.wav",
+    "text": "That is another cottage. The parcel is still safe. Have another look at my letter.",
+    "voice": "en_GB-vctk-medium speaker 90"
+  },
+  "companion_welcome": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_welcome.wav",
+    "text": "Hello! I'm Reachy, your exploring companion. Welcome to Echo Island!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_name": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_name.wav",
+    "text": "What would you like me to call you? You can skip this if you prefer.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_name_ack": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_name_ack.wav",
+    "text": "It's lovely to meet you. Let's head to the Forest Library and meet Elara!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_library_success": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_library_success.wav",
+    "text": "You found the emerald! Great teamwork. That's our first precious gem for the cave door!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "celebrate",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_g1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_g1.wav",
+    "text": "I like adventure stories with hidden places and clever inventions. What kind of stories or books do you enjoy?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_ack": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_ack.wav",
+    "text": "Thanks for telling me! Let's keep exploring.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "supplied_shared_acknowledgement"
+  },
+  "companion_skip": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_skip.wav",
+    "text": "Of course! No worries at all. Let's carry on.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "supplied_shared_acknowledgement"
+  },
+  "companion_h1_control": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h1_control.wav",
+    "text": "I tried Elara's book puzzle too. I searched with my eyes closed. Then I opened my eyes and checked the bookshelf.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "neutral",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h1_humour": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h1_humour.wav",
+    "text": "I tried Elara's book puzzle too. I searched with my eyes closed. Very brave. Not very useful! I couldn't see the books!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "playful",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_hint_1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_hint_1.wav",
+    "text": "There are two details about the book's location in the letter.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_hint_2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_hint_2.wav",
+    "text": "Check the shelf nearest the globe.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_hint_3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_hint_3.wav",
+    "text": "It's the golden-feather book on the upper shelf, beside the globe.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_workshop_success": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_workshop_success.wav",
+    "text": "You fixed Milo's clock and found the ruby! Two precious gems collected. Let's take them to the cave when we have all four.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "celebrate",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_market_success": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_market_success.wav",
+    "text": "The parcel reached the riverside cottage! You earned the sapphire. That's three gems. The ancient temple holds the last one.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "celebrate",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_temple_success": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_temple_success.wav",
+    "text": "You opened the altar and found the amethyst! All four gems are ours. Let's put them into the sealed cave door.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "celebrate",
+    "provenance": "proposed_development_addition"
+  },
+  "companion_g2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_g2.wav",
+    "text": "I enjoy finding new paths, but I keep a map handy. What about you? Do you like exploring new places, or do you prefer somewhere familiar?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_g3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_g3.wav",
+    "text": "I'd explore a floating library with a telescope on its roof. What about you? If you could explore any place in a story, where would you go?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_p1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_p1.wav",
+    "text": "I sometimes leave sorting my clue notes until the last minute. What about you? What's something you often put off doing, even though you know you should do it?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_p2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_p2.wav",
+    "text": "Following several clues at once can be tricky for me. What about you? What's something you sometimes find difficult or uncomfortable, even if it seems easy to other people?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_p3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_p3.wav",
+    "text": "On this adventure, I sometimes wonder whether I've missed a clue. What about you? What's something you've been worrying about lately, even if it's just a small thing?",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "curious",
+    "provenance": "user_requested_reciprocal_question_intro"
+  },
+  "companion_h2_control": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h2_control.wav",
+    "text": "I tried Milo's clock puzzle too. I put the gears in backwards. Then I checked the instructions and put the gears in the correct slots.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "neutral",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h2_humour": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h2_humour.wav",
+    "text": "I tried Milo's clock puzzle too. I put the gears in backwards. I was hoping that would give us more time!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "playful",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h3_control": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h3_control.wav",
+    "text": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I checked the river and the bridge and found the correct cottage.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "neutral",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h3_humour": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h3_humour.wav",
+    "text": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I knocked twice. As if that would fix my directions!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "playful",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h4_control": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h4_control.wav",
+    "text": "I tried the temple puzzle too. The door wouldn't open, so I said please. Then I went back to the letter and checked the symbol order.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "neutral",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_h4_humour": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_h4_humour.wav",
+    "text": "I tried the temple puzzle too. The door wouldn't open, so I said please. Perfect manners. Absolutely no treasure!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "playful",
+    "provenance": "user_requested_simple_joke_revision"
+  },
+  "companion_workshop_hint_1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_workshop_hint_1.wav",
+    "text": "Think about which colour belongs in the middle.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_workshop_hint_2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_workshop_hint_2.wav",
+    "text": "The inventor said the blue gear goes between the other two.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_workshop_hint_3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_workshop_hint_3.wav",
+    "text": "From left to right, place red, blue, then yellow.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_market_hint_1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_market_hint_1.wav",
+    "text": "The letter mentioned two landmarks in a specific order.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_market_hint_2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_market_hint_2.wav",
+    "text": "Cross the wooden bridge, then look toward the river.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_market_hint_3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_market_hint_3.wav",
+    "text": "Choose the cottage next to the river immediately after the wooden bridge.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_temple_hint_1": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_temple_hint_1.wav",
+    "text": "The entrance has an ordered sequence.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_temple_hint_2": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_temple_hint_2.wav",
+    "text": "The sequence starts with the sun and ends with the star.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_temple_hint_3": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_temple_hint_3.wav",
+    "text": "Press sun, then wave, then star.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "shared_game_hint"
+  },
+  "companion_ending": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_ending.wav",
+    "text": "We found it! That was great teamwork. Thanks for exploring Echo Island with me!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "celebrate",
+    "provenance": "supplied_shared_ending"
+  },
+  "companion_notice_waiting": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_notice_waiting.wav",
+    "text": "Take your time. You can answer when you're ready, or say skip.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_shared_conversation_support"
+  },
+  "companion_notice_development_privacy": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_notice_development_privacy.wav",
+    "text": "Your speech is processed locally. This development game does not save audio or answer transcripts. You can skip any question.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_shared_conversation_support"
+  },
+  "companion_notice_repair": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_notice_repair.wav",
+    "text": "I didn't quite catch that. You can try again, say repeat, or say skip.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_shared_conversation_support"
+  },
+  "companion_reply_books_dislike": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_dislike.wav",
+    "text": "Not a book fan? That's completely fine! We can enjoy the island's clues instead.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_like": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_like.wav",
+    "text": "A book lover! Lovely. Let's see what story this island has waiting for us.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_fantasy": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_fantasy.wav",
+    "text": "Fantasy storiesâ€”lovely! A mysterious island sounds like a good place for our own little adventure.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_mystery": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_mystery.wav",
+    "text": "A mystery fan! Then let's see if we can crack the next clue together.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_adventure": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_adventure.wav",
+    "text": "Adventure stories! That fits our treasure hunt beautifully. Let's find the next clue.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_explore_new": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_explore_new.wav",
+    "text": "You enjoy discovering new places! Let's see what this island has around the next corner.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_prefer_familiar": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_prefer_familiar.wav",
+    "text": "Somewhere familiar can feel lovely and comfortable. We can explore this island at a gentle pace.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_place_fantasy": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_place_fantasy.wav",
+    "text": "An imaginary world full of magic! That's a wonderful place to picture. Let's continue our own island story.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_place_adventure": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_place_adventure.wav",
+    "text": "A place full of adventure! I can see why that appeals to you. Our next clue is waiting.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_put_off_study": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_put_off_study.wav",
+    "text": "Getting started on studying can be difficult. Thanks for being honest. Let's tackle our next small island step together.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_put_off_chores": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_put_off_chores.wav",
+    "text": "Everyday chores can be easy to put off. Thanks for telling me. Let's take our next island step together.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_social_difficulty": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_social_difficulty.wav",
+    "text": "Social situations can feel difficult. Thank you for telling me. You don't have to explain any moreâ€”let's explore at your pace.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_learning_difficulty": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_learning_difficulty.wav",
+    "text": "Learning something new can take time. Thanks for telling me. We can take this next puzzle one step at a time.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_worry_study": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_worry_study.wav",
+    "text": "School and exams can weigh on your mind. Thanks for trusting me with that. Let's take our next step gently.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_worry_future": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_worry_future.wav",
+    "text": "Uncertainty about the future can be a lot to think about. Thank you for telling me. We'll keep our next island step gentle.",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "gentle",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_science": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_science.wav",
+    "text": "Science books! You enjoy finding out how things work. Milo's workshop might be just your kind of place!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  },
+  "companion_reply_books_history": {
+    "path": "res://assets/audio/companion/qwen_ryan_bae9550e13/companion_reply_books_history.wav",
+    "text": "History books! You enjoy discovering stories from the past. Our ancient temple has a little island history waiting for us!",
+    "voice": "qwen3-tts-ryan",
+    "delivery_profile": "qwen3_emotion_v1",
+    "emotion": "warm",
+    "provenance": "proposed_contextual_reply"
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "BOOKS_DISLIKE": {
+    "questions": [
+      "G1"
+    ],
+    "response": "Not a book fan? That's completely fine! We can enjoy the island's clues instead.",
+    "motion": "NOD",
+    "examples": [
+      "I don't like books",
+      "I do not like reading",
+      "I hate books",
+      "Reading is not my thing",
+      "I'm not a fan of books",
+      "I never enjoy reading",
+      "I prefer not to read books",
+      "Books are boring to me"
+    ]
+  },
+  "BOOKS_LIKE": {
+    "questions": [
+      "G1"
+    ],
+    "response": "A book lover! Lovely. Let's see what story this island has waiting for us.",
+    "motion": "WAVE",
+    "examples": [
+      "I love books",
+      "I really enjoy reading",
+      "I like lots of different books",
+      "Reading is my favourite hobby",
+      "I read every day",
+      "I enjoy a good story",
+      "I'm a big fan of books",
+      "Books make me happy"
+    ]
+  },
+  "BOOKS_FANTASY": {
+    "questions": [
+      "G1"
+    ],
+    "response": "Fantasy storiesâ€”lovely! A mysterious island sounds like a good place for our own little adventure.",
+    "motion": "WAVE",
+    "examples": [
+      "I like fantasy books",
+      "I love magical stories",
+      "I read stories about wizards",
+      "My favourite books have dragons",
+      "I enjoy Harry Potter",
+      "I love fantasy novels",
+      "Magic and imaginary worlds are my favourites",
+      "I read fairy tales"
+    ]
+  },
+  "BOOKS_MYSTERY": {
+    "questions": [
+      "G1"
+    ],
+    "response": "A mystery fan! Then let's see if we can crack the next clue together.",
+    "motion": "POINT",
+    "examples": [
+      "I like mystery books",
+      "I love detective stories",
+      "I enjoy solving fictional crimes",
+      "My favourite books are mysteries",
+      "I read Sherlock Holmes",
+      "I enjoy crime novels",
+      "I like suspense stories",
+      "I love a good whodunit"
+    ]
+  },
+  "BOOKS_ADVENTURE": {
+    "questions": [
+      "G1"
+    ],
+    "response": "Adventure stories! That fits our treasure hunt beautifully. Let's find the next clue.",
+    "motion": "WAVE",
+    "examples": [
+      "I enjoy adventure books",
+      "I like stories about exploring islands",
+      "I love treasure hunting stories",
+      "I read adventures about pirates",
+      "I enjoy books about explorers",
+      "I like exciting journeys",
+      "Adventure novels are my favourites",
+      "I read stories about discovering new places"
+    ]
+  },
+  "EXPLORE_NEW": {
+    "questions": [
+      "G2"
+    ],
+    "response": "You enjoy discovering new places! Let's see what this island has around the next corner.",
+    "motion": "POINT",
+    "examples": [
+      "I love exploring new places",
+      "I prefer somewhere new",
+      "I enjoy travelling to unfamiliar places",
+      "I like discovering new locations",
+      "New places excite me",
+      "I would choose exploring",
+      "I enjoy an adventure somewhere different",
+      "I like visiting places I've never seen"
+    ]
+  },
+  "PREFER_FAMILIAR": {
+    "questions": [
+      "G2"
+    ],
+    "response": "Somewhere familiar can feel lovely and comfortable. We can explore this island at a gentle pace.",
+    "motion": "NOD",
+    "examples": [
+      "I prefer familiar places",
+      "I like somewhere I already know",
+      "I would rather stay close to home",
+      "I feel more comfortable in familiar places",
+      "I don't like unfamiliar places",
+      "I like my usual places",
+      "I prefer familiar surroundings",
+      "I don't enjoy exploring new places"
+    ]
+  },
+  "PLACE_FANTASY": {
+    "questions": [
+      "G3"
+    ],
+    "response": "An imaginary world full of magic! That's a wonderful place to picture. Let's continue our own island story.",
+    "motion": "WAVE",
+    "examples": [
+      "I would go to Hogwarts",
+      "I would explore a magical kingdom",
+      "I would visit Middle Earth",
+      "I want to explore Narnia",
+      "I would go somewhere with dragons",
+      "I'd choose a fantasy world",
+      "I would visit an enchanted forest",
+      "A magical castle would be my choice"
+    ]
+  },
+  "PLACE_ADVENTURE": {
+    "questions": [
+      "G3"
+    ],
+    "response": "A place full of adventure! I can see why that appeals to you. Our next clue is waiting.",
+    "motion": "POINT",
+    "examples": [
+      "I would explore a treasure island",
+      "I would visit a pirate island",
+      "I want to explore a jungle",
+      "I would go on a space adventure",
+      "I'd explore the ocean",
+      "I would visit a lost city",
+      "I want to discover an ancient temple",
+      "I would explore a mysterious cave"
+    ]
+  },
+  "PUT_OFF_STUDY": {
+    "questions": [
+      "P1"
+    ],
+    "response": "Getting started on studying can be difficult. Thanks for being honest. Let's tackle our next small island step together.",
+    "motion": "NOD",
+    "examples": [
+      "I put off studying",
+      "I procrastinate doing homework",
+      "I delay revising for exams",
+      "I avoid starting my assignments",
+      "I leave school work until the last minute",
+      "I keep postponing my essays",
+      "I don't start studying when I should",
+      "I delay doing university work"
+    ]
+  },
+  "PUT_OFF_CHORES": {
+    "questions": [
+      "P1"
+    ],
+    "response": "Everyday chores can be easy to put off. Thanks for telling me. Let's take our next island step together.",
+    "motion": "NOD",
+    "examples": [
+      "I put off cleaning",
+      "I postpone doing chores",
+      "I delay washing dishes",
+      "I avoid tidying my room",
+      "I put off doing laundry",
+      "I leave housework until later",
+      "I procrastinate cleaning my house",
+      "I delay sorting out my things"
+    ]
+  },
+  "SOCIAL_DIFFICULTY": {
+    "questions": [
+      "P2"
+    ],
+    "response": "Social situations can feel difficult. Thank you for telling me. You don't have to explain any moreâ€”let's explore at your pace.",
+    "motion": "LISTEN",
+    "examples": [
+      "I find talking to people difficult",
+      "I struggle with social situations",
+      "Meeting new people makes me nervous",
+      "I find public speaking uncomfortable",
+      "I struggle to make friends",
+      "I find speaking in groups hard",
+      "I feel awkward around strangers",
+      "Conversations with new people are difficult"
+    ]
+  },
+  "LEARNING_DIFFICULTY": {
+    "questions": [
+      "P2"
+    ],
+    "response": "Learning something new can take time. Thanks for telling me. We can take this next puzzle one step at a time.",
+    "motion": "LISTEN",
+    "examples": [
+      "I find maths difficult",
+      "I struggle with learning new things",
+      "I find studying hard",
+      "I struggle to understand lessons",
+      "I find concentrating on school work difficult",
+      "I struggle with remembering information",
+      "Learning a new language is difficult",
+      "I find solving problems hard"
+    ]
+  },
+  "WORRY_STUDY": {
+    "questions": [
+      "P3"
+    ],
+    "response": "School and exams can weigh on your mind. Thanks for trusting me with that. Let's take our next step gently.",
+    "motion": "LISTEN",
+    "examples": [
+      "I am worried about exams",
+      "I'm worrying about school",
+      "I worry about my grades",
+      "My university work worries me",
+      "I feel worried about failing a test",
+      "I am anxious about my assignments",
+      "I worry about finishing my homework",
+      "I have been worrying about studying"
+    ]
+  },
+  "WORRY_FUTURE": {
+    "questions": [
+      "P3"
+    ],
+    "response": "Uncertainty about the future can be a lot to think about. Thank you for telling me. We'll keep our next island step gentle.",
+    "motion": "LISTEN",
+    "examples": [
+      "I worry about the future",
+      "I am worried about getting a job",
+      "I worry about my career",
+      "I don't know what I will do next year",
+      "I worry about what comes next",
+      "I am worried about my future plans",
+      "I worry about finding work",
+      "The future makes me worried"
+    ]
+  },
+  "BOOKS_SCIENCE": {
+    "questions": [
+      "G1"
+    ],
+    "response": "Science books! You enjoy finding out how things work. Milo's workshop might be just your kind of place!",
+    "motion": "POINT",
+    "examples": [
+      "I like science books",
+      "I love reading science books",
+      "I enjoy books about science",
+      "My favourite books explain how things work",
+      "I read books about physics",
+      "I enjoy astronomy books",
+      "I like biology books",
+      "Science and space books are my favourites",
+      "I love popular science",
+      "I read books about experiments",
+      "I enjoy factual books about the universe",
+      "I like science books more than fantasy"
+    ]
+  },
+  "BOOKS_HISTORY": {
+    "questions": [
+      "G1"
+    ],
+    "response": "History books! You enjoy discovering stories from the past. Our ancient temple has a little island history waiting for us!",
+    "motion": "POINT",
+    "examples": [
+      "I like history books",
+      "I enjoy books about history",
+      "I love reading about ancient civilizations",
+      "My favourite books are about the past",
+      "I read historical books",
+      "I enjoy world history",
+      "I like learning about ancient Egypt",
+      "I enjoy historical nonfiction",
+      "Books about historical events are my favourites",
+      "I read about kings and queens",
+      "I love ancient history",
+      "I like history more than science"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+recipe: default.v1
+assistant_id: echo_island_planned_conversation
+language: en
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: CountVectorsFeaturizer
+    analyzer: word
+    min_ngram: 1
+    max_ngram: 2
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 3
+    max_ngram: 5
+  - name: LogisticRegressionClassifier
+    max_iter: 300
+policies:
+  - name: RulePolicy

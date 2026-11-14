@@ -1,0 +1,105 @@
+version: "3.1"
+nlu:
+- intent: stop
+  examples: |
+    - stop
+    - stop now
+    - stop the game
+    - stop the session
+    - end the session
+    - end the game
+    - i want to stop
+    - i want to end the session
+    - please stop
+    - stop please
+    - quit the session
+    - exit the game
+- intent: pause
+  examples: |
+    - pause
+    - pause the game
+    - please pause
+    - pause please
+    - pause for a moment
+    - can you pause
+    - could you pause the game
+    - i need a break
+    - let us take a break
+- intent: resume
+  examples: |
+    - resume
+    - resume the game
+    - please resume
+    - continue the game
+    - unpause
+    - unpause the game
+    - let us continue
+    - i am ready to continue
+- intent: skip
+  examples: |
+    - skip
+    - skip this
+    - skip that
+    - skip the question
+    - skip this question
+    - please skip
+    - i would rather skip
+    - i do not want to answer
+    - i would prefer not to answer
+- intent: repeat
+  examples: |
+    - repeat
+    - repeat that
+    - repeat the question
+    - please repeat
+    - say that again
+    - could you repeat that
+    - can you say that again
+    - i did not hear the question
+    - repeat that please
+- intent: hint
+  examples: |
+    - hint
+    - give me a hint
+    - i need a hint
+    - can i have a hint
+    - please give me a hint
+    - help with the puzzle
+    - help me with this puzzle
+    - another hint please
+    - what is the next clue
+- intent: wait
+  examples: |
+    - wait
+    - please wait
+    - wait a moment
+    - give me a moment
+    - give me a second
+    - i need a moment
+    - let me think
+    - hold on
+- intent: no_recall
+  examples: |
+    - i cannot think of anything
+    - i can not think of anything
+    - i can't think of anything
+    - nothing comes to mind
+    - i cannot recall anything
+    - i do not remember anything
+- intent: clarify
+  examples: |
+    - clarify
+    - please clarify
+    - what do you mean
+    - can you explain the question
+    - i do not understand the question
+    - could you clarify the question
+- intent: privacy
+  examples: |
+    - privacy
+    - is this recorded
+    - are you recording
+    - who can see my answer
+    - why are you asking
+    - why is this personal
+    - what happens to my answer

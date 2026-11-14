@@ -1,0 +1,13 @@
+{
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "speaker": "Ryan",
+  "language": "English",
+  "profiles": {
+    "warm": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer.",
+    "curious": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating.",
+    "playful": "Tell a short silly joke to a friend with a smile in your voice. Playfully admit your own mistake, briefly pause, then deliver the final sentence with amused surprise and a light natural chuckle. Keep every word clear. Do not sound sarcastic or mock the listener.",
+    "celebrate": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout.",
+    "gentle": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing.",
+    "neutral": "Speak clearly in a calm, neutral, matter-of-fact conversational tone. Do not add amusement, laughter or theatrical emphasis."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "gems": [
+    {"id": "emerald", "name": "Emerald", "native_name": "Zümrüt", "stage_id": "library", "color": "42dc9b", "cut": "emerald", "description": "A deep-green emerald, carefully cut for the cave's ancient seal."},
+    {"id": "ruby", "name": "Ruby", "native_name": "Yakut", "stage_id": "workshop", "color": "ed6179", "cut": "brilliant", "description": "A rich crimson ruby that glows like a tiny ember."},
+    {"id": "sapphire", "name": "Sapphire", "native_name": "Safir", "stage_id": "market", "color": "61a3fa", "cut": "brilliant", "description": "A royal-blue sapphire with bright, polished facets."},
+    {"id": "amethyst", "name": "Amethyst", "native_name": "Ametist", "stage_id": "temple", "color": "c18bf3", "cut": "crystal", "description": "A violet amethyst, the final jewel of the four-part seal."}
+  ]
+}

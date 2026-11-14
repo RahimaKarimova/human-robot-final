@@ -1,0 +1,24 @@
+{
+  "status": "PROPOSED_SIMPLER_DEVELOPMENT_JOKES_PENDING_LISTENING_TEST",
+  "note": "Short, concrete mistakes by the fictional Reachy character. No criticism of the player and no generated personal jokes.",
+  "H1": {
+    "setup": "I tried Elara's book puzzle too. I searched with my eyes closed.",
+    "humour": "Very brave. Not very useful! I couldn't see the books!",
+    "control": "Then I opened my eyes and checked the bookshelf."
+  },
+  "H2": {
+    "setup": "I tried Milo's clock puzzle too. I put the gears in backwards.",
+    "humour": "I was hoping that would give us more time!",
+    "control": "Then I checked the instructions and put the gears in the correct slots."
+  },
+  "H3": {
+    "setup": "On Nia's delivery task, I took the parcel to the wrong cottage.",
+    "humour": "Then I knocked twice. As if that would fix my directions!",
+    "control": "Then I checked the river and the bridge and found the correct cottage."
+  },
+  "H4": {
+    "setup": "I tried the temple puzzle too. The door wouldn't open, so I said please.",
+    "humour": "Perfect manners. Absolutely no treasure!",
+    "control": "Then I went back to the letter and checked the symbol order."
+  }
+}

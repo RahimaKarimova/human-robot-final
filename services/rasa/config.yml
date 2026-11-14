@@ -1,0 +1,7 @@
+recipe: default.v1
+assistant_id: echo_island_controls_development
+language: en
+pipeline:
+  - name: KeywordIntentClassifier
+    case_sensitive: false
+# NLU-only: the controller owns states, approved lines and game commands.

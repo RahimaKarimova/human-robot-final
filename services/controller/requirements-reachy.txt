@@ -1,0 +1,4 @@
+# Optional future hardware environment only. Not needed for the simulator/game.
+# Match the robot daemon version before physical testing. API source reviewed at v1.12.0.
+-r requirements-lock.txt
+reachy-mini==1.12.0

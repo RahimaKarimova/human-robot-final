@@ -1,0 +1,160 @@
+# Codex Master Prompt — Build The Lost Treasure of Echo Island
+
+**How to use:** Open a new folder/repository in VS Code, place **`Echo_Island_Complete_Execution_Plan.md`** at its root, then paste the **entire `MASTER PROMPT` section below into Codex**. After Codex reports its plan, ask it to implement **M1–M3 only** first. Use the milestone prompts at the end to advance incrementally. The execution-plan file is the authoritative source for the full game content and controls.
+
+---
+
+## MASTER PROMPT — Copy into VS Code Codex
+
+You are a senior Godot 4 game engineer, gameplay designer, UX designer, Python integration engineer and research-software architect. Build a highly polished **small-scope 3D treasure-hunting game** for a university **human–robot interaction (HRI)** experiment. Your implementation must be real executable Godot 4.x project files and GDScript, not screenshots, mock UI or a fictional project description. Use **`Echo_Island_Complete_Execution_Plan.md`** in the repository as the source of truth; read it in full before producing code. If a particular detail is unspecified, choose a pragmatic minimal implementation, document the assumption, and never invent research questions or the experimental manipulation.
+
+### 1. Project mission
+
+Title: **The Lost Treasure of Echo Island**. Create a 3D, friendly, stylized low-poly/voxel-inspired adventure (NOT a Minecraft clone). Player controls a third-person explorer on a compact island. Player interacts with four NPC locations in order: **Forest Library → Inventor's Workshop → Village Market → Ancient Temple → Treasure Cave**. NPCs give **letters** with clues. A separate narrator voice reads the letter, and an external physical **Reachy Mini robot** provides companion speech, hints and voluntary conversational questions. Four distinct puzzle types yield four map fragments; combine them to open treasure cave.
+
+Entire session including interaction and speech should be approximately 20 minutes *under pilot conditions*, not artificially timed. Never shorten responses to meet a timer. Build a demonstrable, stable 3D experience that can run on ordinary university Windows laptops.
+
+### 2. Mandatory technology choices
+
+- Godot **4.x stable**, GDScript for game logic and UI.
+- VS Code + Codex for authoring, but Godot editor for real scene setup, preview and manual visual QA.
+- External backend: **Python** experiment controller, **Rasa** conversations, **Reachy Mini Python SDK** bridge. Do not embed Rasa or Python inside Godot.
+- Communicate with backend through clear localhost HTTP events and command polling or a WebSocket with reconnection. Provide a **mock backend** for development (labelled mock, never silently activated during a participant session).
+- No web/cloud dependencies required to play a locally packaged game. Do not make runtime requests to an LLM for story, letter, hints or robot jokes.
+- No proprietary assets without confirmed licence, and no need for paid asset packs.
+
+### 3. HRI experimental invariants — DO NOT BREAK
+
+This is a *research instrument*, not just entertainment. Two between-subjects groups differ ONLY in preapproved Reachy self-deprecating humour at specific triggers. Both get exactly the same world, NPCs, puzzles, narration, hints, game difficulty, personal questions, controls, spoken pacing policy, visuals, voice settings and robot motions. The external experiment controller, not the client game, owns and secures the condition assignment. Game code must not branch on the humour condition. Do not alter puzzle solutions, success chances, screen content or guidance based on experimental condition.
+
+All personal questions are voluntary and cannot affect puzzle reward, access, score or outcome. Must accept **answer / skip / cannot recall / ask to repeat / ask for clarification / wait / stop / technical failure** in both groups. No shaming, judgemental feedback, follow-up probing or emotional inference.
+
+Question bank for primary outcome (exact, verbatim):
+- **P1, Workshop:** "What's something you often put off doing, even though you know you should do it?"
+- **P2, Market:** "What's something you sometimes find difficult or uncomfortable, even if it seems easy to other people?"
+- **P3, Temple:** "What's something you've been worrying about lately, even if it's just a small thing?"
+
+Also include low-stakes general questions at predetermined stage points, including Library and Market/Temple, explicitly excluded from primary analysis. Follow the full execution plan's scheduling and paired humour lines. Ensure letters and personal questions connect naturally to characters, but never make personal speech a required puzzle answer.
+
+Audio privacy: do not save participant voice audio. Do not put names or personal answer text in Godot logs or online analytics. If the separate backend retains text transcripts, use consented restricted storage, pseudonymous IDs, and documented retention. Do not claim absolute anonymity. Allow participant withdrawal and immediate safe stop.
+
+### 4. Visual design and UX
+
+Create coherent colorful forest/island low-poly art using Godot primitives and simple materials if bespoke meshes/assets are unavailable. Attractive is better than sprawling: clean composition, warm directional sun, fog/sky/environment, stylized paths, clear silhouettes, cozy wooden library, workshop with gears, market stalls, temple stones, glowing cave. Four recognizable NPCs can be simple stylized models/cards; avoid external copyrighted characters.
+
+Have one clear HUD: current objective, 0/4 map fragments, context prompt, quest log, hint button, pause. Make letters a beautiful high-contrast parchment overlay with readable text and replay button. When narrator audio plays, subtitle text remains visible; cannot start Reachy's comment until narrator completion event. Have on-screen `Skip question`, `Repeat`, `Help` buttons during robot conversation. Distinguish robot and NPC visually and narratively. Offer waypoint guidance for lost players. Show celebratory treasure-opening finale.
+
+Third-person movement: WASD, mouse orbit/look, interaction E, R replay letter when relevant, ESC pause. Reasonable camera and player collisions. Mouse cursor visible in UI, captured for camera during movement. Avoid complex physics gameplay.
+
+### 5. Exact stage requirements
+
+**Forest Library:** six interactable books, one golden-feather book on upper shelf beside globe; separate letter narrated; correct selected book yields fragment #1; three escalating hints; one general question. **Workshop:** simple 3-slot color gear/tile ordering puzzle, correct RED–BLUE–YELLOW; letter about putting off repairs; P1 personal question, then the puzzle; fragment #2. **Market:** labelled route selection, correct via wooden bridge to riverside cottage; letter about difficulty with directions; G2 and P2 questions; fragment #3. **Temple:** SUN→WAVE→STAR button sequence; letter about uncertainty/hesitation; G3 and P3 questions; fragment #4. **Cave:** automatically assemble four fragments and open treasure chest, same celebratory ending both groups.
+
+Use the letter texts, exact hints and paired H1–H4 comment wording from the linked execution plan. All game data must be maintained as version-controlled JSON or Godot Resources—not repeated literals in several scripts. Error feedback is positive/neutral and identical across conditions. Puzzle failure must not reset the island or penalize the participant.
+
+### 6. State management and integration
+
+Separate responsibilities:
+- `GameState`: unlocked zone, map pieces, active objective, paused state. No personal info.
+- `QuestManager`: game-stage transitions, puzzle completion and fragment awarding; idempotent actions.
+- `PuzzleBase`: standard API for attempts, hints, solved signal. Independent concrete puzzle implementations.
+- `LetterReader`: narration lock, display/replay/close, emits unique `LETTER_OPENED` and `LETTER_NARRATION_COMPLETED` events.
+- `DialogueCheckpoint`: asks external controller to begin approved question; scene waits for backend `RESUME_GAME` or `STOP_SESSION` and preserves participant option to skip.
+- `ApiClient`: typed event payloads, timeouts, deduplication keys, backoff and diagnostic states. Game works with clearly labelled local mock.
+- `EventBus`: decoupled scene signals.
+
+Client emits events with `session_id`, `event_id`, `stage_id`, `event_type`, version and minimal payload. Define shared schema first; do not invent condition field in game messages. Support retries idempotently. One narrator/Reachy audio stream at a time. Provide a demo config with mock narration if speech tools are unavailable locally, but document it clearly. Do not assert physical robot integration works unless actually tested.
+
+**Endpoint proposal**: `POST /game/event`, `GET /game/commands`, `GET /health`; backend is local and configured separately. For demo use a Python FastAPI stub. Do not expose backend to public network. Use safe game event IDs, and implement duplicate-event tests.
+
+### 7. Code quality requirements
+
+Create a genuine `project.godot`, `.tscn` scenes, `.gd` scripts, JSON data and documented dependencies. Avoid giant monolithic scripts. Use GDScript static typing where helpful, signals for interactions, configuration resources, and readable names. Avoid inaccessible assets, missing imports, Godot 3 syntax, hard-coded absolute paths, magic numbers and architecture overengineering. Supply asset attribution and clear commands to launch and test.
+
+Implement robust handling for multiple E presses, duplicate events, lost backend, narrator delay/skip, silence, long responses, pause/resume, stop, interrupted questions, mistaken puzzle submissions, unreachable objects, incorrect routes, full inventory, delayed hints and disconnection. Log meaningful non-sensitive game telemetry; do not log a participant's story.
+
+### 8. Testing expectations
+
+Write automated tests wherever feasible for stage transitions, correct/incorrect puzzle answers, reward idempotence, hint ladders, identical question/event ordering, conversation skip never blocking a fragment, safety stop, duplicate API events and mock/real mode distinction. State which tests actually ran and their results. When Godot CLI is available, use headless import/syntax checks. If unavailable, explicitly state unverified Godot functionality and tell the user how to validate it; never claim you tested something you did not.
+
+Create manual QA checklist for visual quality, all interactions at 1366×768 and 1920×1080, narrator/Reachy audio nonoverlap, smooth 20-minute pacing, performance, accessibility, ASR and real hardware.
+
+### 9. Mandatory milestone-driven execution — do not build everything at once
+
+**First response to this prompt:** inspect files, summarise the architecture, identify dependencies and propose concrete milestone tasks with affected files. Do not immediately generate all four stages in one response. Ask no clarification unless a decision truly blocks development; choose documented defaults for polish. Then implement **M1–M3: setup, shared movement/UI/quest system, and complete Forest Library vertical slice**. This is the proof that the full integration architecture is sound.
+
+After M1–M3, report: created files, how to run, implemented versus pending, test results, screenshots only if actually captured, known issues and the next one small milestone. **Stop** and wait for the developer's approval before M4.
+
+Subsequent milestones, only after explicit instruction:
+- M4 Python mock/orchestrator + Rasa/Reachy integration contracts.
+- M5 Workshop and Market chapters.
+- M6 Temple and Cave finale.
+- M7 UI polish, scene art, robustness, pacing.
+- M8 pilot test support and research freeze; not participant recruitment.
+
+### 10. End-state deliverables
+
+A playable Godot 4 project with four areas, four narrator letters, four fair puzzles, hint UI, Reachy/Rasa event integration, fully skippable research questions, deterministic checkpoint scheduling, local mock runner, tests, asset credits, installation instructions, offline build guidance and known limitation report. A developer who has never seen the project must be able to launch it from the README, run the demo without robot hardware, and connect it to a lab Reachy Mini through the documented Python backend.
+
+IMPORTANT: The experimental plan is authoritative. Highlight scientifically consequential deviations before making them. Do not hallucinate that code, assets, narration, tests or Reachy hardware integrations exist when they have not been built.
+
+---
+
+## Milestone prompts — paste one at a time AFTER the master prompt
+
+### Prompt A — Architecture and project scaffold
+
+> Inspect `Echo_Island_Complete_Execution_Plan.md` and the repo. Give a concrete file-by-file development plan. Implement a Godot 4 scene/project scaffold with character movement, camera, input mappings, island greybox and four signposted areas. Create a clean working title screen and HUD. Do not make the puzzles yet. Run available syntax checks. List manual verification steps; stop.
+
+### Prompt B — Library vertical slice
+
+> Implement complete Forest Library playable stage: Elara NPC, letter UI with narrator-playback-ready state, golden-feather book puzzle, three hints, fragment collection, quest update, H1 and G1 event hooks, mock Reachy comments and a way to finish the stage. Use data files from the approved plan. Add tests and instructions to manually check every branch. Stop before starting Workshop.
+
+### Prompt C — Backend event stub
+
+> Build a minimal local FastAPI stub external to Godot that accepts validated game events and sends mock robot commands. Implement retry/deduplication, narrator completion handshake, pause/resume, question answered/skipped/stop. Provide API schema and tests. Connect the existing Library chapter to it. Do not add free-form LLM output or log personal answer text.
+
+### Prompt D — Rasa + Reachy integration
+
+> Integrate the game's event contract with our external Rasa flow engine and Reachy Mini Python SDK bridge. Both groups must have identical game events, narration, voice configuration, questions and movements. Only H1–H4 comment IDs differ by assigned condition on the server. Keep fixed dialogue. Use a real hardware adapter and a clearly labelled local mock adapter. Do not claim hardware works until explicitly tested. Implement event, audio and privacy tests.
+
+### Prompt E — Workshop chapter
+
+> Implement the complete Workshop stage with NPC, exact letter, gear puzzle RED–BLUE–YELLOW, three hints, map fragment #2, P1 procrastination question checkpoint, H2 comment event. Ensure questions are optional and chapter completion independent of answers. Extend unit/manual tests.
+
+### Prompt F — Market chapter
+
+> Implement the complete Market stage with NPC, exact letter, clear bridge→riverside delivery puzzle, map fragment #3, G2 and P2 questions, H3 comment event and three hints. Make paths readable and disable accidental time pressure. Test routes and duplicate trigger behaviour.
+
+### Prompt G — Temple and final cave
+
+> Implement the Temple SUN→WAVE→STAR symbol puzzle, P3 worries question, G3, H4, map fragment #4 and treasure cave with map assembly and completion animation. All text and scripts must come from the authoritative plan. Ensure final game is completable even after skipping all personal questions.
+
+### Prompt H — Polish and pilot validation
+
+> Audit the whole game for accessibility, dialogue/letter timing, audio overlap, visual consistency, 1366×768 UI, frame rate, robustness, content consistency between experimental conditions, missing asset attribution and research event logging. Build automated tests for all branch paths and provide a manual 20-minute participant-run checklist. Make limited improvements with clear before/after notes; don't alter the frozen research protocol without approval.
+
+---
+
+## Human developer setup checklist
+
+1. Install **Godot 4 stable** from https://godotengine.org/download/.
+2. Install **VS Code** and the **Godot Tools** extension (for GDScript language support). Set Godot editor's external editor to VS Code if preferred.
+3. Install the **Codex** extension/app supported for your environment and open the project folder in VS Code. Confirm the model can read/write workspace files.
+4. Create a Git repo; keep `.godot/`, `*.tmp`, raw audio, session transcript data and participant PII out of version control. Add `ASSET_CREDITS.md`.
+5. Copy this file and `Echo_Island_Complete_Execution_Plan.md` to project root; paste the MASTER PROMPT into Codex.
+6. Open `project.godot` in the Godot editor after Codex creates it, inspect the scenes and run. Prefer the Godot editor for arranging collisions, lighting and interaction boundaries.
+7. Review stage-by-stage; do not authorise the next milestone until the previous one visibly works.
+8. Connect the physical robot only after the mock bridge proves the game events and question checkpoints are correct.
+9. Run pilot sessions before recording the study. Freeze scripts and experiment build before main participants.
+
+## Practical language choice
+
+| Option | Main game language | Recommendation |
+|---|---|---|
+| Godot 4 | **GDScript** | Default: fastest practical learning and code iteration for small 3D project |
+| Unity | **C#** | Choose when team already has Unity/C# expertise |
+| Panda3D / Ursina | Python | Prototype only if team knows it and accepts extra art/editor work |
+| Java / libGDX or jMonkeyEngine | Java | Technically possible; not the fastest route to polished Godot-like 3D UI |
+
+**Remember:** Godot's GDScript looks like Python but cannot be imported as a Python module. Python controls Reachy and Rasa; communicate across a local API.

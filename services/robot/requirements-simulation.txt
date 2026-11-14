@@ -1,0 +1,2 @@
+# Separate optional SDK/physics environment; never install into Rasa's Python.
+reachy-mini[mujoco]==1.12.0

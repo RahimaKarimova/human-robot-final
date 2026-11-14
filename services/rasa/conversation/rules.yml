@@ -1,0 +1,122 @@
+version: "3.1"
+rules:
+- rule: Route stop
+  steps:
+    - intent: stop
+    - action: utter_stop
+- rule: Route pause
+  steps:
+    - intent: pause
+    - action: utter_pause
+- rule: Route resume
+  steps:
+    - intent: resume
+    - action: utter_resume
+- rule: Route skip
+  steps:
+    - intent: skip
+    - action: utter_skip
+- rule: Route repeat
+  steps:
+    - intent: repeat
+    - action: utter_repeat
+- rule: Route hint
+  steps:
+    - intent: hint
+    - action: utter_hint
+- rule: Route wait
+  steps:
+    - intent: wait
+    - action: utter_wait
+- rule: Route no_recall
+  steps:
+    - intent: no_recall
+    - action: utter_no_recall
+- rule: Route clarify
+  steps:
+    - intent: clarify
+    - action: utter_clarify
+- rule: Route privacy
+  steps:
+    - intent: privacy
+    - action: utter_privacy
+- rule: Route reply_given
+  steps:
+    - intent: reply_given
+    - action: utter_reply_given
+- rule: Route nlu_fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_nlu_fallback
+- rule: Route name_given
+  steps:
+    - intent: name_given
+    - action: utter_name_given
+- rule: Route answer_books_dislike
+  steps:
+    - intent: answer_books_dislike
+    - action: utter_answer_books_dislike
+- rule: Route answer_books_like
+  steps:
+    - intent: answer_books_like
+    - action: utter_answer_books_like
+- rule: Route answer_books_fantasy
+  steps:
+    - intent: answer_books_fantasy
+    - action: utter_answer_books_fantasy
+- rule: Route answer_books_mystery
+  steps:
+    - intent: answer_books_mystery
+    - action: utter_answer_books_mystery
+- rule: Route answer_books_adventure
+  steps:
+    - intent: answer_books_adventure
+    - action: utter_answer_books_adventure
+- rule: Route answer_explore_new
+  steps:
+    - intent: answer_explore_new
+    - action: utter_answer_explore_new
+- rule: Route answer_prefer_familiar
+  steps:
+    - intent: answer_prefer_familiar
+    - action: utter_answer_prefer_familiar
+- rule: Route answer_place_fantasy
+  steps:
+    - intent: answer_place_fantasy
+    - action: utter_answer_place_fantasy
+- rule: Route answer_place_adventure
+  steps:
+    - intent: answer_place_adventure
+    - action: utter_answer_place_adventure
+- rule: Route answer_put_off_study
+  steps:
+    - intent: answer_put_off_study
+    - action: utter_answer_put_off_study
+- rule: Route answer_put_off_chores
+  steps:
+    - intent: answer_put_off_chores
+    - action: utter_answer_put_off_chores
+- rule: Route answer_social_difficulty
+  steps:
+    - intent: answer_social_difficulty
+    - action: utter_answer_social_difficulty
+- rule: Route answer_learning_difficulty
+  steps:
+    - intent: answer_learning_difficulty
+    - action: utter_answer_learning_difficulty
+- rule: Route answer_worry_study
+  steps:
+    - intent: answer_worry_study
+    - action: utter_answer_worry_study
+- rule: Route answer_worry_future
+  steps:
+    - intent: answer_worry_future
+    - action: utter_answer_worry_future
+- rule: Route answer_books_science
+  steps:
+    - intent: answer_books_science
+    - action: utter_answer_books_science
+- rule: Route answer_books_history
+  steps:
+    - intent: answer_books_history
+    - action: utter_answer_books_history

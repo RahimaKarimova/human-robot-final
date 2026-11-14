@@ -1,0 +1,13 @@
+# Official Reachy Mini simulator
+
+If you are using the installed **Reachy Mini Control** app and its built-in simulator, use **Play-Reachy-Control.cmd** instead. See [Control app connection instructions](REACHY_CONTROL.md). That app currently runs SDK 1.14.0 with the official lightweight mock backend; the MuJoCo setup below is a separate tested route.
+
+This is the official SDK **1.12.0** with **MuJoCo 3.3.0**, installed separately in `services/robot/.venv`. It is different from our silent `-BridgeSimulator` software fake. The earlier fourteen-check simulation audit covered the fake/game/controller/speech paths; it did not validate MuJoCo or physical hardware.
+
+Double-click **`Play-Reachy-Simulator.cmd`** to open both the official 3D robot viewer and the game, or run `Play-Reachy-Simulator.ps1`. Click **Begin** in the game; companion lines animate the MuJoCo antennas through the real SDK and play fixed voice clips through the PC speaker. The microphone stays off by default; reply-complete/skip buttons work without speaking. Optional `-Microphone` requires local Rasa and enables the existing push-to-talk input explicitly.
+
+The wrapper starts only `reachy-mini-daemon --sim` (via the Python module), disables daemon media/dataset preloading and binds its API to localhost:8000. It reuses an existing daemon only if its status confirms real MuJoCo mode, not physical or lightweight mockup mode. The output adapter checks that status before connecting through the same SDK API used by the hardware adapters. It reports `simulated_completed` even though PC audio uses real end-of-stream; that is not proof of robot speaker playback.
+
+The SDK/physics environment and its dependencies are installed in this workspace, with no global Python/PATH changes. Reproduction requirements are in `services/robot/requirements-simulation.txt`. Runtime/cache files stay under `tools/`. Both complete campaigns passed against official MuJoCo (66 assertions each), together with 33 game-control/recovery assertions and seven native lifecycle checks. Measured antenna movement and real laptop WAV EOS were verified, with no technical-failure fallback in either campaign. See [the official simulator audit](../artifacts/OFFICIAL_REACHY_AUDIT.md) for evidence and reproduction. Physical speakers/microphones/motors and the actual USB/Wireless setup still need their own tests.
+
+The official [simulation guide](https://huggingface.co/docs/reachy_mini/en/platforms/simulation/get_started) documents the 3D MuJoCo viewer. The [v1.12 quickstart](https://huggingface.co/docs/reachy_mini/v1.12.0/SDK/quickstart) describes the common daemon/SDK interface for simulation, Lite and Wireless. Simulation mode does not control physical robot motors.

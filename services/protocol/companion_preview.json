@@ -1,0 +1,14 @@
+{
+  "status": "PROPOSED_DEVELOPMENT_ADDITIONS_NOT_PARTICIPANT_APPROVED",
+  "voice_profile_id": "LAPTOP_LJSPEECH_HIGH",
+  "description": "Fixed welcome and gemstone celebrations proposed for the full companion rehearsal. Names and answers are not captured.",
+  "lines": {
+    "WELCOME": {"text": "Hello! I'm Reachy, your exploring companion. Welcome to Echo Island!", "motion_id": "WAVE"},
+    "NAME": {"text": "What would you like me to call you? You can skip this if you prefer.", "motion_id": "LISTEN"},
+    "NAME_ACK": {"text": "It's lovely to meet you. Let's head to the Forest Library and meet Elara!", "motion_id": "NOD"},
+    "LIBRARY_SUCCESS": {"text": "You found the emerald! Great teamwork. That's our first precious gem for the cave door!", "motion_id": "CELEBRATE"},
+    "WORKSHOP_SUCCESS": {"text": "You fixed Milo's clock and found the ruby! Two precious gems collected. Let's take them to the cave when we have all four.", "motion_id": "CELEBRATE"},
+    "MARKET_SUCCESS": {"text": "The parcel reached the riverside cottage! You earned the sapphire. That's three gems. The ancient temple holds the last one.", "motion_id": "CELEBRATE"},
+    "TEMPLE_SUCCESS": {"text": "You opened the altar and found the amethyst! All four gems are ours. Let's put them into the sealed cave door.", "motion_id": "CELEBRATE"}
+  }
+}
