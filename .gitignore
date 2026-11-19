@@ -10,7 +10,9 @@ recordings/
 transcripts/
 .env
 *.session.json
-services/rasa/models/
+services/rasa/models/*
+!services/rasa/models/echo_conversation.tar.gz
+!services/rasa/models/echo_controls.tar.gz
 services/rasa/.rasa/
 services/rasa/.runtime/
 
