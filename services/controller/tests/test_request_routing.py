@@ -157,11 +157,16 @@ class GatewayTests(unittest.TestCase):
                 actual, _, _ = classify_control(example, parser)
                 self.assertEqual(actual, intent)
 
-    def test_personal_answers_and_negated_commands_never_reach_rasa(self):
-        parser = Mock()
-        for text in ("No, not really", "please do not stop", "I stopped reading that book", "I worry about PRIVATE-SENTINEL", "don't skip the question", "I need help with my family", "yes", ""):
-            self.assertEqual(classify_control(text, parser)[0], "UNKNOWN")
-        parser.parse.assert_not_called()
+    def test_personal_answers_and_negated_commands_never_become_commands(self):
+        # Even if Rasa wrongly and confidently labels these as commands, the
+        # negation guard / confidence rules keep them as answers.
+        for text, wrong in (("No, not really", "SKIP"), ("please do not stop", "STOP"),
+                            ("don't skip the question", "SKIP"), ("no need to repeat that", "REPEAT"),
+                            ("never pause the game", "PAUSE"), ("I stopped reading that book", "STOP"),
+                            ("yes", "WAIT"), ("", "SKIP")):
+            parser = Mock()
+            parser.parse.return_value = (wrong, 0.9 if wrong != "STOP" else 0.9)
+            self.assertEqual(classify_control(text, parser)[0], "UNKNOWN", text)
 
     def test_case_and_punctuation_normalize(self):
         parser = Mock()

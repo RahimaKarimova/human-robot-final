@@ -53,7 +53,7 @@ class RobotChannelTests(unittest.TestCase):
         self.assertEqual(self.session.commands[-1]["command"]["type"], "SESSION_STOP")
 
     def test_worker_timeout_is_failure_never_spoken_completion(self):
-        self.clock.advance(4.1)
+        self.clock.advance(self.session.robot.INITIAL_WORKER_GRACE + 0.1)
         self.session.robot.expire(self.session)
         self.assertIsNone(self.session.robot.job)
         self.assertEqual(self.session.commands[-1]["command"]["completion"], "technical_failure")

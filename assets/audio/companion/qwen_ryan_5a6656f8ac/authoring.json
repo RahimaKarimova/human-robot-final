@@ -1,0 +1,346 @@
+{
+  "companion_welcome": {
+    "text": "Hello! I'm Reachy, your exploring companion. Welcome to Echo Island!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_name": {
+    "text": "What would you like me to call you? You can skip this if you prefer.",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_name_ack": {
+    "text": "It's lovely to meet you. Let's head to the Forest Library and meet Elara!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_library_success": {
+    "text": "You found the emerald! Great teamwork. That's our first precious gem for the cave door!",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_workshop_success": {
+    "text": "You fixed Milo's clock and found the ruby! Two precious gems collected. Let's take them to the cave when we have all four.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_market_success": {
+    "text": "The parcel reached the riverside cottage! You earned the sapphire. That's three gems. The ancient temple holds the last one.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_temple_success": {
+    "text": "You opened the altar and found the amethyst! All four gems are ours. Let's put them into the sealed cave door.",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_g1": {
+    "text": "I like adventure stories with hidden places and clever inventions. What kind of stories or books do you enjoy?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_g2": {
+    "text": "I enjoy finding new paths, but I keep a map handy. What about you? Do you like exploring new places, or do you prefer somewhere familiar?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_g3": {
+    "text": "I'd explore a floating library with a telescope on its roof. What about you? If you could explore any place in a story, where would you go?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_p1": {
+    "text": "I sometimes leave sorting my clue notes until the last minute. What about you? What's something you often put off doing, even though you know you should do it?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_p2": {
+    "text": "Following several clues at once can be tricky for me. What about you? What's something you sometimes find difficult or uncomfortable, even if it seems easy to other people?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_p3": {
+    "text": "On this adventure, I sometimes wonder whether I've missed a clue. What about you? What's something you've been worrying about lately, even if it's just a small thing?",
+    "speaker": "Ryan",
+    "emotion": "curious",
+    "instruct": "Ask with friendly, genuine curiosity. Use a gentle conversational question intonation. Leave room for the listener to answer. Speak clearly without sounding formal or interrogating."
+  },
+  "companion_ack": {
+    "text": "Thanks for telling me! Let's keep exploring.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_skip": {
+    "text": "Of course! No worries at all. Let's carry on.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_h1_control": {
+    "text": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf. So I read the titles carefully and found the right book that way.",
+    "speaker": "Ryan",
+    "emotion": "neutral",
+    "instruct": "Speak clearly in a calm, neutral, matter-of-fact conversational tone. Do not add amusement, laughter or theatrical emphasis.",
+    "seconds": 11.04
+  },
+  "companion_h1_humour": {
+    "text": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf. Turns out I don't have hands. Just very enthusiastic antennas!",
+    "speaker": "Ryan",
+    "emotion": "playful",
+    "instruct": "Tell a short silly joke to a friend with a smile in your voice. Playfully admit your own mistake, briefly pause, then deliver the final sentence with amused surprise and a light natural chuckle. Keep every word clear. Do not sound sarcastic or mock the listener.",
+    "seconds": 12.0
+  },
+  "companion_h2_control": {
+    "text": "I tried Milo's clock puzzle too. I put the gears in backwards. So I checked the numbers and put the gears in the correct slots.",
+    "speaker": "Ryan",
+    "emotion": "neutral",
+    "instruct": "Speak clearly in a calm, neutral, matter-of-fact conversational tone. Do not add amusement, laughter or theatrical emphasis.",
+    "seconds": 10.8
+  },
+  "companion_h2_humour": {
+    "text": "I tried Milo's clock puzzle too. I put the gears in backwards. Now the clock says it's yesterday. So technically, I'm early!",
+    "speaker": "Ryan",
+    "emotion": "playful",
+    "instruct": "Tell a short silly joke to a friend with a smile in your voice. Playfully admit your own mistake, briefly pause, then deliver the final sentence with amused surprise and a light natural chuckle. Keep every word clear. Do not sound sarcastic or mock the listener.",
+    "seconds": 16.08
+  },
+  "companion_h3_control": {
+    "text": "I tried Nia's delivery task too. I knocked on every single cottage door. Then I checked the address and found the correct cottage.",
+    "speaker": "Ryan",
+    "emotion": "neutral",
+    "instruct": "Speak clearly in a calm, neutral, matter-of-fact conversational tone. Do not add amusement, laughter or theatrical emphasis.",
+    "seconds": 12.8
+  },
+  "companion_h3_humour": {
+    "text": "I tried Nia's delivery task too. I knocked on every single cottage door. Now the whole village thinks I'm selling something!",
+    "speaker": "Ryan",
+    "emotion": "playful",
+    "instruct": "Tell a short silly joke to a friend with a smile in your voice. Playfully admit your own mistake, briefly pause, then deliver the final sentence with amused surprise and a light natural chuckle. Keep every word clear. Do not sound sarcastic or mock the listener.",
+    "seconds": 10.8
+  },
+  "companion_h4_control": {
+    "text": "I tried the temple puzzle too. I pressed every rune at once. Then I went back to the letter and pressed the runes in order.",
+    "speaker": "Ryan",
+    "emotion": "neutral",
+    "instruct": "Speak clearly in a calm, neutral, matter-of-fact conversational tone. Do not add amusement, laughter or theatrical emphasis.",
+    "seconds": 11.6
+  },
+  "companion_h4_humour": {
+    "text": "I tried the temple puzzle too. I pressed every rune at once. The door didn't open, but I got a lovely light show!",
+    "speaker": "Ryan",
+    "emotion": "playful",
+    "instruct": "Tell a short silly joke to a friend with a smile in your voice. Playfully admit your own mistake, briefly pause, then deliver the final sentence with amused surprise and a light natural chuckle. Keep every word clear. Do not sound sarcastic or mock the listener.",
+    "seconds": 11.36
+  },
+  "companion_hint_1": {
+    "text": "There are two details about the book's location in the letter.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_hint_2": {
+    "text": "Check the shelf nearest the globe.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_hint_3": {
+    "text": "It's the golden-feather book on the upper shelf, beside the globe.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_workshop_hint_1": {
+    "text": "Think about which colour belongs in the middle.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_workshop_hint_2": {
+    "text": "The inventor said the blue gear goes between the other two.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_workshop_hint_3": {
+    "text": "From left to right, place red, blue, then yellow.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_market_hint_1": {
+    "text": "The letter mentioned two landmarks in a specific order.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_market_hint_2": {
+    "text": "Cross the wooden bridge, then look toward the river.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_market_hint_3": {
+    "text": "Choose the cottage next to the river immediately after the wooden bridge.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_temple_hint_1": {
+    "text": "The entrance has an ordered sequence.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_temple_hint_2": {
+    "text": "The sequence starts with the sun and ends with the star.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_temple_hint_3": {
+    "text": "Press sun, then wave, then star.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_ending": {
+    "text": "We found it! That was great teamwork. Thanks for exploring Echo Island with me!",
+    "speaker": "Ryan",
+    "emotion": "celebrate",
+    "instruct": "Speak with genuine delight and happy excitement, smiling warmly. Celebrate the listener's achievement as a supportive friend. Use lively natural pitch variation and an enthusiastic finish. Keep the words clear. Do not shout."
+  },
+  "companion_notice_waiting": {
+    "text": "Take your time. You can answer when you're ready, or say skip.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_notice_development_privacy": {
+    "text": "Your speech is processed locally. This development game does not save audio or answer transcripts. You can skip any question.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_notice_repair": {
+    "text": "I didn't quite catch that. You can try again, say repeat, or say skip.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_reply_books_dislike": {
+    "text": "Not a book fan? That's completely fine! We can enjoy the island's clues instead.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_books_like": {
+    "text": "A book lover! Lovely. Let's see what story this island has waiting for us.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_books_fantasy": {
+    "text": "Fantasy stories\u00e2\u20ac\u201dlovely! A mysterious island sounds like a good place for our own little adventure.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_books_mystery": {
+    "text": "A mystery fan! Then let's see if we can crack the next clue together.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_books_adventure": {
+    "text": "Adventure stories! That fits our treasure hunt beautifully. Let's find the next clue.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_explore_new": {
+    "text": "You enjoy discovering new places! Let's see what this island has around the next corner.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_prefer_familiar": {
+    "text": "Somewhere familiar can feel lovely and comfortable. We can explore this island at a gentle pace.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_place_fantasy": {
+    "text": "An imaginary world full of magic! That's a wonderful place to picture. Let's continue our own island story.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_place_adventure": {
+    "text": "A place full of adventure! I can see why that appeals to you. Our next clue is waiting.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_put_off_study": {
+    "text": "Getting started on studying can be difficult. Thanks for being honest. Let's tackle our next small island step together.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_put_off_chores": {
+    "text": "Everyday chores can be easy to put off. Thanks for telling me. Let's take our next island step together.",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_social_difficulty": {
+    "text": "Social situations can feel difficult. Thank you for telling me. You don't have to explain any more\u00e2\u20ac\u201dlet's explore at your pace.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_reply_learning_difficulty": {
+    "text": "Learning something new can take time. Thanks for telling me. We can take this next puzzle one step at a time.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_reply_worry_study": {
+    "text": "School and exams can weigh on your mind. Thanks for trusting me with that. Let's take our next step gently.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_reply_worry_future": {
+    "text": "Uncertainty about the future can be a lot to think about. Thank you for telling me. We'll keep our next island step gentle.",
+    "speaker": "Ryan",
+    "emotion": "gentle",
+    "instruct": "Speak gently, patiently and reassuringly, as a caring friend. Use a warm natural voice and calm intonation. Do not sound sad, dramatic or patronizing."
+  },
+  "companion_reply_books_science": {
+    "text": "Science books! You enjoy finding out how things work. Milo's workshop might be just your kind of place!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  },
+  "companion_reply_books_history": {
+    "text": "History books! You enjoy discovering stories from the past. Our ancient temple has a little island history waiting for us!",
+    "speaker": "Ryan",
+    "emotion": "warm",
+    "instruct": "Speak warmly and conversationally, smiling as you greet a friend. Use natural, lively pitch variation. Keep the words clear. Do not sound like an announcer."
+  }
+}

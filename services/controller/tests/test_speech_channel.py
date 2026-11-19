@@ -160,6 +160,23 @@ class SpeechWorkerTests(unittest.TestCase):
         self.assertEqual(self.discarded,1)
         self.assertEqual(self.decoded,0)
 
+    def test_held_b_reply_keeps_recording_past_eight_seconds_until_three_minutes(self):
+        clock=[0.0]
+        self.worker.clock=lambda:clock[0]
+        self.state["job"]=dict(capture_id="1"*24,phase="listen",purpose="reply")
+        self.worker.step()
+        for seconds in (8.1,30.,120.,179.):
+            clock[0]=seconds
+            self.worker.step()
+            self.assertEqual((self.discarded,len(self.results)),(0,0),seconds)  # Still recording.
+        # A held-B answer reaching the limit is submitted, never thrown away.
+        self.worker.recognizer.controls=lambda *_a,**_k:("REPLY",1.0,"reply")
+        clock[0]=179.6
+        self.worker.step()
+        self.worker.step()  # The submission is sent on the next step.
+        self.assertEqual(self.discarded,0)
+        self.assertEqual(self.results[-1]["intent"],"REPLY")
+
     def test_idle_never_opens_microphone_and_cancel_does_not_decode(self):
         self.worker.step()
         self.assertEqual(self.opened,0)

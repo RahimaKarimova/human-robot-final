@@ -107,6 +107,7 @@ func _configure_controller() -> void:
 	ApiClient.external_utterance_id = ""
 	ApiClient.microphone_enabled = false
 	ApiClient.conversation_enabled = false
+	ApiClient.survey_url = ""
 	ApiClient.voice_automatic = false
 	ApiClient.last_controller_contact = 0
 	ApiClient.clear_microphone_meter()
@@ -678,18 +679,39 @@ func _ending_card() -> void:
 	IslandUI.text(panel, Content.catalogue.ending, 27)
 	if not ApiClient.preview_enabled:
 		speech.play_line("ending")
-	IslandUI.text(panel, "Echo Island is complete. Any questionnaire or research debrief happens outside the game.", 19, IslandUI.MUTED)
+	if ApiClient.survey_url.is_empty():
+		IslandUI.text(panel, "Echo Island is complete. Any questionnaire or research debrief happens outside the game.", 19, IslandUI.MUTED)
+	else:
+		var survey_note := IslandUI.text(panel, "Thank you for playing! Please fill in our short survey about Reachy. It takes about 3 minutes.", 21, IslandUI.GOLD)
+		var survey_button := IslandUI.button(panel, "Please do our survey", _open_survey)
+		if ApiClient.companion_output != "laptop":
+			# Reachy says its ending line, then dances (about 50 s): show the survey after the dance.
+			survey_note.text = "Enjoy Reachy's dance! Our short survey link appears when it ends."
+			survey_button.disabled = true
+			get_tree().create_timer(60.0).timeout.connect(func():
+				if is_instance_valid(survey_button):
+					survey_note.text = "Thank you for playing! Please fill in our short survey about Reachy. It takes about 3 minutes."
+					survey_button.disabled = false
+			)
 	IslandUI.button(panel, "Explore the island", func():
 		view = "explore"
 		ui.close_modal()
 	)
 	if is_instance_valid(controller):
-		IslandUI.button(panel, "Finish session", func(): get_tree().quit())
+		IslandUI.button(panel, "Finish session", func():
+			_open_survey()  # Make sure the survey is open before the game closes.
+			get_tree().quit())
 	else:
 		IslandUI.button(panel, "Start a new adventure", func():
 			GameState.reset()
 			get_tree().reload_current_scene()
 		)
+
+func _open_survey() -> void:
+	if ApiClient.survey_url.is_empty() or ApiClient.survey_opened:
+		return
+	ApiClient.survey_opened = true
+	OS.shell_open(ApiClient.survey_url)
 
 func _update_hud() -> void:
 	ui.objective.text = "Treasure discovered · thank you for exploring!" if GameState.completed else Content.stage(GameState.stage_index).objective

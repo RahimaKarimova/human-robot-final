@@ -6,6 +6,9 @@ from .core import ProtocolError
 
 
 class RobotChannel:
+    # Hardware workers load voice engines before their first poll (~30 s on a
+    # laptop CPU). Wait for that instead of failing the opening line.
+    INITIAL_WORKER_GRACE = 60
     def __init__(self, mode, clock=time.monotonic):
         self.mode, self.clock = mode, clock
         self.token = secrets.token_urlsafe(32)
@@ -51,7 +54,7 @@ class RobotChannel:
             return
         now = self.clock()
         if self.worker_seen is None:
-            timed_out = now - self.job["offered_at"] > 4
+            timed_out = now - self.job["offered_at"] > self.INITIAL_WORKER_GRACE
         else:
             timed_out = now - self.worker_seen > 2
         if self.game_seen is not None and now - self.game_seen > 2:

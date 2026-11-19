@@ -1,6 +1,7 @@
 """Offline push-to-talk command recognition. Input and transcripts stay transient in RAM."""
 import argparse
 import json
+import os
 from pathlib import Path
 import threading
 import time
@@ -17,7 +18,8 @@ from .reply_understanding import extract_nickname
 
 SAMPLE_RATE = 16000
 MAX_BYTES = SAMPLE_RATE * 2 * 8
-MAX_REPLY_BYTES = SAMPLE_RATE * 2 * 30
+MAX_REPLY_BYTES = SAMPLE_RATE * 2 * 180  # Long free answers (3 min); commands stay 8 s.
+REPLY_SECONDS = 179.5  # Held-B answer limit, just under the 3 min buffer.
 
 
 def input_level(pcm):
@@ -165,6 +167,24 @@ def whisper_samples(pcm):
     return samples
 
 
+CHUNK_SECONDS = 20  # Transcribe long held-B answers in pieces while people talk.
+
+
+def quiet_cut(pcm, search_seconds=4, window_ms=100):
+    """Byte offset of the quietest moment in the last few seconds, so a piece
+    boundary falls between words rather than inside one."""
+    import numpy as np
+    samples=np.frombuffer(pcm,dtype='<i2').astype(np.float32)
+    window=SAMPLE_RATE*window_ms//1000
+    start=max(0,len(samples)-SAMPLE_RATE*search_seconds)
+    best,best_energy=len(samples),None
+    for offset in range(start,len(samples)-window+1,window//2):
+        energy=float(np.mean(samples[offset:offset+window]**2))
+        if best_energy is None or energy<best_energy:
+            best,best_energy=offset+window//2,energy
+    return best*2
+
+
 class WhisperLiveDecoder:
     """Bounded rolling preview, decoded outside the capture polling loop."""
     def __init__(self,model):
@@ -211,30 +231,46 @@ class OfflineRecognizer:
             return WhisperLiveDecoder(self.preview_model)
         return LiveDecoder(self.model)
 
-    def controls(self, pcm, reply=False,question_id=''):
+    def transcribe_chunk(self, pcm):
+        """Accurate (final-model) transcription of one piece of audio.
+
+        Returns (text, [(avg_logprob, no_speech_prob), ...]). Used for chunks
+        transcribed while a long answer is still being spoken, and for the tail.
+        """
+        import numpy as np
+        samples=whisper_samples(pcm)
+        if not len(samples) or float(np.sqrt(np.mean(samples*samples)))<.001:
+            return '',[]
+        segments,_=self.final_model.transcribe(samples,language='en',beam_size=5,temperature=0.0,condition_on_previous_text=False,
+                                             vad_filter=False,no_speech_threshold=.6)
+        segments=list(segments)
+        return (' '.join(segment.text.strip() for segment in segments).strip(),
+                [(segment.avg_logprob,segment.no_speech_prob) for segment in segments])
+
+    def controls(self, pcm, reply=False,question_id='',pretranscribed=None):
         from vosk import KaldiRecognizer
         self.last_text,self.reply_kind,self.nickname='','DEFAULT',''
         self.reply_text=''
         if not pcm or len(pcm) > (MAX_REPLY_BYTES if reply else MAX_BYTES):
             return "UNKNOWN", 0.0, "unrecognized"
         if getattr(self,'final_model',None):
-            import numpy as np
-            samples=whisper_samples(pcm)
-            if not len(samples) or float(np.sqrt(np.mean(samples*samples)))<.001:
+            # pretranscribed = (text, stats, bytes_done): pieces already transcribed
+            # while the person was still talking; only the remaining tail is left.
+            prefix,stats,done=pretranscribed or ('',[],0)
+            tail_text,tail_stats=self.transcribe_chunk(pcm[done:]) if len(pcm)>done else ('',[])
+            stats=list(stats)+tail_stats
+            text=' '.join(part for part in (prefix,tail_text) if part).strip()[:4000]
+            if not text:
                 return 'UNKNOWN',0.,'unrecognized'
-            segments,_=self.final_model.transcribe(samples,language='en',beam_size=5,temperature=0.0,condition_on_previous_text=False,
-                                                 vad_filter=False,no_speech_threshold=.6)
-            segments=list(segments)
-            text=' '.join(segment.text.strip() for segment in segments).strip()[:400]
-            confident=bool(text and segments and sum(segment.avg_logprob for segment in segments)/len(segments)>-1.1
-                           and min(segment.no_speech_prob for segment in segments)<.6)
+            confident=bool(stats and sum(item[0] for item in stats)/len(stats)>-1.1
+                           and min(item[1] for item in stats)<.6)
         else:
             recognizer = KaldiRecognizer(self.model, SAMPLE_RATE)
             recognizer.SetWords(True)
             recognizer.AcceptWaveform(pcm)
             result = json.loads(recognizer.FinalResult())
             words = result.get("result", [])
-            text=result.get('text','')[:400]
+            text=result.get('text','')[:4000]
             confident=bool(words and min(word.get('conf',0.) for word in words)>=.8
                            and sum(word.get('conf',0.) for word in words)/len(words)>=.9)
         self.last_text=text
@@ -262,7 +298,9 @@ class OfflineRecognizer:
                     self.reply_kind=self.dialogue.understand(text,question_id)
                     if self.reply_kind=='DEFAULT' and self.responder:
                         self.reply_text=self.responder.respond(question_id,text)
-                        if not self.reply_text:return 'UNKNOWN',0.,'unrecognized'
+                        # If no grounded reply can be generated (long, multi-part answers),
+                        # still accept the answer: Reachy gives its warm general
+                        # acknowledgement instead of ignoring what the person said.
             return "REPLY",1.0,"reply"  # Bound reply mode; only intent markers enter Core.
         if self.dialogue and outcome[0] not in {'UNKNOWN','STOP'}:
             self.dialogue.decide(outcome[0])
@@ -288,6 +326,9 @@ class SpeechWorker:
         self.live_future=None
         self.live_loading=False
         self.caption_pool=None
+        from concurrent.futures import ThreadPoolExecutor
+        self.chunk_pool=ThreadPoolExecutor(max_workers=1)  # Long-answer pieces, transcribed while talking.
+        self.chunker=None
         self.question_id=''
         self.caption_revision=0
         self.last_caption=''
@@ -295,7 +336,7 @@ class SpeechWorker:
 
     def caption(self,text,final=False):
         self.caption_revision+=1
-        self.exchange('/speech/caption',dict(capture_id=self.capture_id,text=text[:400],revision=self.caption_revision,final=final))
+        self.exchange('/speech/caption',dict(capture_id=self.capture_id,text=text[:4000],revision=self.caption_revision,final=final))
         self.last_caption=text
         self.last_caption_at=self.clock()
 
@@ -309,7 +350,55 @@ class SpeechWorker:
             raise ValueError("Speech response limit exceeded.")
         return json.loads(data)
 
+    def _chunk_step(self):
+        """While a long answer is spoken, transcribe finished ~20 s pieces in the
+        background so only a short tail is left when the key is released."""
+        chunker=self.chunker
+        if chunker['future'] is not None:
+            if not chunker['future'].done():
+                return
+            self._chunk_collect()
+            if self.chunker is None:
+                return
+        with self.capture.lock:
+            length=len(self.capture.buffer)
+            if length-chunker['done']<SAMPLE_RATE*2*CHUNK_SECONDS:
+                return
+            region=bytes(self.capture.buffer[chunker['done']:length])
+        cut=quiet_cut(region)
+        if cut<SAMPLE_RATE*2:
+            return
+        chunker['cut']=chunker['done']+cut
+        chunker['future']=self.chunk_pool.submit(self.recognizer.transcribe_chunk,region[:cut])
+
+    def _chunk_collect(self):
+        chunker=self.chunker
+        try:
+            text,stats=chunker['future'].result()
+        except Exception:
+            self.chunker=None  # Fall back to transcribing the whole answer at the end.
+            return
+        chunker['future']=None
+        if text:
+            chunker['texts'].append(text)
+        chunker['stats']+=stats
+        chunker['done']=chunker['cut']
+
+    def _chunks_done(self):
+        chunker=getattr(self,'chunker',None)
+        if not chunker:
+            self.chunker=None
+            return None
+        if chunker['future'] is not None:
+            self._chunk_collect()  # Waits for the piece being transcribed right now.
+            chunker=self.chunker
+        self.chunker=None
+        if not chunker:
+            return None
+        return ' '.join(chunker['texts']),chunker['stats'],chunker['done']
+
     def discard(self):
+        self.chunker=None
         self.live_decoder=None
         if self.live_future:
             self.live_future.cancel()
@@ -320,6 +409,10 @@ class SpeechWorker:
 
     def finish(self, recognize):
         outcome = ("UNKNOWN", 0.0, "unrecognized")
+        if os.environ.get("ECHO_ROBOT_DEBUG") == "1":  # Bench diagnostics: timing only, never words.
+            held=self.clock()-getattr(self,'capture_started',self.clock())
+            print(f"[speech-worker {time.strftime('%H:%M:%S')}] finish recognize={recognize} reply={self.reply} "
+                  f"held={held:.1f}s full={getattr(self.capture,'full',None)}",file=sys.stderr,flush=True)
         if recognize and self.capture is not None:
             pcm = self.capture.take()
             self.capture = None
@@ -330,7 +423,8 @@ class SpeechWorker:
             try:
                 self.exchange("/speech/processing",{"capture_id":self.capture_id})
                 if self.config.get('conversation',False):
-                    outcome=self.recognizer.controls(pcm,reply=self.reply,question_id=self.question_id)
+                    outcome=self.recognizer.controls(pcm,reply=self.reply,question_id=self.question_id,
+                                                     pretranscribed=self._chunks_done())
                     self.caption(self.recognizer.last_text,final=True)
                 else:
                     outcome = self.recognizer.controls(pcm, reply=True) if self.reply else self.recognizer.controls(pcm)
@@ -382,9 +476,16 @@ class SpeechWorker:
                     if job["phase"] == "listen":
                         self.capture = (self.automatic_factory if self.automatic else self.capture_factory)(self.device)
                         self.capture.reply_mode = self.reply
+                        if self.reply and not self.automatic:
+                            # Held-B answers can be long; commands (V) stay short.
+                            self.capture.max_bytes = MAX_REPLY_BYTES
                         self.capture.preview_enabled=self.config.get('conversation',False)
                         self.capture.open()
                         self.capture_started = self.clock()
+                        self.chunker=None
+                        if (self.reply and not self.automatic and self.config.get('conversation',False)
+                                and getattr(self.recognizer,'final_model',None) and hasattr(self.capture,'buffer')):
+                            self.chunker={'texts':[],'stats':[],'done':0,'cut':0,'future':None}
                         self.exchange("/speech/started", {"capture_id":self.capture_id})
                 if self.capture and job['phase']=='listen' and self.live_future and self.live_future.done():
                     result=self.live_future.result()
@@ -398,9 +499,15 @@ class SpeechWorker:
                     preview=self.capture.take_preview()
                     if preview:
                         self.live_future=self.caption_pool.submit(self.live_decoder.feed,preview)
+                if self.capture and job['phase']=='listen' and getattr(self,'chunker',None):
+                    self._chunk_step()
                 if job["phase"] == "cancel":
                     self.finish(False)
-                elif self.capture and (self.capture.full or self.clock() - self.capture_started >= (45.0 if self.automatic else 8.0)):
+                elif (self.capture and self.reply and not self.automatic
+                      and (self.capture.full or self.clock() - self.capture_started >= REPLY_SECONDS)):
+                    self.finish(True)  # A long held-B answer is submitted at the limit, not discarded.
+                elif (self.capture and not (self.reply and not self.automatic)
+                      and (self.capture.full or self.clock() - self.capture_started >= (45.0 if self.automatic else 8.0))):
                     self.finish(False)  # Never interpret a truncated/overflowed control phrase.
                 elif self.capture and self.automatic and self.capture.done:
                     self.exchange('/speech/end-turn',{'capture_id':self.capture_id})
@@ -417,7 +524,7 @@ class SpeechWorker:
         except Exception as error:
             # Never print exception values: drivers/recognizers can include device
             # or transcript text. Close the device before any reconnect attempt.
-            if getattr(self,'synthetic_diagnostics',False):
+            if getattr(self,'synthetic_diagnostics',False) or os.environ.get("ECHO_ROBOT_DEBUG") == "1":
                 import traceback
                 frame=traceback.extract_tb(error.__traceback__)[-1]
                 print('Synthetic speech failure:',type(error).__name__,Path(frame.filename).name,frame.lineno,flush=True)

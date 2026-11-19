@@ -2,6 +2,7 @@
 import json
 import math
 from pathlib import Path
+import threading
 import time
 import sys
 import wave
@@ -82,14 +83,16 @@ class ReachyLiteOutput:
     """
     completion = "audio_completed"
     daemon_port = 8000
-    supported_sdk_versions = {"1.12.0"}
+    # 1.12.0: project-local SDK/daemon. 1.14.0: the Reachy Mini Control app's
+    # daemon, so the app can stay open while the game drives the robot.
+    supported_sdk_versions = {"1.12.0", "1.14.0"}
     expressive_simulation = False
 
     def __init__(self, speaker_name, gestures=False):
         self._validate_speaker(speaker_name)
         from importlib.metadata import version
         if version("reachy-mini") not in self.supported_sdk_versions:
-            raise RuntimeError("This prepared adapter targets Reachy Mini SDK 1.12.0. Verify daemon compatibility first.")
+            raise RuntimeError("Unsupported Reachy Mini SDK version. Verify daemon compatibility first.")
         from reachy_mini import ReachyMini
         self.mini = ReachyMini(connection_mode="localhost_only", spawn_daemon=False,
                               port=self.daemon_port, media_backend="no_media", timeout=2.0, log_level="ERROR", automatic_body_yaw=False)
@@ -126,6 +129,25 @@ class ReachyLiteOutput:
     def _validate_speaker(self, speaker_name):
         if not speaker_name or not any(word in speaker_name.casefold() for word in ("reachy", "respeaker")):
             raise ValueError("Select the exact Reachy/ReSpeaker output device name.")
+        self._check_physical_daemon()
+
+    def _check_physical_daemon(self):
+        """Require a running physical daemon whose version matches this worker's SDK."""
+        from importlib.metadata import version
+        from urllib.request import build_opener, ProxyHandler
+        from .companion_gateway import NoRedirect
+        with build_opener(ProxyHandler({}), NoRedirect()).open(
+                f"http://127.0.0.1:{self.daemon_port}/api/daemon/status", timeout=2) as response:
+            raw = response.read(65537)
+        if len(raw) > 65536:
+            raise RuntimeError("Daemon status response exceeded limit.")
+        status = json.loads(raw)
+        if status.get("state") != "running":
+            raise RuntimeError("The Reachy daemon is not running.")
+        if status.get("simulation_enabled") is True or status.get("mockup_sim_enabled") is True:
+            raise RuntimeError("A physical Lite daemon is required; simulation daemons are refused.")
+        if status.get("version") != version("reachy-mini"):
+            raise RuntimeError("Daemon and worker SDK versions must match.")
 
     def _select_device(self, speaker_name):
         monitor = self.Gst.DeviceMonitor.new()
@@ -429,6 +451,226 @@ class ReachyMujocoOutput(ReachyLiteOutput):
         if sink is None:
             raise RuntimeError("Laptop simulation audio output is unavailable.")
         return sink
+
+
+def move_sound(dataset, name):
+    """The .ogg that comes with an official recorded move (laugh, cheer, song), if
+    the daemon has it in the local Hugging Face cache."""
+    import os
+    hub = Path(os.environ.get("HF_HUB_CACHE") or Path(os.environ.get("HF_HOME", Path.home() / ".cache/huggingface")) / "hub")
+    folder = hub / ("datasets--" + dataset.replace("/", "--")) / "snapshots"
+    matches = sorted(folder.glob(f"*/**/{name}.ogg")) if folder.is_dir() else []
+    return matches[-1] if matches else None
+
+
+class MovePlayer(threading.Thread):
+    """Plays official recorded moves on its own thread, so the worker loop (which
+    must poll the controller at least every 2 s) never waits on the daemon.
+
+    The daemon plays the motion; this worker plays the move's own sound file on
+    Reachy's speaker at the same moment (no slow speaker handover to the daemon).
+    stop() is non-blocking.
+    """
+    def __init__(self, daemon, moves, sound_datasets, play_sound=None, find_sound=move_sound, poll=.4):
+        super().__init__(daemon=True)
+        self.daemon_call, self.moves, self.sound_datasets, self.poll = daemon, list(moves), sound_datasets, poll
+        self.play_sound, self.find_sound = play_sound, find_sound
+        self.stopping = threading.Event()
+
+    def stop(self):
+        self.stopping.set()
+
+    def run(self):
+        from urllib.parse import quote
+        sound = None
+        try:
+            for dataset, name in self.moves:
+                if self.stopping.is_set():
+                    break
+                self.daemon_call("POST", f"/api/move/play/recorded-move-dataset/{quote(dataset, safe='')}/{name}", timeout=15)
+                # Long recorded moves (song dances) can take seconds to load before
+                # they start: wait until the move is really running (up to 10 s)...
+                started_at = time.monotonic()
+                while not self.stopping.is_set() and time.monotonic() - started_at < 10:
+                    try:
+                        if self.daemon_call("GET", "/api/move/running", timeout=5):
+                            break
+                    except Exception:
+                        pass
+                    self.stopping.wait(.1)
+                # ...start its sound together with the motion...
+                if dataset in self.sound_datasets and self.play_sound and not self.stopping.is_set():
+                    try:
+                        path = self.find_sound(dataset, name)
+                        sound = self.play_sound(path) if path else None
+                    except Exception:
+                        sound = None  # The move still runs, just silently.
+                # ...then wait until it ends.
+                misses = 0
+                while not self.stopping.is_set():
+                    try:
+                        if not self.daemon_call("GET", "/api/move/running", timeout=5):
+                            break
+                        misses = 0
+                    except Exception:
+                        misses += 1
+                        if misses >= 5:
+                            break
+                    self.stopping.wait(self.poll)
+                if sound is not None:
+                    try:
+                        sound.stop()
+                    except Exception:
+                        pass
+                    sound = None
+            if self.stopping.is_set():
+                try:
+                    self.daemon_call("POST", "/api/move/stop", timeout=5)
+                except Exception:
+                    pass
+        except Exception:
+            pass  # A failed celebration never affects speech or the game.
+        finally:
+            if sound is not None:
+                try:
+                    sound.stop()
+                except Exception:
+                    pass
+
+
+class ReachyLiteExpressiveOutput(ReachyLiteOutput):
+    """Physical Lite USB output with the livelier expression set used in simulation.
+
+    Real speaker and EOS completion as ReachyLiteOutput, plus idle sway, listening
+    tilt, voice-paced speech motion and cheers. Amplitudes stay small (head about
+    9 degrees, 5 mm lift; antennas 40 degrees) and every target is speed-limited.
+    Idle motion stops during pause, narration, cancellation and stop.
+    """
+    expressive_simulation = True  # Enables the shared expression path in tick().
+    motion_dropouts = 0
+    # Official Pollen moves played by the daemon right after a line finishes:
+    # the enthusiastic emotion after every gem cheer, and a dance for the treasure.
+    # Idle motion is held while a move runs.
+    DANCE_DATASET = "pollen-robotics/reachy-mini-dances-library"
+    EMOTION_DATASET = "pollen-robotics/reachy-mini-emotions-library"
+    MUSIC_DATASET = "Anne-Charlotte/music"  # Song dances shown in the Control app.
+    GEM_CELEBRATION = ((EMOTION_DATASET, "enthusiastic1"),)
+    MOVES_AFTER_LINE = {
+        "companion_library_success": GEM_CELEBRATION,
+        "companion_workshop_success": GEM_CELEBRATION,
+        "companion_market_success": GEM_CELEBRATION,
+        "companion_temple_success": GEM_CELEBRATION,
+        # Treasure: the Reachy Mini Control app's Katy Perry "Fireworks" song dance.
+        "companion_ending": ((MUSIC_DATASET, "katy-perry-fireworks"),),
+    }
+    # Moves that are part of a line: Reachy laughs after each joke punchline (humour
+    # condition only), and the line counts as finished only after the laugh, so the
+    # next line never talks over it.
+    LAUGH = ((EMOTION_DATASET, "laughing1"),)
+    MOVES_WITHIN_LINE = dict.fromkeys(("companion_h1_humour", "companion_h2_humour",
+                                       "companion_h3_humour", "companion_h4_humour"), LAUGH)
+    SOUND_DATASETS = {EMOTION_DATASET, MUSIC_DATASET}  # Their sounds play via the daemon.
+    moves_pending = ()
+    within_pending = ()
+    within_active = False
+    move_player = None
+
+    def start(self, job):
+        self._stop_moves()  # A new line always wins over a background celebration.
+        self.within_active = False
+        super().start(job)  # Calls cancel() first, which clears pending moves...
+        audio_id = job.get("audio_id")  # ...so plan this line's moves afterwards.
+        self.moves_pending = self.MOVES_AFTER_LINE.get(audio_id, ())
+        self.within_pending = self.MOVES_WITHIN_LINE.get(audio_id, ())
+
+    def tick(self):
+        if self.within_active:
+            if self.paused or self._moves_running():
+                return False
+            self.within_active = False
+            return True
+        done = super().tick()
+        if done and self.within_pending:
+            if self.pipeline is not None:  # Free the speaker so the laugh sound can play.
+                pipeline, self.pipeline = self.pipeline, None
+                pipeline.set_state(self.Gst.State.NULL)
+            self._start_moves(self.within_pending)
+            self.within_pending, self.within_active = (), True
+            self.voice_duration = getattr(self, "voice_duration", 0.) + 20.  # Worker time budget.
+            return False
+        if done and self.moves_pending:
+            self._start_moves(self.moves_pending)
+            self.moves_pending = ()
+        return done
+
+    def cancel(self):
+        self.moves_pending = self.within_pending = ()  # Skipped lines get no move.
+        if self.within_active:  # Skip/stop during a laugh stops the laugh too.
+            self.within_active = False
+            self._stop_moves()
+        super().cancel()
+
+    def _start_moves(self, moves):
+        self._stop_moves()
+        self.move_player = MovePlayer(self._daemon, moves, self.SOUND_DATASETS, play_sound=self._play_sound)
+        self.move_player.start()
+
+    def _play_sound(self, path):
+        """Play a move's sound file on Reachy's speaker (same device as its voice)."""
+        player = self.Gst.ElementFactory.make("playbin", "move_sound")
+        if player is None:
+            return None
+        player.set_property("uri", Path(path).resolve().as_uri())
+        player.set_property("audio-sink", self._make_sink())
+        fake = self.Gst.ElementFactory.make("fakesink", "no_video")
+        if fake is not None:
+            player.set_property("video-sink", fake)
+        if player.set_state(self.Gst.State.PLAYING) == self.Gst.StateChangeReturn.FAILURE:
+            player.set_state(self.Gst.State.NULL)
+            return None
+
+        class Sound:
+            def stop(_self):
+                player.set_state(self.Gst.State.NULL)
+        return Sound()
+
+    def _moves_running(self):
+        return self.move_player is not None and self.move_player.is_alive()
+
+    def _stop_moves(self):
+        if self.move_player is not None:
+            self.move_player.stop()  # Non-blocking; the player cleans up by itself.
+
+    def idle_tick(self, motion):
+        if self._moves_running():
+            return  # Hold idle motion while a celebration plays.
+        if self.move_player is not None:
+            self.move_player = None
+            # Re-read the real pose before idle motion continues after a move.
+            for name in ("expression_last", "idle_last"):
+                if hasattr(self, name):
+                    delattr(self, name)
+        ReachyMujocoOutput.idle_tick(self, motion)
+
+    def _daemon(self, method, path, timeout=2):
+        from urllib.request import Request, build_opener, ProxyHandler
+        from .companion_gateway import NoRedirect
+        request = Request(f"http://127.0.0.1:{self.daemon_port}{path}", method=method,
+                          data=b"" if method == "POST" else None)
+        with build_opener(ProxyHandler({}), NoRedirect()).open(request, timeout=timeout) as response:
+            return json.loads(response.read(65537) or b"null")
+
+    def _animate(self, *args, **kwargs):
+        # The SDK marks its link "lost" after any 1 s gap in daemon messages and
+        # recovers by itself; CPU load from speech recognition can cause such a
+        # gap. Motion is decorative, so skip that frame instead of failing speech.
+        try:
+            ReachyMujocoOutput._animate(self, *args, **kwargs)
+        except ConnectionError:
+            self.motion_dropouts += 1
+
+    def __init__(self, speaker_name):
+        super().__init__(speaker_name, gestures=True)
 
 
 class ReachyControlSimulatorOutput(ReachyMujocoOutput):

@@ -61,6 +61,36 @@ class RasaParser:
         return name.upper(), float(confidence)
 
 
+# Natural rewordings ("could you please repeat the question?") are decided by
+# Rasa. Its conversation model is trained on these commands AND on the answer
+# categories, so it separates "I love science books" (an answer) from "can we
+# skip this one" (a command). Only confident command intents are accepted, and
+# ending the session needs extra certainty.
+REWORD_CONFIDENCE = 0.8
+STOP_CONFIDENCE = 0.95
+# "don't skip", "please do not stop", "no need to repeat", "never pause": a negation
+# shortly before the command word flips its meaning, whatever the model says.
+NEGATED_COMMAND = re.compile(
+    r"\b(?:don'?t|do not|not|never|no need to|no)\b(?:\s+\w+){0,2}?\s+"
+    r"(?:stop|skip|pause|repeat|hint|quit|end|resume|continue|wait)", re.IGNORECASE)
+# Short yes/no/filler replies are answers, never commands.
+FILLERS = {"yes", "yeah", "yep", "no", "nope", "ok", "okay", "sure", "maybe", "hmm", "no, not really", "not really"}
+
+
+def _reworded_control(phrase, parser):
+    if not phrase or len(phrase.split()) > 15 or phrase in FILLERS or NEGATED_COMMAND.search(phrase):
+        return None
+    try:
+        name, confidence = parser.parse(phrase)
+    except Exception:
+        return None
+    if name not in BANK or not REWORD_CONFIDENCE <= confidence <= 1:
+        return None
+    if name == "STOP" and confidence < STOP_CONFIDENCE:
+        return None
+    return name, confidence, "rasa"
+
+
 def classify_control(text, parser):
     """No raw utterance is included in the result, exception messages or controller payload."""
     if not isinstance(text, str) or len(text) > 500:
@@ -70,7 +100,7 @@ def classify_control(text, parser):
     if expected == "STOP":
         return "STOP", 1.0, "safety"  # Explicit stop survives an NLU outage.
     if expected is None:
-        return "UNKNOWN", 0.0, "unrecognized"
+        return _reworded_control(phrase, parser) or ("UNKNOWN", 0.0, "unrecognized")
     try:
         name, confidence = parser.parse(phrase)
     except Exception:

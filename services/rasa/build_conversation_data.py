@@ -15,7 +15,8 @@ for key in replies: intents['answer_'+key.lower()]=key
 nlu=['version: "3.1"','nlu:']
 for intent,examples in phrases.items():
     nlu += [f'- intent: {intent.lower()}','  examples: |']+[f'    - {item}' for item in examples]
-nlu += ['- intent: reply_given','  examples: |','    - reply supplied']
+non_commands=json.loads((root.parent/'protocol/non_command_examples.json').read_text(encoding='utf-8'))
+nlu += ['- intent: reply_given','  examples: |','    - reply supplied']+[f'    - {item}' for item in non_commands]
 nlu += ['- intent: name_given','  examples: |','    - my name is Alex','    - you can call me Sam','    - I am Alice','    - call me Robin']
 for key,entry in replies.items():
     nlu += ['- intent: answer_'+key.lower(),'  examples: |']+[f'    - {text}' for text in entry['examples']]

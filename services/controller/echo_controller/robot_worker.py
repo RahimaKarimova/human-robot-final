@@ -1,13 +1,16 @@
 """Poll a session-owned output job. Never consumes answers or microphone audio."""
 import argparse
 import json
+import os
+import sys
 import time
+import traceback
 import uuid
 from pathlib import Path
 from urllib.request import Request, ProxyHandler, build_opener
 
 from .companion_gateway import local_url, NoRedirect
-from .robot_output import SimulatedOutput, ReachyLiteOutput, ReachyWirelessOutput, ReachyMujocoOutput, ReachyControlSimulatorOutput, clip, MOTIONS
+from .robot_output import SimulatedOutput, ReachyLiteOutput, ReachyLiteExpressiveOutput, ReachyWirelessOutput, ReachyMujocoOutput, ReachyControlSimulatorOutput, clip, MOTIONS
 
 
 class Worker:
@@ -96,6 +99,8 @@ class Worker:
                     idle(state.get("idle_motion", "IDLE") if state.get("idle_allowed", False) else None)
             return state["state"] != "stopped" or self.pending_result is not None
         except Exception:
+            if os.environ.get("ECHO_ROBOT_DEBUG") == "1":
+                traceback.print_exc()  # Opt-in diagnostics for hardware bench sessions.
             # On a controller or device failure, stop locally before reconnecting.
             self.finish("technical_failure")
             self.cancel_output()
@@ -110,6 +115,7 @@ def main():
     parser.add_argument("--config", required=True, type=Path)
     parser.add_argument("--speaker-name")
     parser.add_argument("--gestures", action="store_true")
+    parser.add_argument("--expressive", action="store_true", help="Lite only: livelier head and antenna expressions.")
     parser.add_argument("--simulator-speed", type=float, default=1.0)
     parser.add_argument("--simulator-port",type=int,default=8000)
     parser.add_argument("--mute-simulator-audio",action="store_true")
@@ -123,7 +129,7 @@ def main():
         print("SILENT ROBOT BRIDGE SIMULATOR. No SDK, devices or physical playback.", flush=True)
     elif config["output"] == "reachy_lite":
         try:
-            output = ReachyLiteOutput(args.speaker_name, args.gestures)
+            output = ReachyLiteExpressiveOutput(args.speaker_name) if args.expressive else ReachyLiteOutput(args.speaker_name, args.gestures)
         except Exception:
             raise SystemExit("Robot output could not start. Check the SDK, Lite daemon and exact USB speaker name. No fallback was selected.")
     elif config["output"] == "reachy_wireless":
@@ -144,8 +150,21 @@ def main():
     else:
         raise SystemExit("Unsupported output mode.")
     worker = Worker(config, output)
+    debug = os.environ.get("ECHO_ROBOT_DEBUG") == "1"
+    if debug:
+        print(f"worker ready: {type(output).__name__}", file=sys.stderr, flush=True)
     try:
-        while worker.step():
+        while True:
+            started = time.monotonic()
+            active_before = worker.active["audio_id"] if worker.active else None
+            running = worker.step()
+            if debug:
+                took = time.monotonic() - started
+                active_after = worker.active["audio_id"] if worker.active else None
+                if took > 0.5 or active_before != active_after or worker.pending_result:
+                    print(f"step {took:.2f}s active={active_after} pending={worker.pending_result}", file=sys.stderr, flush=True)
+            if not running:
+                break
             time.sleep(0.05)
     except KeyboardInterrupt:
         pass

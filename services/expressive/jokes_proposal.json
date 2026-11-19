@@ -1,24 +1,24 @@
 {
-  "status": "PROPOSED_SIMPLER_DEVELOPMENT_JOKES_PENDING_LISTENING_TEST",
-  "note": "Short, concrete mistakes by the fictional Reachy character. No criticism of the player and no generated personal jokes.",
+  "status": "USER_SELECTED_DEVELOPMENT_JOKES_2026_11_16",
+  "note": "User-selected self-deprecating Reachy jokes about its own failed puzzle attempts. Same setup in both conditions; only the ending differs (humour punchline vs plain resolution). No criticism of the player and no generated personal jokes.",
   "H1": {
-    "setup": "I tried Elara's book puzzle too. I searched with my eyes closed.",
-    "humour": "Very brave. Not very useful! I couldn't see the books!",
-    "control": "Then I opened my eyes and checked the bookshelf."
+    "setup": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf.",
+    "humour": "Turns out I don't have hands. Just very enthusiastic antennas!",
+    "control": "So I read the titles carefully and found the right book that way."
   },
   "H2": {
     "setup": "I tried Milo's clock puzzle too. I put the gears in backwards.",
-    "humour": "I was hoping that would give us more time!",
-    "control": "Then I checked the instructions and put the gears in the correct slots."
+    "humour": "Now the clock says it's yesterday. So technically, I'm early!",
+    "control": "So I checked the numbers and put the gears in the correct slots."
   },
   "H3": {
-    "setup": "On Nia's delivery task, I took the parcel to the wrong cottage.",
-    "humour": "Then I knocked twice. As if that would fix my directions!",
-    "control": "Then I checked the river and the bridge and found the correct cottage."
+    "setup": "I tried Nia's delivery task too. I knocked on every single cottage door.",
+    "humour": "Now the whole village thinks I'm selling something!",
+    "control": "Then I checked the address and found the correct cottage."
   },
   "H4": {
-    "setup": "I tried the temple puzzle too. The door wouldn't open, so I said please.",
-    "humour": "Perfect manners. Absolutely no treasure!",
-    "control": "Then I went back to the letter and checked the symbol order."
+    "setup": "I tried the temple puzzle too. I pressed every rune at once.",
+    "humour": "The door didn't open, but I got a lovely light show!",
+    "control": "Then I went back to the letter and pressed the runes in order."
   }
 }

@@ -25,6 +25,9 @@ nlu:
     - could you pause the game
     - i need a break
     - let us take a break
+    - let's take a break
+    - can we take a break
+    - take a break
 - intent: resume
   examples: |
     - resume
@@ -35,6 +38,13 @@ nlu:
     - unpause the game
     - let us continue
     - i am ready to continue
+    - let's continue
+    - continue please
+    - i'm back
+    - i am back
+    - let's go on
+    - keep going
+    - we can continue
 - intent: skip
   examples: |
     - skip
@@ -46,6 +56,25 @@ nlu:
     - i would rather skip
     - i do not want to answer
     - i would prefer not to answer
+    - i don't want to answer
+    - i dont want to answer
+    - i don't want to answer that
+    - i do not want to answer that
+    - i'd rather not answer
+    - i would rather not answer
+    - i prefer not to answer
+    - i want to skip
+    - i want to skip this
+    - can we skip this one
+    - can we skip this question
+    - let's skip this
+    - next question please
+    - can i skip
+    - i'll pass
+    - pass on this one
+    - i don't want to talk about that
+    - i would rather not say
+    - i'd rather not say
 - intent: repeat
   examples: |
     - repeat
@@ -69,6 +98,24 @@ nlu:
     - could you say that one more time
     - what was the question again
     - repeat please
+    - could you please repeat the question
+    - can you please repeat the question
+    - please repeat the question
+    - could you repeat the question
+    - say it again
+    - say it again please
+    - can you say it again
+    - sorry i didn't hear you
+    - i didn't hear you
+    - i did not hear you
+    - i didn't hear the question
+    - what was the question
+    - what was that
+    - pardon
+    - one more time please
+    - can you ask again
+    - ask me again
+    - come again
 - intent: hint
   examples: |
     - hint
@@ -80,6 +127,21 @@ nlu:
     - help me with this puzzle
     - another hint please
     - what is the next clue
+    - can i get a hint
+    - can you give me a hint
+    - help me please
+    - i need help
+    - can you help me
+    - i'm stuck
+    - i am stuck
+    - give me a clue
+    - any hints
+    - can i have a clue
+    - can i get a clue
+    - could you give me a clue
+    - i want a hint
+    - a hint please
+    - clue please
 - intent: wait
   examples: |
     - wait
@@ -90,6 +152,12 @@ nlu:
     - i need a moment
     - let me think
     - hold on
+    - one second
+    - just a second
+    - let me think about it
+    - give me a minute
+    - hang on
+    - wait please
 - intent: no_recall
   examples: |
     - i cannot think of anything
@@ -98,6 +166,17 @@ nlu:
     - nothing comes to mind
     - i cannot recall anything
     - i do not remember anything
+    - i don't know
+    - i do not know
+    - i dont know
+    - no idea
+    - i have no idea
+    - i can't remember
+    - i don't remember
+    - nothing really
+    - i'm not sure
+    - i can't think of one
+    - nothing comes to my mind
 - intent: clarify
   examples: |
     - i do not understand
@@ -119,6 +198,17 @@ nlu:
     - i am confused
     - what does that mean
     - i do not understand what you are asking
+    - i didn't get it
+    - i did not get it
+    - i don't get it
+    - i dont get it
+    - i didn't understand
+    - i don't understand the question
+    - what do you mean by that
+    - can you say it differently
+    - i'm not sure what you mean
+    - i am not sure what you mean
+    - can you explain
 - intent: privacy
   examples: |
     - privacy
@@ -131,6 +221,51 @@ nlu:
 - intent: reply_given
   examples: |
     - reply supplied
+    - don't skip the question
+    - do not skip
+    - please don't skip it
+    - no don't skip
+    - please do not stop
+    - don't stop
+    - don't stop the game
+    - no keep going don't stop
+    - I stopped reading that book
+    - I stopped reading years ago
+    - I never stop reading
+    - I can't stop reading fantasy
+    - don't pause
+    - no need to pause
+    - please don't pause the game
+    - don't repeat it
+    - no need to repeat
+    - you don't need to repeat that
+    - I don't need a hint
+    - no hints please
+    - I need help with my family
+    - I help my family a lot
+    - I skip breakfast sometimes
+    - I skipped class once
+    - I put off taking a break
+    - I take breaks too often
+    - I keep repeating the same mistakes
+    - I worry I repeat myself
+    - I wait until the last minute
+    - I hate waiting
+    - waiting in queues
+    - I record music
+    - my privacy online
+    - yes
+    - yeah
+    - no
+    - no, not really
+    - ok
+    - okay
+    - sure
+    - maybe
+    - hmm
+    - I think so
+    - not sure yet but I like stories
+    - that's a good question
 - intent: name_given
   examples: |
     - my name is Alex
@@ -147,6 +282,41 @@ nlu:
     - I never enjoy reading
     - I prefer not to read books
     - Books are boring to me
+    - I don't read
+    - I don't really read
+    - I don't read much
+    - not really a reader
+    - I'm not much of a reader
+    - I don't like reading
+    - reading is boring
+    - books are boring
+    - I find reading boring
+    - I hate reading
+    - I never read
+    - I haven't read a book in years
+    - I prefer films
+    - I'd rather watch movies
+    - I prefer watching TV
+    - I'd rather play video games
+    - I prefer games to books
+    - I only read for school
+    - only when I have to
+    - I don't have time to read
+    - I don't enjoy books
+    - books aren't my thing
+    - reading isn't for me
+    - not books really
+    - I'm not into books
+    - I struggle to finish books
+    - I get bored reading
+    - I watch shows instead
+    - I prefer podcasts
+    - none really
+    - not really any
+    - actually I don't enjoy books, I hate them
+    - honestly I don't really read, I prefer watching movies or series
+    - I don't like reading, it makes me sleepy
+    - I used to read when I was a kid but now I don't read at all
 - intent: answer_books_like
   examples: |
     - I love books
@@ -157,6 +327,53 @@ nlu:
     - I enjoy a good story
     - I'm a big fan of books
     - Books make me happy
+    - all kinds
+    - all sorts of books
+    - a bit of everything
+    - anything really
+    - pretty much anything
+    - I read everything
+    - I like most books
+    - I love reading
+    - I'm a big reader
+    - I read a lot
+    - lots of different genres
+    - any good story
+    - a mix of things
+    - whatever looks interesting
+    - novels
+    - I like novels
+    - comics
+    - graphic novels
+    - manga
+    - I read manga
+    - comic books
+    - poetry
+    - romance
+    - romance novels
+    - funny books
+    - comedy books
+    - horror
+    - horror stories
+    - scary stories
+    - classics
+    - classic novels
+    - short stories
+    - young adult books
+    - I like YA novels
+    - children's books
+    - audiobooks
+    - I listen to audiobooks
+    - books with happy endings
+    - stories about friendship
+    - drama
+    - I like realistic fiction
+    - depends on my mood
+    - it depends really
+    - I don't have a favourite, I like lots
+    - I like many kinds of books, it depends on my mood
+    - I read a bit of everything, novels, comics and sometimes poetry
+    - I like romance and drama stories mostly
 - intent: answer_books_fantasy
   examples: |
     - I like fantasy books
@@ -167,6 +384,46 @@ nlu:
     - I love fantasy novels
     - Magic and imaginary worlds are my favourites
     - I read fairy tales
+    - fantasy
+    - fantasy books
+    - fantasy mostly
+    - um fantasy I think
+    - definitely fantasy
+    - I'm really into fantasy
+    - anything with magic
+    - books with magic and dragons
+    - dragons
+    - stories with dragons and wizards
+    - Harry Potter
+    - I love Harry Potter
+    - the Harry Potter books
+    - Lord of the Rings
+    - I like The Hobbit
+    - Narnia
+    - Percy Jackson
+    - fairy tales
+    - I like fairy tales and myths
+    - magical worlds
+    - epic fantasy
+    - books about elves and magic
+    - I read a lot of fantasy novels
+    - my favourite is fantasy
+    - my favorite genre is fantasy
+    - stories about magic schools
+    - anything with wizards in it
+    - I like mythology stories
+    - Greek myths
+    - high fantasy with big battles
+    - books set in magical kingdoms
+    - I like stories where people have magic powers
+    - fantasy and fairy tales
+    - Game of Thrones
+    - I enjoy books like Eragon
+    - witches and wizards
+    - I like reading about mythical creatures
+    - I really like fantasy books with magic and different worlds
+    - Harry Potter is my favourite, I've read it many times
+    - anything with dragons, wizards and magical creatures
 - intent: answer_books_mystery
   examples: |
     - I like mystery books
@@ -177,6 +434,42 @@ nlu:
     - I enjoy crime novels
     - I like suspense stories
     - I love a good whodunit
+    - mystery
+    - mysteries
+    - mystery books
+    - detective stories
+    - crime novels
+    - I like crime fiction
+    - whodunits
+    - Sherlock Holmes
+    - Agatha Christie
+    - I read Agatha Christie
+    - murder mysteries
+    - thrillers
+    - psychological thrillers
+    - I like thrillers and mysteries
+    - stories where you solve a crime
+    - books with a twist at the end
+    - I like guessing who did it
+    - detective novels
+    - I'm into true crime
+    - spy stories
+    - spy thrillers
+    - suspense books
+    - anything with a mystery to solve
+    - I enjoy puzzles in stories
+    - Nancy Drew
+    - I like the Hardy Boys
+    - crime and detective stuff
+    - um mystery stuff I guess
+    - books with clues and secrets
+    - I love solving mysteries in books
+    - police procedurals
+    - I like reading about detectives
+    - mystery and suspense mostly
+    - I like mystery and detective stories where you try to guess the ending
+    - thrillers, I love when there is a big twist at the end
+    - crime novels, especially when I can't guess who did it
 - intent: answer_books_adventure
   examples: |
     - I enjoy adventure books
@@ -187,6 +480,42 @@ nlu:
     - I like exciting journeys
     - Adventure novels are my favourites
     - I read stories about discovering new places
+    - adventure
+    - adventure stories
+    - adventure books
+    - action and adventure
+    - action books
+    - pirate stories
+    - stories about pirates
+    - Treasure Island
+    - treasure hunts
+    - survival stories
+    - books about explorers
+    - exploring and quests
+    - quest stories
+    - jungle adventures
+    - stories about travelling the world
+    - Indiana Jones type stories
+    - Robinson Crusoe
+    - I like stories where they go on a journey
+    - journeys and expeditions
+    - shipwreck stories
+    - books about climbing mountains
+    - action packed books
+    - I love an adventure
+    - anything with a big adventure
+    - stories about lost cities
+    - I like stories set at sea
+    - adventure and exploring
+    - Jules Verne
+    - Around the World in Eighty Days
+    - I like stories about kids going on adventures
+    - Hatchet
+    - the Famous Five
+    - survival and exploration books
+    - adventure stories where the characters go on a big journey
+    - I like books about explorers and treasure hunting
+    - action and adventure, stories that keep me excited
 - intent: answer_explore_new
   examples: |
     - I love exploring new places
@@ -197,6 +526,42 @@ nlu:
     - I would choose exploring
     - I enjoy an adventure somewhere different
     - I like visiting places I've never seen
+    - new places
+    - exploring
+    - I love exploring
+    - definitely new places
+    - somewhere new
+    - I like going somewhere new
+    - I love travelling
+    - I love to travel
+    - I like adventure
+    - I like discovering new things
+    - new places for sure
+    - I always want to see new places
+    - exploring new cities
+    - I like trying new things
+    - I get bored in the same place
+    - I love visiting new countries
+    - the unknown is exciting
+    - I prefer exploring
+    - new definitely
+    - I like road trips to new places
+    - backpacking
+    - I like hiking new trails
+    - I love seeing the world
+    - travelling abroad
+    - I like going off the beaten path
+    - I like surprises when I travel
+    - somewhere I've never been
+    - exploring for sure
+    - new and exciting places
+    - I'd pick the new place
+    - I'm curious so new places
+    - I like exploring new places, it's exciting to see something I've never seen before
+    - new places for sure, I love travelling and discovering different cultures
+    - when I'm with friends I love exploring somewhere new
+    - I get bored if I always go to the same places so I prefer new ones
+    - I'd say new places, even if I'm a bit nervous at first
 - intent: answer_prefer_familiar
   examples: |
     - I prefer familiar places
@@ -207,6 +572,42 @@ nlu:
     - I like my usual places
     - I prefer familiar surroundings
     - I don't enjoy exploring new places
+    - familiar
+    - familiar places
+    - somewhere familiar
+    - somewhere I know
+    - I like home
+    - home
+    - I prefer staying home
+    - I'm a homebody
+    - I like my comfort zone
+    - the familiar one
+    - places I already know
+    - I like routine
+    - I prefer what I know
+    - I don't like change
+    - I get nervous in new places
+    - new places make me anxious
+    - I like my usual spots
+    - my favourite cafe
+    - same places every time
+    - I like going back to the same holiday place
+    - I feel safer somewhere familiar
+    - I'm more of a stay at home person
+    - familiar for sure
+    - I prefer cozy familiar places
+    - I prefer cosy familiar places
+    - my own neighbourhood
+    - I like knowing where I'm going
+    - familiar definitely
+    - I don't really like travelling
+    - travelling stresses me out
+    - I prefer somewhere I'm comfortable
+    - when I'm alone I stick with somewhere familiar because it's my comfort zone
+    - I feel anxious when I go out of my comfort zone so I prefer familiar places
+    - somewhere familiar, I like knowing what to expect
+    - I prefer places I know because new places make me nervous
+    - familiar places, I feel safe and relaxed there
 - intent: answer_place_fantasy
   examples: |
     - I would go to Hogwarts
@@ -217,6 +618,45 @@ nlu:
     - I'd choose a fantasy world
     - I would visit an enchanted forest
     - A magical castle would be my choice
+    - Hogwarts
+    - I'd go to Hogwarts
+    - Narnia
+    - Middle Earth
+    - the Shire
+    - Rivendell
+    - Wonderland
+    - Alice in Wonderland
+    - Neverland
+    - Oz
+    - the Land of Oz
+    - a magical kingdom
+    - a castle with dragons
+    - a dragon's lair
+    - an enchanted forest
+    - a fairy kingdom
+    - Atlantis
+    - a city in the clouds
+    - a floating island
+    - Westeros
+    - Camp Half-Blood
+    - the Chocolate Factory
+    - Willy Wonka's factory
+    - Mount Olympus
+    - Asgard
+    - Pandora
+    - a wizard school
+    - a land with unicorns
+    - somewhere with magic
+    - the Upside Down
+    - a magical library
+    - Diagon Alley
+    - Hyrule
+    - Studio Ghibli worlds
+    - Spirited Away's bathhouse
+    - I would go to Hogwarts because I've always wanted to learn magic
+    - somewhere magical like Narnia where animals can talk
+    - a fantasy world with dragons and castles, that would be amazing
+    - Middle Earth, I'd love to see the Shire and the elves
 - intent: answer_place_adventure
   examples: |
     - I would explore a treasure island
@@ -227,6 +667,46 @@ nlu:
     - I would visit a lost city
     - I want to discover an ancient temple
     - I would explore a mysterious cave
+    - a treasure island
+    - a desert island
+    - a pirate ship
+    - the jungle
+    - the Amazon rainforest
+    - a lost city
+    - El Dorado
+    - the pyramids
+    - inside a pyramid
+    - an ancient temple
+    - a hidden cave
+    - the bottom of the ocean
+    - under the sea
+    - a shipwreck
+    - the Arctic
+    - Antarctica
+    - the North Pole
+    - Mount Everest
+    - the top of a mountain
+    - a volcano
+    - the Wild West
+    - the Sahara
+    - a safari
+    - outer space
+    - the Moon
+    - Mars
+    - a spaceship
+    - the centre of the earth
+    - Jurassic Park
+    - Skull Island
+    - a deep jungle temple
+    - Machu Picchu
+    - the Lost World
+    - a rainforest expedition
+    - a mysterious island
+    - the Bermuda Triangle
+    - a treasure island with hidden caves and pirates
+    - deep in the jungle looking for a lost temple
+    - outer space, I'd love to see other planets
+    - the bottom of the ocean to see all the strange creatures
 - intent: answer_put_off_study
   examples: |
     - I put off studying
@@ -237,6 +717,46 @@ nlu:
     - I keep postponing my essays
     - I don't start studying when I should
     - I delay doing university work
+    - homework
+    - my homework
+    - studying
+    - revision
+    - revising
+    - revising for exams
+    - studying for tests
+    - assignments
+    - my assignments
+    - essays
+    - writing essays
+    - my essay
+    - coursework
+    - my dissertation
+    - my thesis
+    - reading for class
+    - school work
+    - uni work
+    - university work
+    - college work
+    - maths homework
+    - project work
+    - group projects
+    - practising piano
+    - practising my instrument
+    - learning vocabulary
+    - language practice
+    - applying for jobs
+    - job applications
+    - emails for school
+    - reading my notes
+    - I always leave homework to the last minute
+    - I procrastinate on assignments
+    - starting my essays
+    - preparing presentations
+    - I always put off studying until the night before the exam even though I know I shouldn't
+    - my assignments, I wait until the deadline is really close and then panic
+    - starting essays, I just keep thinking about it but I don't actually begin
+    - revising for exams, I tell myself I'll do it tomorrow every day
+    - reading the material for my classes, I keep saying I'll do it later
 - intent: answer_put_off_chores
   examples: |
     - I put off cleaning
@@ -247,6 +767,49 @@ nlu:
     - I leave housework until later
     - I procrastinate cleaning my house
     - I delay sorting out my things
+    - chores
+    - housework
+    - cleaning
+    - cleaning my room
+    - tidying up
+    - tidying my room
+    - the dishes
+    - washing up
+    - doing the dishes
+    - laundry
+    - the laundry
+    - folding clothes
+    - ironing
+    - vacuuming
+    - hoovering
+    - taking out the bins
+    - taking out the trash
+    - making my bed
+    - grocery shopping
+    - food shopping
+    - cooking
+    - cooking dinner
+    - paperwork
+    - paying bills
+    - replying to messages
+    - answering emails
+    - calling people back
+    - going to the dentist
+    - doctor appointments
+    - booking appointments
+    - exercise
+    - going to the gym
+    - going to bed early
+    - getting up early
+    - sorting my wardrobe
+    - decluttering
+    - admin stuff
+    - cleaning my room, I let it get really messy before I finally do it
+    - doing the laundry, I wait until I have nothing left to wear
+    - washing the dishes, I leave them in the sink for days honestly
+    - replying to messages, I read them and then forget to answer
+    - going to the gym, I keep saying I'll start next week
+    - calling the doctor to make an appointment, I keep postponing it
 - intent: answer_social_difficulty
   examples: |
     - I find talking to people difficult
@@ -257,6 +820,60 @@ nlu:
     - I find speaking in groups hard
     - I feel awkward around strangers
     - Conversations with new people are difficult
+    - talking to people
+    - talking to strangers
+    - meeting new people
+    - making friends
+    - small talk
+    - making small talk
+    - public speaking
+    - speaking in public
+    - presentations
+    - giving presentations
+    - speaking in class
+    - asking questions in class
+    - parties
+    - big groups
+    - crowds
+    - phone calls
+    - making phone calls
+    - calling people on the phone
+    - asking for help
+    - saying no
+    - saying no to people
+    - starting conversations
+    - eye contact
+    - being the centre of attention
+    - talking to teachers
+    - talking to my boss
+    - networking
+    - job interviews
+    - interviews
+    - meeting my partner's family
+    - dating
+    - I'm shy
+    - I get shy around new people
+    - social situations
+    - standing up for myself
+    - telling people how I feel
+    - confrontation
+    - arguments
+    - ordering food at restaurants
+    - I find it difficult communicating with people and understanding what they really want
+    - understanding what people really think about me is hard because I overthink
+    - I'm kind of an overthinker and I always think people don't like me
+    - I always worry that people don't like me so talking to them is hard
+    - communicating with people is difficult for me
+    - expressing my feelings to other people
+    - reading people and knowing what they really mean
+    - I never know what to say when I meet someone new, so I just stay quiet
+    - honestly talking in groups, I feel like everyone is judging me
+    - it's hard for me to tell people when I disagree with them
+    - asking for help, because I don't want to bother anyone
+    - making friends at university, everyone already seems to know each other
+    - I get really nervous when I have to speak up in class even if I know the answer
+    - being around a lot of people at once makes me uncomfortable
+    - I find it hard to understand social cues sometimes
 - intent: answer_learning_difficulty
   examples: |
     - I find maths difficult
@@ -267,6 +884,55 @@ nlu:
     - I struggle with remembering information
     - Learning a new language is difficult
     - I find solving problems hard
+    - maths
+    - math
+    - mathematics
+    - algebra
+    - physics
+    - chemistry
+    - statistics
+    - coding
+    - programming
+    - learning languages
+    - learning a new language
+    - grammar
+    - spelling
+    - reading quickly
+    - concentrating
+    - focusing
+    - staying focused
+    - paying attention
+    - remembering things
+    - memorising things
+    - remembering names
+    - exams
+    - tests
+    - writing essays
+    - understanding new topics
+    - learning new software
+    - technology
+    - using computers
+    - time management
+    - organising myself
+    - getting organised
+    - planning ahead
+    - maps and directions
+    - reading maps
+    - following instructions
+    - music theory
+    - drawing
+    - sports
+    - cooking
+    - driving
+    - parking
+    - maths has always been hard for me, I don't really understand it even when I try
+    - I find it difficult to concentrate when I study for a long time
+    - learning new languages, I forget the words really quickly
+    - staying focused, I get distracted by my phone all the time
+    - understanding physics, the formulas just don't make sense to me
+    - remembering what I read, I have to read things many times
+    - programming, I understand the idea but I get stuck on the code
+    - organising my time so I don't leave everything to the end
 - intent: answer_worry_study
   examples: |
     - I am worried about exams
@@ -277,6 +943,44 @@ nlu:
     - I am anxious about my assignments
     - I worry about finishing my homework
     - I have been worrying about studying
+    - exams
+    - my exams
+    - upcoming exams
+    - final exams
+    - tests
+    - my grades
+    - grades
+    - my marks
+    - failing
+    - failing a class
+    - school
+    - uni
+    - university
+    - college
+    - my dissertation
+    - my thesis
+    - deadlines
+    - assignments
+    - my coursework
+    - my results
+    - getting into university
+    - university applications
+    - my GCSEs
+    - my A levels
+    - SATs
+    - my presentation next week
+    - keeping up with classes
+    - falling behind at school
+    - homework piling up
+    - too much schoolwork
+    - group project
+    - my teacher
+    - graduating
+    - I've been worrying about my exams because I don't feel ready at all
+    - my grades this semester, I'm scared I won't pass some classes
+    - my thesis deadline is coming and I'm worried I won't finish in time
+    - whether I'll do well in my presentation next week
+    - keeping up with all my courses, there is just so much work
 - intent: answer_worry_future
   examples: |
     - I worry about the future
@@ -287,6 +991,51 @@ nlu:
     - I am worried about my future plans
     - I worry about finding work
     - The future makes me worried
+    - the future
+    - my future
+    - what to do after school
+    - getting a job
+    - finding a job
+    - my career
+    - career choices
+    - work
+    - my job
+    - losing my job
+    - job interviews
+    - money
+    - money stuff
+    - finances
+    - paying rent
+    - bills
+    - saving money
+    - moving out
+    - moving house
+    - moving to a new city
+    - growing up
+    - becoming an adult
+    - what I want to do
+    - climate change
+    - the environment
+    - the economy
+    - getting older
+    - my health
+    - my family
+    - my parents
+    - a family member being ill
+    - my friends
+    - friendships
+    - relationships
+    - my relationship
+    - the news
+    - the world
+    - everything really
+    - what I'm going to do after I graduate, I don't really know yet
+    - finding a job after university, it feels really competitive
+    - money, I'm worried about paying rent and bills
+    - my family's health, especially my grandparents
+    - whether I chose the right career path
+    - moving to a new country and being far from my family
+    - the future in general, everything feels uncertain right now
 - intent: answer_books_science
   examples: |
     - I like science books
@@ -301,6 +1050,52 @@ nlu:
     - I read books about experiments
     - I enjoy factual books about the universe
     - I like science books more than fantasy
+    - science
+    - science books
+    - science fiction
+    - sci-fi
+    - sci fi
+    - scifi
+    - space stories
+    - books about space
+    - astronomy
+    - books about the universe
+    - black holes
+    - physics books
+    - popular science
+    - I like reading about how things work
+    - books about technology
+    - robots
+    - stories about robots
+    - books about robots and AI
+    - artificial intelligence
+    - biology books
+    - books about animals and nature
+    - nature and wildlife books
+    - dinosaurs
+    - books about dinosaurs
+    - chemistry
+    - inventions and inventors
+    - Star Wars books
+    - The Martian
+    - Isaac Asimov
+    - I like Stephen Hawking
+    - A Brief History of Time
+    - books about the human body
+    - medicine and science
+    - futuristic stories
+    - time travel stories
+    - aliens
+    - stories about aliens
+    - dystopian sci-fi
+    - I like learning facts from books
+    - non-fiction about science
+    - space exploration and planets
+    - I would say scientific books because they are more beneficial
+    - I like science books because I learn something real from them
+    - books about space and the universe, they make me curious
+    - non fiction mostly, especially science and psychology
+    - psychology books, I like understanding how people think
 - intent: answer_books_history
   examples: |
     - I like history books
@@ -315,3 +1110,42 @@ nlu:
     - I read about kings and queens
     - I love ancient history
     - I like history more than science
+    - history
+    - history books
+    - historical fiction
+    - historical novels
+    - books about the past
+    - ancient Egypt
+    - ancient Rome
+    - ancient Greece
+    - the Romans
+    - Vikings
+    - books about Vikings
+    - World War Two
+    - World War 2 books
+    - war stories
+    - books about the world wars
+    - medieval history
+    - knights and castles
+    - the Tudors
+    - biographies
+    - autobiographies
+    - memoirs
+    - true stories
+    - books about real people
+    - books about famous people
+    - the history of kings and queens
+    - pharaohs and pyramids
+    - the Middle Ages
+    - samurai
+    - Anne Frank
+    - the Titanic
+    - history and politics
+    - I like learning about old civilizations
+    - I like real events from the past
+    - the Cold War
+    - the Aztecs
+    - historical biographies
+    - history books, I like learning what happened in the past
+    - historical novels set during the war
+    - biographies of famous people, I like real stories

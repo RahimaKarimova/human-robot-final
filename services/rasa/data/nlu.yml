@@ -57,6 +57,18 @@ nlu:
     - can you say that again
     - i did not hear the question
     - repeat that please
+    - what did you say
+    - what did you just say
+    - sorry what did you say
+    - sorry can you repeat
+    - can you repeat the question
+    - please say that again
+    - i missed that
+    - i did not catch that
+    - i didn't catch that
+    - could you say that one more time
+    - what was the question again
+    - repeat please
 - intent: hint
   examples: |
     - hint
@@ -88,12 +100,25 @@ nlu:
     - i do not remember anything
 - intent: clarify
   examples: |
+    - i do not understand
+    - explain that
     - clarify
     - please clarify
     - what do you mean
     - can you explain the question
     - i do not understand the question
     - could you clarify the question
+    - i did not get that
+    - i didn't get that
+    - i do not get it
+    - i don't understand
+    - i did not understand
+    - i didn't understand the question
+    - can you explain that
+    - could you explain what you mean
+    - i am confused
+    - what does that mean
+    - i do not understand what you are asking
 - intent: privacy
   examples: |
     - privacy

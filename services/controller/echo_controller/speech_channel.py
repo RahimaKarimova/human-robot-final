@@ -1,6 +1,15 @@
 """Capture-bound speech controls and transient, session-only live captions."""
+import os
 import secrets
+import sys
 import time
+
+DEBUG = os.environ.get("ECHO_ROBOT_DEBUG") == "1"
+
+
+def debug(message):
+    if DEBUG:  # Opt-in bench diagnostics: statuses and reasons only, never speech text.
+        print(f"[speech {time.strftime('%H:%M:%S')}] {message}", file=sys.stderr, flush=True)
 
 from .core import ProtocolError
 from .request_routing import route_request
@@ -25,7 +34,9 @@ class SpeechChannel:
             return
         if self.caption and revision<=self.caption['revision']:
             return
-        self.caption=dict(capture_id=capture_id,text=' '.join(text.split())[:400],revision=revision,final=final,at=self.clock())
+        self.caption=dict(capture_id=capture_id,text=' '.join(text.split())[:4000],revision=revision,final=final,at=self.clock())
+        if final and session.transcript:
+            session.transcript.person(capture_id, self.caption['text'])
 
     def caption_state(self,session):
         if not self.caption or session.stopped or self.clock()-self.caption['at']>15:
@@ -46,6 +57,7 @@ class SpeechChannel:
                 'level':self.meter['level'] if live else 0.,'sequence':self.meter['sequence'] if live else 0,'live':live}
 
     def status(self, session, capture_id, status):
+        debug(f"status {status} purpose={self.job and self.job.get('purpose')} phase={self.job and self.job.get('phase')}")
         if not session.stopped:
             session.command("VOICE_CONTROL_STATUS", capture_id=capture_id, status=status,
                             automatic=bool(self.job and self.job.get("automatic")))
@@ -58,7 +70,9 @@ class SpeechChannel:
         if purpose == "reply" and (not context["question"] or context["view"] != "checkpoint" or session.paused):
             self.status(session, capture_id, "UNAVAILABLE")
             return
-        self.job = dict(capture_id=capture_id, context_id=context["context_id"], purpose=purpose, phase="listen", started=self.clock(),automatic=automatic)
+        self.job = dict(capture_id=capture_id, context_id=context["context_id"], purpose=purpose, phase="listen", started=self.clock(),automatic=automatic,
+                        signature=session.context_signature)
+        debug(f"start purpose={purpose} automatic={automatic}")
         self.meter=None
         self.caption=None
         self.status(session, capture_id, "STARTING")
@@ -82,10 +96,13 @@ class SpeechChannel:
         if not self.job:
             return
         now = self.clock()
-        lease=30 if self.job["phase"] == "processing" else 2
-        maximum=30 if self.job['phase']=='processing' else 55 if self.job.get("automatic") else 20
+        lease=(200 if self.job.get("purpose")=="reply" and not self.job.get("automatic") else 30) if self.job["phase"] == "processing" else 2
+        reply=self.job.get('purpose')=='reply' and not self.job.get('automatic')
+        maximum=(200 if reply else 30) if self.job['phase']=='processing' else 200 if reply else 55 if self.job.get('automatic') else 20
         started=self.job.get('processing_at',self.job['started']) if self.job['phase']=='processing' else self.job['started']
         if now - started > maximum or (self.last_seen is not None and now - self.last_seen > lease) or (self.last_seen is None and now - self.job["started"] > 4):
+            debug(f"expired: phase={self.job['phase']} age={now-started:.1f}s last_seen_gap="
+                  f"{(now-self.last_seen) if self.last_seen is not None else None}")
             self.status(session, self.job["capture_id"], "UNAVAILABLE")
             self.job = None
             self.meter=None
@@ -96,14 +113,18 @@ class SpeechChannel:
             raise ProtocolError("A speech worker already owns this session.")
         self.worker_id, self.last_seen = worker_id, self.clock()
         self.expire(session)
-        if self.job and (session.stopped or session.audio_active or session.context()["context_id"] != self.job["context_id"]):
+        if self.job and (session.stopped or (session.audio_active and self.job["phase"] == "listen")
+                         or session.context()["context_id"] != self.job["context_id"]):
+            if self.job["phase"] != "cancel":
+                debug(f"cancel: stopped={session.stopped} audio_active={session.audio_active} "
+                      f"context now={session.context_signature} at_start={self.job.get('signature')}")
             self.cancel()
         now=self.clock()
         game_alive=session.last_game_poll is not None and 0<=now-session.last_game_poll<2
         if self.job and self.job.get("automatic") and (session.paused or not game_alive):
             self.cancel()
         context=session.context()
-        if (session.conversation_enabled and not self.job and not session.stopped and session.started
+        if (session.conversation_enabled and not session.push_to_talk and not self.job and not session.stopped and session.started
                 and not session.paused and not session.audio_active and not session.delivery
                 and not (session.robot and session.robot.job) and game_alive and now>=self.auto_after
                 and context["question"] and context["view"]=="checkpoint"):
@@ -141,6 +162,18 @@ class SpeechChannel:
                 from .preview import conversation_notice
                 session.deliver('COMPANION_CUE',context['stage_id'],checkpoint_id=key[0],line_id=key[1],
                                 conversation_notice=True,**conversation_notice('REPAIR'))
+            self.status(session,body['capture_id'],'NO_COMMAND')
+        elif (not job.get('automatic') and job['purpose']=='reply' and body['intent']=='UNKNOWN'
+              and body['source'] in {'unrecognized','unavailable'}):
+            # Held-B answer with nothing recognized (too quiet, noise, released too
+            # early): Reachy says its default "didn't quite catch that" line so the
+            # player knows to try again. Silence still never counts as an answer.
+            context=session.context()
+            if (context['context_id']==job['context_id'] and context['question'] and context['view']=='checkpoint'
+                    and not session.paused and not session.delivery):
+                from .preview import conversation_notice
+                session.deliver('COMPANION_CUE',context['stage_id'],checkpoint_id=context['checkpoint_id'],
+                                line_id=context['line_id'],conversation_notice=True,**conversation_notice('REPAIR'))
             self.status(session,body['capture_id'],'NO_COMMAND')
         elif body["intent"] == "REPLY":
             context=session.context()

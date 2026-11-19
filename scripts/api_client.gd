@@ -10,6 +10,8 @@ var external_cancel_at: int = 0
 var microphone_enabled: bool = false
 var conversation_enabled: bool = false
 var voice_automatic: bool = false
+var survey_url: String = ""
+var survey_opened: bool = false
 var last_controller_contact: int = 0
 var microphone_level: float = 0.0
 var microphone_live: bool = false
@@ -95,7 +97,8 @@ func _process(_delta: float) -> void:
 		voice_capture_id = ""
 		voice_automatic = false
 		voice_status = "UNAVAILABLE"
-	var voice_timeout := 35000 if voice_status == "PROCESSING" else 5000
+	# Long held-B answers (up to 3 min) can take a while to transcribe on CPU.
+	var voice_timeout := 200000 if voice_status == "PROCESSING" else 5000
 	if GameState.stopped or (voice_ended_at > 0 and Time.get_ticks_msec() - voice_ended_at > voice_timeout):
 		voice_capture_id = ""
 		voice_ended_at = 0

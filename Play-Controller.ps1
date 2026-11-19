@@ -1,4 +1,4 @@
-﻿param([switch]$Test, [switch]$Rasa, [switch]$PrestartStop, [switch]$CompanionPreview, [switch]$RenderTest, [switch]$BridgeSimulator, [switch]$ReachyLite, [string]$RobotPython, [string]$SpeakerName, [switch]$Gestures, [switch]$FullCompanionTest, [switch]$Microphone, [switch]$Conversation, [ValidateRange(1024,65535)][int]$ConversationRouterPort=5006, [int]$InputDevice = -1, [switch]$Wireless, [switch]$ReachySimulator, [switch]$ControlSimulator, [ValidateRange(1024,65535)][int]$SimulatorPort=8000, [ValidateSet('control','humour')][string]$Condition = 'control', [ValidateRange(1024,65535)][int]$Port = 8765)
+﻿param([switch]$Test, [switch]$Rasa, [switch]$PrestartStop, [switch]$CompanionPreview, [switch]$RenderTest, [switch]$BridgeSimulator, [switch]$ReachyLite, [string]$RobotPython, [string]$SpeakerName, [switch]$Gestures, [switch]$Expressive, [switch]$FullCompanionTest, [switch]$Microphone, [switch]$Conversation, [switch]$PushToTalk, [switch]$Transcript, [string]$SurveyUrl, [ValidateRange(1024,65535)][int]$ConversationRouterPort=5006, [int]$InputDevice = -1, [switch]$Wireless, [switch]$ReachySimulator, [switch]$ControlSimulator, [ValidateRange(1024,65535)][int]$SimulatorPort=8000, [ValidateSet('control','humour')][string]$Condition = 'control', [ValidateRange(1024,65535)][int]$Port = 8765)
 $ErrorActionPreference = 'Stop'
 if ($Conversation) { $Microphone=$true; $CompanionPreview=$true }
 if ($ControlSimulator -and ($ReachySimulator -or $ReachyLite -or $Wireless -or $BridgeSimulator)) { throw 'Choose ControlSimulator by itself.' }
@@ -68,13 +68,18 @@ try {
         $sessionArgs = @('-m','echo_controller','new-session','--port',$Port,'--condition',$Condition,'--output',$configPath)
         if ($CompanionPreview) { $sessionArgs += '--preview' }
         if ($Conversation) { $sessionArgs += '--conversation' }
+        if ($Conversation -and $PushToTalk) { $sessionArgs += '--push-to-talk' }
+        if ($Conversation -and $Transcript) { $sessionArgs += '--transcript' }
+        if ($SurveyUrl) { $sessionArgs += @('--survey-url',$SurveyUrl) }
         if ($Microphone) { $sessionArgs += @('--speech-config',$speechConfigPath) }
         if ($BridgeSimulator -or $ReachyLite -or $Wireless -or $ReachySimulator -or $ControlSimulator) {
             $outputRoute = if ($BridgeSimulator) { 'bridge_simulator' } elseif ($Wireless) { 'reachy_wireless' } elseif ($ReachySimulator) { 'reachy_mujoco' } elseif ($ControlSimulator) { 'reachy_control_simulator' } else { 'reachy_lite' }
             $sessionArgs += @('--robot-output',$outputRoute,'--robot-config',$robotConfigPath)
         }
-        & $pythonExe @sessionArgs
+        $sessionOutput = @(& $pythonExe @sessionArgs)
         if ($LASTEXITCODE -ne 0) { throw 'Could not create controller session.' }
+        $sessionOutput | ForEach-Object { Write-Host $_ }
+        $participantId = ($sessionOutput | Select-String -Pattern 'Participant ID: (P\d+)' | Select-Object -First 1 | ForEach-Object { $_.Matches[0].Groups[1].Value })
     } finally { Pop-Location }
     if ($Wireless) { Write-Host "Start the on-robot worker over an SSH reverse tunnel before clicking Begin. Its capability file is $robotConfigPath . See docs/WIRELESS.md. No network connection was started automatically." }
     if ($Microphone) {
@@ -92,6 +97,7 @@ try {
         $workerArgs = @('-m','echo_controller.robot_worker','--config',('"' + $robotConfigPath + '"'))
         if ($ReachyLite) { $workerArgs += @('--speaker-name',('"' + $SpeakerName + '"')) }
         if ($Gestures -and $ReachyLite) { $workerArgs += '--gestures' }
+        if ($Expressive -and $ReachyLite) { $workerArgs += '--expressive' }
         if ($ReachySimulator -or $ControlSimulator) {
             $workerArgs += @('--simulator-port',$SimulatorPort)
             if ($Test) { $workerArgs += '--mute-simulator-audio' }
@@ -100,7 +106,8 @@ try {
         $robotProcess = Start-Process -FilePath $workerPython -ArgumentList $workerArgs -WorkingDirectory $serviceRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $runtimeRoot ($runId + '-robot.log')) -RedirectStandardError (Join-Path $runtimeRoot ($runId + '-robot-errors.log'))
         Start-Sleep -Milliseconds 400
         if ($robotProcess.HasExited) { throw 'The output adapter could not start. Read tools/runtime/*-robot-errors.log. No fallback was selected.' }
-        if ($ReachySimulator -or $ControlSimulator) {
+        if ($ReachySimulator -or $ControlSimulator -or $ReachyLite) {
+            Write-Host "Waiting for Reachy to get ready (loading voices, about 30 seconds)..."
             $readyConfig=Get-Content -Raw -LiteralPath $configPath | ConvertFrom-Json
             $bridgeReady=$false
             $adapterStartup=[Diagnostics.Stopwatch]::StartNew()

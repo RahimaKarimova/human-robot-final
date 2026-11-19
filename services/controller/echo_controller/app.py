@@ -19,6 +19,8 @@ class StartSession(BaseModel):
     preview: bool = False
     speech: bool = False
     conversation: bool = False
+    push_to_talk: bool = False  # Conversation mode without automatic listening (hold B to reply).
+    transcript: bool = False  # Opt-in private researcher transcript (transcripts/conversations.md).
     output: Literal["laptop", "bridge_simulator", "reachy_lite", "reachy_wireless", "reachy_mujoco", "reachy_control_simulator"] = "laptop"
 
 
@@ -73,7 +75,7 @@ class SpeechLevel(SpeechStarted):
 
 
 class SpeechCaption(SpeechStarted):
-    text: str = Field(max_length=400)
+    text: str = Field(max_length=4000)  # Long free answers are kept whole in the transcript.
     revision: int = Field(ge=1)
     final: bool = False
 
@@ -140,9 +142,14 @@ def create_app() -> FastAPI:
             raise HTTPException(422, "Robot output requires the draft Library preview.")
         if body.conversation and (not body.speech or not body.preview):
             raise HTTPException(422, "Conversation requires explicit speech and preview mode.")
-        value = Session(body.condition, preview_enabled=body.preview, output=body.output, speech_enabled=body.speech, conversation_enabled=body.conversation)
+        value = Session(body.condition, preview_enabled=body.preview, output=body.output, speech_enabled=body.speech, conversation_enabled=body.conversation, push_to_talk=body.push_to_talk)
+        if body.transcript:
+            from .transcript import TranscriptLog
+            value.transcript = TranscriptLog(body.condition, body.output)
         app.state.sessions[value.session_id] = value
         result = {"session_id": value.session_id, "token": value.token, "mode": "mock"}
+        if value.transcript:
+            result["participant_id"] = value.transcript.participant_id  # Launcher console only.
         if value.robot:
             result["robot_token"] = value.robot.token
         if value.speech:

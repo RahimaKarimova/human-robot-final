@@ -106,6 +106,7 @@ class Session:
     output: str = "laptop"
     speech_enabled: bool = False
     conversation_enabled: bool = False
+    push_to_talk: bool = False
     last_game_poll: float | None = None
     nickname: str = field(default='',repr=False)
     reply_kinds: dict = field(default_factory=dict,repr=False)
@@ -133,6 +134,7 @@ class Session:
     skipped_questions: dict = field(default_factory=dict)
     robot: object = None
     speech: object = None
+    transcript: object = field(default=None, repr=False)  # Opt-in researcher log (transcript.py).
     lock: object = field(default_factory=threading.RLock, repr=False)
 
     def __post_init__(self):
@@ -154,6 +156,8 @@ class Session:
         self.delivery = {"utterance_id": utterance_id, "stage_id": stage,
                          "checkpoint_id": payload.get("checkpoint_id", "")}
         self.command(kind, stage_id=stage, utterance_id=utterance_id, preview=True, output_route=self.output, **payload)
+        if self.transcript and payload.get("text"):
+            self.transcript.robot(payload["text"], "hint" if kind == "COMPANION_CUE" else payload.get("line_id", ""))
         if self.robot:
             self.robot.offer(self.commands[-1]["command"])
 
@@ -215,6 +219,8 @@ class Session:
     def stop(self) -> None:
         if not self.stopped:
             self.after_speech_event.clear()
+            if self.transcript:
+                self.transcript.close()
             self.stopped = True
             self.nickname=''
             self.reply_kinds.clear()
@@ -280,7 +286,9 @@ class Session:
             self.audio_active = payload["active"]
             if not self.audio_active and self.speech and self.conversation_enabled:
                 self.speech.auto_after=max(self.speech.auto_after,self.speech.clock()+.6)
-            if self.audio_active and self.speech:
+            if self.audio_active and self.speech and (not self.speech.job or self.speech.job.get("phase") == "listen"):
+                # Game audio only interrupts an open microphone (so it can't hear the
+                # game). An answer already captured is still transcribed and sent.
                 self.speech.cancel()
         elif kind == "VOICE_CONTROL_REQUESTED" and self.speech:
             self.speech.start(self, payload["capture_id"], payload["purpose"])

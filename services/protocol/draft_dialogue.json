@@ -22,42 +22,42 @@
   },
   "condition_overrides": {
     "H1": {
-      "humour": "I tried Elara's book puzzle too. I searched with my eyes closed. Very brave. Not very useful! I couldn't see the books!",
-      "control": "I tried Elara's book puzzle too. I searched with my eyes closed. Then I opened my eyes and checked the bookshelf."
+      "humour": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf. Turns out I don't have hands. Just very enthusiastic antennas!",
+      "control": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf. So I read the titles carefully and found the right book that way."
     },
     "H2": {
-      "humour": "I tried Milo's clock puzzle too. I put the gears in backwards. I was hoping that would give us more time!",
-      "control": "I tried Milo's clock puzzle too. I put the gears in backwards. Then I checked the instructions and put the gears in the correct slots."
+      "humour": "I tried Milo's clock puzzle too. I put the gears in backwards. Now the clock says it's yesterday. So technically, I'm early!",
+      "control": "I tried Milo's clock puzzle too. I put the gears in backwards. So I checked the numbers and put the gears in the correct slots."
     },
     "H3": {
-      "humour": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I knocked twice. As if that would fix my directions!",
-      "control": "On Nia's delivery task, I took the parcel to the wrong cottage. Then I checked the river and the bridge and found the correct cottage."
+      "humour": "I tried Nia's delivery task too. I knocked on every single cottage door. Now the whole village thinks I'm selling something!",
+      "control": "I tried Nia's delivery task too. I knocked on every single cottage door. Then I checked the address and found the correct cottage."
     },
     "H4": {
-      "humour": "I tried the temple puzzle too. The door wouldn't open, so I said please. Perfect manners. Absolutely no treasure!",
-      "control": "I tried the temple puzzle too. The door wouldn't open, so I said please. Then I went back to the letter and checked the symbol order."
+      "humour": "I tried the temple puzzle too. I pressed every rune at once. The door didn't open, but I got a lovely light show!",
+      "control": "I tried the temple puzzle too. I pressed every rune at once. Then I went back to the letter and pressed the runes in order."
     }
   },
   "revision_note": "User requested contextual jokes, expressive recordings and short fictional Reachy self-introductions before the six questions. Core question wording, IDs and schedule retained. Development draft, not participant-approved research wording.",
   "joke_delivery": {
     "H1": {
-      "setup": "I tried Elara's book puzzle too. I searched with my eyes closed.",
-      "punchline": "Very brave. Not very useful! I couldn't see the books!",
+      "setup": "I tried Elara's book puzzle too. I couldn't pull a single book off the shelf.",
+      "punchline": "Turns out I don't have hands. Just very enthusiastic antennas!",
       "pause_ms": 350
     },
     "H2": {
       "setup": "I tried Milo's clock puzzle too. I put the gears in backwards.",
-      "punchline": "I was hoping that would give us more time!",
+      "punchline": "Now the clock says it's yesterday. So technically, I'm early!",
       "pause_ms": 350
     },
     "H3": {
-      "setup": "On Nia's delivery task, I took the parcel to the wrong cottage.",
-      "punchline": "Then I knocked twice. As if that would fix my directions!",
+      "setup": "I tried Nia's delivery task too. I knocked on every single cottage door.",
+      "punchline": "Now the whole village thinks I'm selling something!",
       "pause_ms": 350
     },
     "H4": {
-      "setup": "I tried the temple puzzle too. The door wouldn't open, so I said please.",
-      "punchline": "Perfect manners. Absolutely no treasure!",
+      "setup": "I tried the temple puzzle too. I pressed every rune at once.",
+      "punchline": "The door didn't open, but I got a lovely light show!",
       "pause_ms": 350
     }
   }

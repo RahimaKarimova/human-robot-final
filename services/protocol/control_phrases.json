@@ -22,7 +22,10 @@
     "can you pause",
     "could you pause the game",
     "i need a break",
-    "let us take a break"
+    "let us take a break",
+    "let's take a break",
+    "can we take a break",
+    "take a break"
   ],
   "RESUME": [
     "resume",
@@ -32,7 +35,14 @@
     "unpause",
     "unpause the game",
     "let us continue",
-    "i am ready to continue"
+    "i am ready to continue",
+    "let's continue",
+    "continue please",
+    "i'm back",
+    "i am back",
+    "let's go on",
+    "keep going",
+    "we can continue"
   ],
   "SKIP": [
     "skip",
@@ -43,7 +53,26 @@
     "please skip",
     "i would rather skip",
     "i do not want to answer",
-    "i would prefer not to answer"
+    "i would prefer not to answer",
+    "i don't want to answer",
+    "i dont want to answer",
+    "i don't want to answer that",
+    "i do not want to answer that",
+    "i'd rather not answer",
+    "i would rather not answer",
+    "i prefer not to answer",
+    "i want to skip",
+    "i want to skip this",
+    "can we skip this one",
+    "can we skip this question",
+    "let's skip this",
+    "next question please",
+    "can i skip",
+    "i'll pass",
+    "pass on this one",
+    "i don't want to talk about that",
+    "i would rather not say",
+    "i'd rather not say"
   ],
   "REPEAT": [
     "repeat",
@@ -66,7 +95,25 @@
     "i didn't catch that",
     "could you say that one more time",
     "what was the question again",
-    "repeat please"
+    "repeat please",
+    "could you please repeat the question",
+    "can you please repeat the question",
+    "please repeat the question",
+    "could you repeat the question",
+    "say it again",
+    "say it again please",
+    "can you say it again",
+    "sorry i didn't hear you",
+    "i didn't hear you",
+    "i did not hear you",
+    "i didn't hear the question",
+    "what was the question",
+    "what was that",
+    "pardon",
+    "one more time please",
+    "can you ask again",
+    "ask me again",
+    "come again"
   ],
   "HINT": [
     "hint",
@@ -77,7 +124,22 @@
     "help with the puzzle",
     "help me with this puzzle",
     "another hint please",
-    "what is the next clue"
+    "what is the next clue",
+    "can i get a hint",
+    "can you give me a hint",
+    "help me please",
+    "i need help",
+    "can you help me",
+    "i'm stuck",
+    "i am stuck",
+    "give me a clue",
+    "any hints",
+    "can i have a clue",
+    "can i get a clue",
+    "could you give me a clue",
+    "i want a hint",
+    "a hint please",
+    "clue please"
   ],
   "WAIT": [
     "wait",
@@ -87,7 +149,13 @@
     "give me a second",
     "i need a moment",
     "let me think",
-    "hold on"
+    "hold on",
+    "one second",
+    "just a second",
+    "let me think about it",
+    "give me a minute",
+    "hang on",
+    "wait please"
   ],
   "NO_RECALL": [
     "i cannot think of anything",
@@ -95,7 +163,18 @@
     "i can't think of anything",
     "nothing comes to mind",
     "i cannot recall anything",
-    "i do not remember anything"
+    "i do not remember anything",
+    "i don't know",
+    "i do not know",
+    "i dont know",
+    "no idea",
+    "i have no idea",
+    "i can't remember",
+    "i don't remember",
+    "nothing really",
+    "i'm not sure",
+    "i can't think of one",
+    "nothing comes to my mind"
   ],
   "CLARIFY": [
     "i do not understand",
@@ -116,7 +195,18 @@
     "could you explain what you mean",
     "i am confused",
     "what does that mean",
-    "i do not understand what you are asking"
+    "i do not understand what you are asking",
+    "i didn't get it",
+    "i did not get it",
+    "i don't get it",
+    "i dont get it",
+    "i didn't understand",
+    "i don't understand the question",
+    "what do you mean by that",
+    "can you say it differently",
+    "i'm not sure what you mean",
+    "i am not sure what you mean",
+    "can you explain"
   ],
   "PRIVACY": [
     "privacy",
