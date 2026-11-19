@@ -5,7 +5,11 @@ session. Each game session gets a new participant ID (P001, P002, ...) and a
 section with both sides of the conversation in order. Nothing here is sent to
 the game; only the launcher console prints the ID. Enable it only when players
 have agreed to their words being recorded.
+
+ECHO_FIRST_PARTICIPANT sets the lowest ID on this laptop (for example 101 on a
+second study laptop), so two laptops never hand out the same number.
 """
+import os
 import re
 import threading
 from datetime import datetime
@@ -24,7 +28,7 @@ def _clean(text):
 
 
 class TranscriptLog:
-    def __init__(self, condition, output, path=DEFAULT_PATH):
+    def __init__(self, condition, output, path=DEFAULT_PATH, first=None):
         self.path = Path(path)
         self.closed = False
         self.logged_captures = set()
@@ -32,7 +36,10 @@ class TranscriptLog:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             existing = self.path.read_text(encoding="utf-8") if self.path.exists() else ""
             numbers = [int(n) for n in _ID_PATTERN.findall(existing)]
-            self.participant_id = f"P{(max(numbers) + 1) if numbers else 1:03d}"
+            if first is None:
+                first = int(os.environ.get("ECHO_FIRST_PARTICIPANT") or 1)
+            following = max(numbers) + 1 if numbers else 1
+            self.participant_id = f"P{max(first, following):03d}"
             started = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             jokes = "on" if condition == "humour" else "off"
             section = (f"\n## Participant {self.participant_id}\n\n"

@@ -1,0 +1,41 @@
+ECHO ISLAND + REACHY MINI: RUN IT ON A NEW WINDOWS LAPTOP
+=========================================================
+
+ONE-TIME SETUP (about 20-40 minutes, needs internet and ~8 GB free)
+1. Get this folder onto the laptop:
+   - git clone the private GitHub repo, or
+   - copy the folder from a USB stick (copying the "tools" folder too saves
+     download time; broken Python environments are rebuilt automatically).
+2. Install "Reachy Mini Control" (Pollen Robotics, Reachy Mini Lite guide:
+   https://huggingface.co/docs/reachy_mini). Open it once with Reachy
+   plugged in (power adapter + USB-C) and let it finish its own setup.
+3. Double-click  Setup-New-Laptop.cmd
+   It asks which laptop this is (1 = main laptop, 2 = second, ...), so
+   participant numbers never clash: laptop 1 gives P001-P099, laptop 2
+   P101-P199, laptop 3 P201-P299.
+   If something fails, fix the shown reason and run it again; finished
+   steps are skipped.
+
+CHECK THE ROBOT (optional, no game)
+   Open PowerShell in this folder and run:
+   powershell -ExecutionPolicy Bypass -File .\Play-Reachy-Study.ps1 -CheckOnly
+
+EVERY PARTICIPANT
+1. Plug in Reachy (power adapter + USB-C), open Reachy Mini Control and
+   connect to the robot.
+2. Double-click  Play-Reachy-Study.cmd
+3. Type 1 (jokes ON) or 2 (jokes OFF). It shows how many of each this
+   laptop has run so far, so you can keep them balanced.
+4. Write down the Participant ID printed in the black window.
+5. The player holds B to talk and releases it when done. After the final
+   dance the game shows the survey button (participant number prefilled).
+
+PRIVATE DATA (never share or upload)
+   transcripts\conversations.md  : both sides of every conversation.
+   Survey answers are saved in the online survey (results view: add
+   #results to the survey link).
+
+IF REACHY DOES NOT MOVE OR TALK
+   - Power adapter plugged in? USB-C firmly in?
+   - Unplug + replug USB-C, wait 10 seconds, reconnect in the app, retry.
+   - Logs for the researcher: tools\runtime\*-errors.log

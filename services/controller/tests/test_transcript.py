@@ -25,6 +25,12 @@ class TranscriptTests(unittest.TestCase):
         self.assertIn("## Participant P002", text)
         self.assertIn("- Jokes: on", text)
 
+    def test_second_laptop_starts_at_its_own_number_range(self):
+        first = TranscriptLog("humour", "reachy_lite", self.path, first=101)
+        first.close()
+        second = TranscriptLog("control", "reachy_lite", self.path, first=101)
+        self.assertEqual((first.participant_id, second.participant_id), ("P101", "P102"))
+
     def test_both_sides_are_recorded_in_order_once(self):
         session = Session("control", preview_enabled=True, speech_enabled=True, conversation_enabled=True)
         session.transcript = TranscriptLog("control", "laptop", self.path)
