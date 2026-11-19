@@ -10,5 +10,6 @@ const TEXTS := {
 	"DEVELOPMENT_PRIVACY": "Development mode: no audio or reply transcripts are saved. The microphone's listening status is shown above. You can skip any question.",
 	"HINT_UNAVAILABLE": "Ask for a hint while a puzzle is open. Finish or skip this checkpoint first.",
 	"NO_QUESTION": "There is no active question for that request.",
-	"ALREADY_STOPPED": "This session has ended."
+	"ALREADY_STOPPED": "This session has ended.",
+	"WAIT_FOR_QUESTION": "Let Reachy finish the question, then hold B while you answer."
 }

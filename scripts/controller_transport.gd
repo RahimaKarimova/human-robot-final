@@ -32,6 +32,7 @@ func configure(path: String) -> String:
 	ApiClient.companion_output = parsed.get("output", "laptop")
 	ApiClient.microphone_enabled = parsed.get("speech", false) == true
 	ApiClient.conversation_enabled = parsed.get("conversation", false) == true
+	ApiClient.push_to_talk = parsed.get("push_to_talk", false) == true
 	var survey = parsed.get("survey_url", "")
 	ApiClient.survey_url = survey if survey is String and survey.begins_with("https://claude.ai/") else ""
 	ApiClient.session_id = parsed.session_id

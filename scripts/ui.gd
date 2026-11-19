@@ -308,7 +308,7 @@ func show_modal(kicker: String, title: String, subtitle: String = "") -> VBoxCon
 
 func _focus_first() -> void:
 	for control in content.find_children("*", "Button", true, false):
-		if not control.disabled:
+		if not control.disabled and control.focus_mode != Control.FOCUS_NONE:
 			control.grab_focus()
 			break
 

@@ -41,7 +41,7 @@ func _run_after_speech() -> void:
 	elif not action.is_empty(): _resolve(action)
 
 func _process(_delta: float) -> void:
-	if active and not GameState.stopped and not GameState.paused and after_speech_action == "bypass" and current_id.is_empty() and Time.get_ticks_msec() - requested_at > 5000 and Time.get_ticks_msec() - ApiClient.last_controller_contact > 5000 and not speech.busy and ApiClient.external_utterance_id.is_empty():
+	if active and not GameState.stopped and not GameState.paused and (after_speech_action == "bypass" or ApiClient.push_to_talk) and current_id.is_empty() and Time.get_ticks_msec() - requested_at > 5000 and Time.get_ticks_msec() - ApiClient.last_controller_contact > 5000 and not speech.busy and ApiClient.external_utterance_id.is_empty():
 		after_speech_action = ""
 		ApiClient.emit_event("MOCK_CHECKPOINT_BYPASSED", {"checkpoint_id": key})
 		_finish()
@@ -80,12 +80,20 @@ func begin(stage: Dictionary, phase: String) -> void:
 	requested_at = Time.get_ticks_msec()
 	after_speech_action = ""
 	preview_line = false
-	var panel := ui.show_modal("Mock companion adapter", "Companion checkpoint", "Development simulation · no hardware, microphone or personal answers")
-	IslandUI.text(panel, "Waiting for the companion controller. If it is unavailable, explicitly resume without it; puzzle rewards do not depend on this checkpoint.", 20)
-	IslandUI.button(panel, "Resume game", _bypass)
+	if ApiClient.push_to_talk:
+		# Study sessions: no "Resume game" here. Pressing it while Reachy got
+		# ready queued a bypass that closed the block right after the question.
+		# A lost controller is still handled automatically in _process.
+		ui.show_modal("Reachy", "A moment with Reachy", "Reachy is getting ready to talk...")
+	else:
+		var panel := ui.show_modal("Mock companion adapter", "Companion checkpoint", "Development simulation · no hardware, microphone or personal answers")
+		IslandUI.text(panel, "Waiting for the companion controller. If it is unavailable, explicitly resume without it; puzzle rewards do not depend on this checkpoint.", 20)
+		IslandUI.button(panel, "Resume game", _bypass)
 	ApiClient.emit_event("CONVERSATION_CHECKPOINT_REQUESTED", {"checkpoint_id": key, "phase": phase})
 
 func _show(command: Dictionary) -> void:
+	if ApiClient.push_to_talk:
+		after_speech_action = ""  # Never carry a skip from one line into the next question.
 	current_id = command.line_id
 	current_text = command.text
 	resolving = false
@@ -133,6 +141,8 @@ func _show_preview(command: Dictionary) -> void:
 		description = "Hold B to give a reply · Hold V for skip, repeat, pause or another control · release to send"
 	if ApiClient.conversation_enabled:
 		description = "Reachy listens after speaking · Answer naturally, then pause · Say skip, repeat or stop"
+	if ApiClient.conversation_enabled and ApiClient.push_to_talk:
+		description = "HOLD B while you answer · let go when you're done · hold V and say skip or repeat"
 	var panel := ui.show_modal("REACHY REHEARSAL · DRAFT", "A moment with Reachy", description)
 	var face := CompanionFace.new()
 	face.motion_id = command.motion_id
@@ -150,7 +160,13 @@ func _show_preview(command: Dictionary) -> void:
 	if question:
 		IslandUI.button(actions, "Skip question", func(): _resolve("SKIPPED"))
 		IslandUI.button(actions, "Repeat after speech", _repeat_preview)
-	IslandUI.button(panel, "Return to game after speech", _bypass)
+	if not ApiClient.push_to_talk:
+		IslandUI.button(panel, "Return to game after speech", _bypass)
+	else:
+		# Study sessions: a stray Space/Enter must not press a focused button
+		# and skip Reachy's question or the lines after it.
+		for button in actions.find_children("*", "Button", true, false):
+			button.focus_mode = Control.FOCUS_NONE
 	var privacy := "Replies are optional. Voice input is handled locally and discarded; no audio or reply transcript is saved." if ApiClient.microphone_enabled else "No reply text or name is entered, recorded or inferred. Wait as long as you like, or skip. Pause and stop remain available."
 	IslandUI.text(panel, privacy, 17, IslandUI.MUTED)
 	notice_label = IslandUI.text(panel, "", 17, IslandUI.GOLD)

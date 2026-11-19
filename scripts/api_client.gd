@@ -9,6 +9,7 @@ var external_stage_id: String = "library"
 var external_cancel_at: int = 0
 var microphone_enabled: bool = false
 var conversation_enabled: bool = false
+var push_to_talk: bool = false
 var voice_automatic: bool = false
 var survey_url: String = ""
 var survey_opened: bool = false

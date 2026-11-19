@@ -778,6 +778,8 @@ func _input(event: InputEvent) -> void:
 			if not ApiClient.voice_capture_id.is_empty():
 				return
 			if event.physical_keycode == KEY_B and (not checkpoint.active or not checkpoint.question or not checkpoint.playback_done):
+				if checkpoint.active and checkpoint.question:
+					checkpoint.show_notice("WAIT_FOR_QUESTION")
 				return
 			# Bind capture to the view that exists now, including a just-closed panel.
 			ApiClient.emit_event("GAME_CONTEXT_CHANGED", {"view":view, "puzzle_active":puzzle_panel.active or simple_panel.active, "pause_id":active_pause_id if GameState.paused else ""})

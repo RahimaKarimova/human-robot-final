@@ -45,7 +45,7 @@ def main():
         # Do not include the condition, proposed question text or any participant data.
         args.output.parent.mkdir(parents=True, exist_ok=True)
         with args.output.open("w", encoding="utf-8") as file:
-            game_config = {"url": url, "session_id": session["session_id"], "token": session["token"], "preview": args.preview, "output": args.robot_output, "speech":bool(args.speech_config),"conversation":args.conversation}
+            game_config = {"url": url, "session_id": session["session_id"], "token": session["token"], "preview": args.preview, "output": args.robot_output, "speech":bool(args.speech_config),"conversation":args.conversation,"push_to_talk":bool(args.push_to_talk)}
             if args.survey_url.startswith("https://claude.ai/") and session.get("participant_id"):
                 # The participant needs their own number for the survey; nothing else is shared.
                 game_config["survey_url"] = args.survey_url.split("#")[0] + "#" + session["participant_id"]
