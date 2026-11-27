@@ -1,4 +1,4 @@
-﻿param([switch]$Test, [switch]$Rasa, [switch]$PrestartStop, [switch]$CompanionPreview, [switch]$RenderTest, [switch]$BridgeSimulator, [switch]$ReachyLite, [string]$RobotPython, [string]$SpeakerName, [switch]$Gestures, [switch]$Expressive, [switch]$FullCompanionTest, [switch]$Microphone, [switch]$Conversation, [switch]$PushToTalk, [switch]$Transcript, [string]$SurveyUrl, [ValidateRange(1024,65535)][int]$ConversationRouterPort=5006, [int]$InputDevice = -1, [switch]$Wireless, [switch]$ReachySimulator, [switch]$ControlSimulator, [ValidateRange(1024,65535)][int]$SimulatorPort=8000, [ValidateSet('control','humour')][string]$Condition = 'control', [ValidateRange(1024,65535)][int]$Port = 8765)
+﻿param([switch]$Test, [switch]$Rasa, [switch]$PrestartStop, [switch]$CompanionPreview, [switch]$RenderTest, [switch]$BridgeSimulator, [switch]$ReachyLite, [string]$RobotPython, [string]$SpeakerName, [switch]$Gestures, [switch]$Expressive, [switch]$FullCompanionTest, [switch]$Microphone, [switch]$Conversation, [switch]$PushToTalk, [switch]$Transcript, [string]$SurveyUrl, [ValidatePattern('^(|P\d{3})$')][string]$ResumeParticipant='', [ValidateSet('','library','workshop','market','temple')][string]$ResumeStage='', [switch]$ResumeSkipEntry, [ValidateRange(1024,65535)][int]$ConversationRouterPort=5006, [int]$InputDevice = -1, [switch]$Wireless, [switch]$ReachySimulator, [switch]$ControlSimulator, [ValidateRange(1024,65535)][int]$SimulatorPort=8000, [ValidateSet('control','humour')][string]$Condition = 'control', [ValidateRange(1024,65535)][int]$Port = 8765)
 $ErrorActionPreference = 'Stop'
 if ($Conversation) { $Microphone=$true; $CompanionPreview=$true }
 if ($ControlSimulator -and ($ReachySimulator -or $ReachyLite -or $Wireless -or $BridgeSimulator)) { throw 'Choose ControlSimulator by itself.' }
@@ -71,6 +71,7 @@ try {
         if ($Conversation -and $PushToTalk) { $sessionArgs += '--push-to-talk' }
         if ($Conversation -and $Transcript) { $sessionArgs += '--transcript' }
         if ($SurveyUrl) { $sessionArgs += @('--survey-url',$SurveyUrl) }
+        if ($ResumeParticipant) { $sessionArgs += @('--resume-participant',$ResumeParticipant) }
         if ($Microphone) { $sessionArgs += @('--speech-config',$speechConfigPath) }
         if ($BridgeSimulator -or $ReachyLite -or $Wireless -or $ReachySimulator -or $ControlSimulator) {
             $outputRoute = if ($BridgeSimulator) { 'bridge_simulator' } elseif ($Wireless) { 'reachy_wireless' } elseif ($ReachySimulator) { 'reachy_mujoco' } elseif ($ControlSimulator) { 'reachy_control_simulator' } else { 'reachy_lite' }
@@ -130,6 +131,7 @@ try {
     if ($RenderTest) { $engineArgs = @($engineArgs | Where-Object { $_ -ne '--headless' }) }
     if ($Test) { $engineArgs += @('--max-fps','60') }
     $engineArgs += @('--','--controller-config',$configPath)
+    if ($ResumeStage) { $engineArgs += @('--resume-stage',$ResumeStage); if ($ResumeSkipEntry) { $engineArgs += '--resume-skip-entry' } }
     if ($Test -and $Condition -eq 'control') { $engineArgs += '--test-jokes-off' }
     if ($Rasa) { $engineArgs += '--test-rasa' }
     if ($RenderTest) { $engineArgs += '--capture-preview' }

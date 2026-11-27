@@ -224,11 +224,51 @@ func _begin() -> void:
 	player.camera.current = true
 	ApiClient.begin()
 	ui.hud.show()
+	var resume := _resume_request()
+	if not resume.is_empty():
+		_resume_from(resume.index, resume.skip_entry)
+		return
 	if ApiClient.preview_enabled:
 		_run_checkpoint("welcome", _tutorial)
 	else:
 		speech.play_line("intro")
 		_tutorial()
+
+## A study game that stopped midway continues at a stage
+## (--resume-stage <id>): earlier gems are already earned and their
+## questions are not asked again. --resume-skip-entry also skips that
+## stage's arrival question when the player already answered it.
+func _resume_request() -> Dictionary:
+	var args := OS.get_cmdline_user_args()
+	var flag := args.find("--resume-stage")
+	if flag < 0 or flag + 1 >= args.size():
+		return {}
+	for index in range(4):
+		if str(Content.stage(index).id) == args[flag + 1]:
+			return {"index": index, "skip_entry": "--resume-skip-entry" in args}
+	return {}
+
+func _resume_from(index: int, skip_entry: bool) -> void:
+	GameState.tutorial_done = true
+	for done in range(index):
+		var stage: Dictionary = Content.stage(done)
+		GameState.fragments[stage.id] = true
+		GameState.letters[stage.id] = true
+		for phase in ["entry", "before", "after"]:
+			GameState.checkpoints[stage.id + "_" + phase] = true
+		puzzle_panel.data = stage
+		puzzle_panel.complete_visuals()
+	GameState.stage_index = index
+	puzzle_panel.data = Content.stage(index)
+	puzzle_panel.puzzle = null
+	if skip_entry:
+		GameState.checkpoints[Content.stage(index).id + "_entry"] = true
+	player.position = world.targets[index].global_position
+	ApiClient.emit_event("DEVELOPMENT_RECOVERY", {"fragments": index, "mock": true})
+	view = "explore"
+	_update_hud()
+	var panel := ui.show_modal("Welcome back", "Let's continue", "You already found %d gem%s. Press E to talk to the villager next to you." % [index, "" if index == 1 else "s"])
+	IslandUI.button(panel, "Continue", func(): ui.close_modal())
 
 func _tutorial() -> void:
 	view = "tutorial"

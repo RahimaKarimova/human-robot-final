@@ -20,6 +20,7 @@ class StartSession(BaseModel):
     speech: bool = False
     conversation: bool = False
     push_to_talk: bool = False  # Conversation mode without automatic listening (hold B to reply).
+    resume_participant: str | None = Field(default=None, pattern=r"^P\d{3}$")  # Continue a stopped game's transcript.
     transcript: bool = False  # Opt-in private researcher transcript (transcripts/conversations.md).
     output: Literal["laptop", "bridge_simulator", "reachy_lite", "reachy_wireless", "reachy_mujoco", "reachy_control_simulator"] = "laptop"
 
@@ -145,7 +146,7 @@ def create_app() -> FastAPI:
         value = Session(body.condition, preview_enabled=body.preview, output=body.output, speech_enabled=body.speech, conversation_enabled=body.conversation, push_to_talk=body.push_to_talk)
         if body.transcript:
             from .transcript import TranscriptLog
-            value.transcript = TranscriptLog(body.condition, body.output)
+            value.transcript = TranscriptLog(body.condition, body.output, resume=body.resume_participant)
         app.state.sessions[value.session_id] = value
         result = {"session_id": value.session_id, "token": value.token, "mode": "mock"}
         if value.transcript:

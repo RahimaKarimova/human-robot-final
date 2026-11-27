@@ -1,6 +1,8 @@
 param([ValidateSet('','humour','control')][string]$Condition='',
       [string]$SurveyUrl='https://claude.ai/artifact/8r5EUZ57pMuZpyt5KT63rP',
-      [switch]$CheckOnly)  # -CheckOnly: test robot, microphone and speaker without starting a game
+      [switch]$CheckOnly,  # -CheckOnly: test robot, microphone and speaker without starting a game
+      [switch]$Resume,     # -Resume: continue a participant whose game stopped midway
+      [string]$Participant='')  # with -Resume: which participant (asked if empty)
 # One click study session: Reachy Mini Lite (USB-C) + Reachy Mini Control app,
 # hold-B talking, Rasa conversation, private transcript and the survey link.
 $ErrorActionPreference='Stop'
@@ -54,6 +56,30 @@ $speaker=if($audio.speaker){$audio.speaker}else{'Echo Cancelling Speakerphone (R
 Write-Host "Microphone $($audio.input), speaker: $speaker"
 if($CheckOnly){Write-Host 'Check passed: this laptop is ready to play.' -ForegroundColor Green; exit 0}
 
+# 5a. Continue a stopped game: same participant number, same jokes setting,
+# starting at the first stage without a gem; questions already answered are
+# not asked again.
+$resumeArgs=@{}
+if($Resume){
+    $log=Join-Path $root 'transcripts/conversations.md'
+    if(-not (Test-Path $log)){Fail 'No transcript on this laptop, so there is no game to continue.'}
+    $text=Get-Content -Raw -Encoding utf8 $log
+    $who=$Participant.Trim().ToUpper()
+    while($who -notmatch '^P\d{3}$'){$who=(Read-Host 'Participant number to continue (for example P019)').Trim().ToUpper()}
+    $start=$text.IndexOf("## Participant $who`n"); if($start -lt 0){$start=$text.IndexOf("## Participant $who`r`n")}
+    if($start -lt 0){Fail "$who is not in the transcript on this laptop."}
+    $next=$text.IndexOf("`n## Participant ",$start+5)
+    $section=if($next -gt 0){$text.Substring($start,$next-$start)}else{$text.Substring($start)}
+    $Condition=if($section -match '- Jokes: on'){'humour'}else{'control'}
+    $stages=@('library','workshop','market','temple')
+    $done=0; foreach($s in $stages){if($section -match "\(${s}_SUCCESS\)"){$done++}else{break}}
+    if($done -ge 4 -or $section -match '\(ENDING\)'){Fail "$who already found all four gems. Start a new game instead."}
+    $stage=$stages[$done]
+    $skipEntry=($stage -eq 'market' -and $section -match '\(G2_ACK\)') -or ($stage -eq 'temple' -and $section -match '\(G3_ACK\)')
+    $resumeArgs=@{ResumeParticipant=$who; ResumeStage=$stage; ResumeSkipEntry=[bool]$skipEntry}
+    Write-Host ("Continuing {0}: jokes {1}, {2} gem(s) already found, starting at the {3}." -f $who,$(if($Condition -eq 'humour'){'ON'}else{'OFF'}),$done,$stage) -ForegroundColor Green
+}
+
 # 5. Jokes on or off (shows how many of each this laptop has run, to balance).
 if(-not $Condition){
     $log=Join-Path $root 'transcripts/conversations.md'
@@ -82,7 +108,7 @@ try{
     }
     Write-Host ''
     Write-Host 'Starting the game. Write down the Participant ID printed below.' -ForegroundColor Green
-    & (Join-Path $root 'Play-Controller.ps1') -ReachyLite -RobotPython $appPython -SpeakerName $speaker -Expressive -Conversation -PushToTalk -Transcript -SurveyUrl $SurveyUrl -InputDevice $audio.input -Condition $Condition
+    & (Join-Path $root 'Play-Controller.ps1') -ReachyLite -RobotPython $appPython -SpeakerName $speaker -Expressive -Conversation -PushToTalk -Transcript -SurveyUrl $SurveyUrl -InputDevice $audio.input -Condition $Condition @resumeArgs
 } finally {
     if($null -ne $ownedRouter -and -not $ownedRouter.HasExited){& taskkill.exe /PID $ownedRouter.Id /T /F | Out-Null}
 }

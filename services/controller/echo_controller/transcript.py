@@ -28,7 +28,7 @@ def _clean(text):
 
 
 class TranscriptLog:
-    def __init__(self, condition, output, path=DEFAULT_PATH, first=None):
+    def __init__(self, condition, output, path=DEFAULT_PATH, first=None, resume=None):
         self.path = Path(path)
         self.closed = False
         self.logged_captures = set()
@@ -39,11 +39,17 @@ class TranscriptLog:
             if first is None:
                 first = int(os.environ.get("ECHO_FIRST_PARTICIPANT") or 1)
             following = max(numbers) + 1 if numbers else 1
-            self.participant_id = f"P{max(first, following):03d}"
             started = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             jokes = "on" if condition == "humour" else "off"
-            section = (f"\n## Participant {self.participant_id}\n\n"
-                       f"- Started: {started}\n- Jokes: {jokes}\n- Robot output: {output}\n\n")
+            if resume:
+                # A stopped game continued later: same participant, new block.
+                self.participant_id = resume
+                section = (f"\n### {resume} continued (game restarted)\n\n"
+                           f"- Resumed: {started}\n- Jokes (unchanged): {jokes}\n- Robot output: {output}\n\n")
+            else:
+                self.participant_id = f"P{max(first, following):03d}"
+                section = (f"\n## Participant {self.participant_id}\n\n"
+                           f"- Started: {started}\n- Jokes: {jokes}\n- Robot output: {output}\n\n")
             with self.path.open("a", encoding="utf-8") as handle:
                 if not existing:
                     handle.write(HEADER)
